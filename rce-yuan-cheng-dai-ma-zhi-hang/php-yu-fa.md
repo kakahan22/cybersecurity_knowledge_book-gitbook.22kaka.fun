@@ -13,7 +13,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
   ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
 
 {% hint style="warning" %}
 注意，如果你没有输入；会出现报错，以下报错显示期待一个分号。
@@ -21,7 +21,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 
 特殊情况是，如果是最后一行，可以不用分号，他会自动添加分号（这是笔者在测试的时候只写了一条语句发现仍然可以运行成功。）
 
-<figure><img src="../.gitbook/assets/image 1 (1).png" alt=""><figcaption><p>报错提醒</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 1 (1) (1).png" alt=""><figcaption><p>报错提醒</p></figcaption></figure>
 
 ***
 
@@ -47,7 +47,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 2 (1).png" alt=""><figcaption><p>带括号的输出</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 2 (1) (1).png" alt=""><figcaption><p>带括号的输出</p></figcaption></figure>
 
 3.当然，你也可以把一句完整的话，用，隔开，echo可以把他们拼接起来
 
@@ -57,7 +57,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 3 (1).png" alt=""><figcaption><p>用逗号连接输出</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 3 (1) (1).png" alt=""><figcaption><p>用逗号连接输出</p></figcaption></figure>
 
 ### <mark style="color:green;background-color:purple;">2）print</mark>
 
@@ -71,7 +71,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 4 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 看，在输出hello world的后面紧跟着的就是1，说明，print的返回值被echo打印了。
 
@@ -85,7 +85,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 5 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 5 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 <?php
@@ -93,7 +93,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 6 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 6 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -112,7 +112,7 @@ $ab='hello world';
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 7 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 7 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
 注意，不能将变量名命名为this等特定名词。
@@ -132,7 +132,7 @@ $x=2;
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 8 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 8 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 如果我们想要让y随着x的变化而变化，那么我们要修改代码为。他的意思是，x的引用赋值给了y。
 
@@ -146,7 +146,7 @@ $x=2;
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 9 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 9 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;background-color:purple;">3）打印变量</mark>
 
@@ -165,7 +165,7 @@ $x=2;
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image 10 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 10 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2）除此之外，我们也可以用大括号把这个变量单独括起来。当然也要在双引号以内。
 
@@ -180,7 +180,7 @@ $x=2;
 
 ```
 
-<figure><img src="../.gitbook/assets/image 11 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 11 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3）我们可以用.连接。
 
@@ -230,7 +230,7 @@ const STATUS_PAID='paid';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 14 (1).png" alt=""><figcaption><p>CONST</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 14 (1) (1).png" alt=""><figcaption><p>CONST</p></figcaption></figure>
 
 ### <mark style="color:green;background-color:purple;">2)PHP自带常量</mark>
 
@@ -260,7 +260,7 @@ const STATUS_PAID='paid';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 16 (2).png" alt=""><figcaption><p>__FILE__</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 16 (2) (1).png" alt=""><figcaption><p>__FILE__</p></figcaption></figure>
 
 ```php
 <?php
@@ -270,7 +270,7 @@ const STATUS_PAID='paid';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 17 (1).png" alt=""><figcaption><p>__LINE__</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 17 (1) (1).png" alt=""><figcaption><p>__LINE__</p></figcaption></figure>
 
 ### <mark style="color:green;background-color:purple;">4）VARIABLE VARIABLES</mark>
 
@@ -289,7 +289,7 @@ $bar='baz';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 18 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 18 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -323,7 +323,7 @@ print_r($array);
 
 ```
 
-<figure><img src="../.gitbook/assets/image 19 (1).png" alt=""><figcaption><p>PRINT_R</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 19 (1) (1).png" alt=""><figcaption><p>PRINT_R</p></figcaption></figure>
 
 但是如果是打印其中的一个，我们还是用`echo`或者`print`就可以。
 
@@ -338,7 +338,7 @@ var_dump(isset($programminglanguages[3]));
 
 ```
 
-<figure><img src="../.gitbook/assets/image 20 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 20 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:yellow;background-color:green;">**②推入元素**</mark>。如果要往数组里增加值，有两种方式，第一种用下标直接赋值，但是这样一次只能赋值一种，效率低。第二种利用`array_push`函数，一次可以推入多个值。
 
@@ -381,7 +381,7 @@ echo $programminglanguages['php'];
 
 ```
 
-<figure><img src="../.gitbook/assets/image 22.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 22 (1).png" alt=""><figcaption></figcaption></figure>
 
 如果我们想知道某个键是否存在，我们可以利用一个函数
 
@@ -409,7 +409,7 @@ echo '<br \>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 23.png" alt=""><figcaption><p>ARRAY_KEY_EXISTS</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 23 (1).png" alt=""><figcaption><p>ARRAY_KEY_EXISTS</p></figcaption></figure>
 
 从这里我们也可以看出来，其实键值对是对于某个特定的维数来说的，对于第二个键，其实是`$programlanguages['python']`这个数组的键值对（并且验证过了）。
 
@@ -436,7 +436,7 @@ echo $programminglanguages['python']['version2'];
 
 ```
 
-<figure><img src="../.gitbook/assets/image 24.png" alt=""><figcaption><p>多维数组</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 24 (1).png" alt=""><figcaption><p>多维数组</p></figcaption></figure>
 
 {% hint style="info" %}
 到这里，我们对下标有一种另外的理解，他是一种自动分配的键值对，键是数字。
@@ -477,7 +477,7 @@ echo '<br \>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image 25.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 25 (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -513,7 +513,7 @@ echo $abc;
 
 ```
 
-<figure><img src="../.gitbook/assets/image 26.png" alt=""><figcaption><p>HEREDOC</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 26 (1).png" alt=""><figcaption><p>HEREDOC</p></figcaption></figure>
 
 <mark style="color:yellow;background-color:green;">**2）nowdoc**</mark>，格式是`<<<'TEXT'`开头，`TEXT`结尾，并且它里面的任何的文字都是只是字符串，就是说，他识别不了里面的特殊的一些符号代表的意思。
 
@@ -535,7 +535,7 @@ echo $abc;
 
 ```
 
-<figure><img src="../.gitbook/assets/image 27.png" alt=""><figcaption><p>NOWDOC</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 27 (1).png" alt=""><figcaption><p>NOWDOC</p></figcaption></figure>
 
 ### <mark style="color:green;background-color:purple;">3）var\_dump()</mark>
 
@@ -555,7 +555,7 @@ $d=true;
 
 ```
 
-<figure><img src="../.gitbook/assets/image 28.png" alt=""><figcaption><p>VAR_DUMP</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 28 (1).png" alt=""><figcaption><p>VAR_DUMP</p></figcaption></figure>
 
 我们可以看到，`var_dump（）`输出了，路径，行数，以及类型，还有变量结果，特殊的对于字符串来说，还输出了字符串的长度。
 
@@ -587,7 +587,7 @@ $d=true;
 > ?>
 > ```
 
-<figure><img src="../.gitbook/assets/image 29.png" alt=""><figcaption><p>弱类型</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 29 (1).png" alt=""><figcaption><p>弱类型</p></figcaption></figure>
 
 ##
 

@@ -82,7 +82,7 @@ description: 这里是CTF做题时常见的会遇见的RCE的漏洞知识点总�
 ping baidu.com &
 ```
 
-<figure><img src="../.gitbook/assets/image 1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 1 (1).png" alt=""><figcaption></figcaption></figure>
 
 我们使用ctrl+c无法停止这个进程，说明他已经在后台进行了。
 
@@ -164,7 +164,7 @@ ls -l | less
 ca\t 1.php
 ```
 
-<figure><img src="../.gitbook/assets/image 2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 2 (1).png" alt=""><figcaption></figcaption></figure>
 
 （二）：**添加双引号**，转化为字符串
 
@@ -175,7 +175,7 @@ ca"t" 1.php
 
 ```
 
-<figure><img src="../.gitbook/assets/image 3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 3 (1).png" alt=""><figcaption></figcaption></figure>
 
 （三）：**添加单引号**，转化为字符串
 
@@ -184,7 +184,7 @@ c'at' 1.php
 
 ```
 
-<figure><img src="../.gitbook/assets/image 4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 4 (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">**③method three：拼接法**</mark>
 
@@ -196,7 +196,7 @@ c'at' 1.php
 a=1.;b=php;cat $a$b
 ```
 
-<figure><img src="../.gitbook/assets/image 5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 5 (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">**④method four：空变量绕过**</mark>
 
@@ -207,19 +207,19 @@ ca$*t 1.php
 
 ```
 
-<figure><img src="../.gitbook/assets/image 6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 6 (1).png" alt=""><figcaption></figcaption></figure>
 
 ```sh
 ca$@t 1.php 
 ```
 
-<figure><img src="../.gitbook/assets/image 7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 7 (1).png" alt=""><figcaption></figcaption></figure>
 
 ```sh
 ca$1t 1.php
 ```
 
-<figure><img src="../.gitbook/assets/image 8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 8 (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -231,7 +231,7 @@ ca$1t 1.php
 ca${1}t 1.php
 ```
 
-<figure><img src="../.gitbook/assets/image 9.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 9 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;background-color:blue;">2）反引号执行，$()执行</mark>
 
@@ -251,11 +251,11 @@ echo 'Y2F0Cg==' | base64 -d//对Y2F0Cg==进行解码，和cat对上了，说明�
 `echo 'Y2F0Cg=='|base64 -d ` 1.php//得出最后的执行代码是这个
 ```
 
-<figure><img src="../.gitbook/assets/image 10.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 10 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image 11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 11 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image 12.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 12 (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -285,9 +285,9 @@ cat 1*
 cat 1??hp
 ```
 
-<figure><img src="../.gitbook/assets/image 13 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 13 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image 14.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 14 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;background-color:blue;">5)hex编码</mark>
 
@@ -299,7 +299,7 @@ cat 1??hp
 echo '63617420312e706870'|xxd -r -p |bash 
 ```
 
-<figure><img src="../.gitbook/assets/image 15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 15 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;background-color:blue;">6）空格过滤</mark>
 
@@ -403,7 +403,7 @@ filesize(string[filename]):int|false
 
 
 
-<figure><img src="../.gitbook/assets/image 16 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 16 (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">**②http:// https://**</mark>
 
@@ -423,7 +423,7 @@ filesize(string[filename]):int|false
   * `https://example.com https://example.com/file.php?var1=val1&var2=val2 https://user:password@example.com`
   * 【利用了https协议，更安全】
 
-<figure><img src="../.gitbook/assets/image 17.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 17 (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">**③ftp:// ftps://**</mark>
 
@@ -433,7 +433,7 @@ filesize(string[filename]):int|false
 
     `ftp://example.com/pub/file.txt ftp://user:password@example.com/pub/file.txt ftps://example.com/pub/file.txt ftps://user:password@example.com/pub/file.txt`
 
-<figure><img src="../.gitbook/assets/image 18.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 18 (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">**④php://**</mark>
 
@@ -461,11 +461,11 @@ php://input + [POST DATA]执行php代码
 
 我们需要掌握他参数的具体写法。
 
-<figure><img src="../.gitbook/assets/image 19.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 19 (1).png" alt=""><figcaption></figcaption></figure>
 
 可选项也要了解一下
 
-<figure><img src="../.gitbook/assets/image 20.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 20 (1).png" alt=""><figcaption></figcaption></figure>
 
 我们这里主要详细讲解一下常用的几个语句的解释。
 
@@ -495,7 +495,7 @@ data://text/plain,【text】
 
 当我们的过滤限制非常大的时候，如以下情况
 
-<figure><img src="../.gitbook/assets/image 21.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image 21 (1).png" alt=""><figcaption></figcaption></figure>
 
 我们就需要考虑无参数读文件了。
 
