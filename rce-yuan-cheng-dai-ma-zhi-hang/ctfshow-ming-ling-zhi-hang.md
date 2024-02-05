@@ -9,7 +9,7 @@ description: >-
 
 ### 1.代码解释
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 error_reporting(0);

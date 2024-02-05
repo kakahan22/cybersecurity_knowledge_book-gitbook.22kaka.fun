@@ -2,7 +2,7 @@
 description: 因为sql注入是在sql语法的一些基础上的，所以我们必须知道sql的一些基本语法。
 ---
 
-# SQL语法
+# 🐶 SQL语法
 
 本人使用的是kali下的mysql环境
 

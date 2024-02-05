@@ -517,7 +517,7 @@ data://text/plain,【text】
 
 上述参数的意义就是他们的英文的本意。所以我们如果用`scandir('.')`，就是代表当前目录下的所有文件，并且他的返回结果是数组。我们可以实验看看。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 从上述结果可以看出来，在当前的目录下，0是当前目录，2是目录下的文件，3是.vscode下面的文件也就是当前的执行文件。
 
@@ -535,7 +535,7 @@ localeconv():array
 
 可以看到这个函数是没有参数要输入的，并且返回值是一个数组。
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 因为一些格式等原因，这个上面输入不全，我们直接看最后的输出结果的正确格式。
 
@@ -592,7 +592,7 @@ current(array|object[array]):mixed
 
 每个数组中都有一个内部的指针指向它“**当前的**”单元，初始化时会指向该数组中的第一个值。就是说我们用`current(array)`的时候返回的是array的第一个值
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到返回`localeconv()`的第一个结果`.`
 
@@ -608,7 +608,7 @@ current(array|object[array]):mixed
 reset(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到虽然有警告，但是还是输出了.
 
@@ -622,7 +622,7 @@ end(array|object[array]):mixed
 
 易得，就是得到数组的最后一个元素。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">⑦next()</mark>
 
@@ -678,6 +678,255 @@ chr(int[codepoint]):string
 
 我们需要特别知道46对应的`.`
 
+#### <mark style="color:red;background-color:orange;">1① rand()</mark>
+
+产生随机数
+
+```php
+rand():int
+rand(int[min],int[max]):int
+```
+
+其实我们通过c语言知道他是伪随机，但是我们只能用rand（）在无参数的情况下，所以我们得到的结果是非常不确定的。就也不知道究竟什么时候能用到。
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">1②time()</mark>
+
+返回当前的unix时间戳，我们在取证的时候学过时间戳是什么。这里就不多赘述了。
+
+```php
+time():int
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">1③localtime()</mark>
+
+取得本地时间
+
+```php
+localtime(?int[timestamp]=null,bool[associative]=false):array
+```
+
+和我们当时的localeconv一样，返回一个数组，上面的timestamp是某一个时间戳，如果没有指定就是本地时间。后面是选择数字数组还是关联数组。
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+很明显我得到的是数字数组，算了，直接把代表的含义贴出来了，反正我这是数字数组，没啥好看的。
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">1④phpversion()</mark>
+
+返回php的版本号
+
+```php
+phpversion()
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">1⑤ord（）</mark>
+
+转换字符串第一个字节为 0-255 之间的值，和chr()刚好相反，所以这里就不举例了，不过可以帮我们有时候不想查找ascii码表的时候使用。
+
+
+
+#### <mark style="color:red;background-color:orange;">1⑥floor（）</mark>
+
+舍去法取整(向下取整），就是直接把小数点去掉。
+
+```php
+floor(int|float[num]):float
+```
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+这个地方注意一下啊，如果要用于版本号，那么版本号只能有一个小数点，我看都参考的文章用了这个`floor(phpversion()),这个用在我的环境下是报错的，因为我的版本是8.2.12，不是小数，用不了。`
+{% endhint %}
+
+
+
+#### <mark style="color:red;background-color:orange;">1⑦sqrt（）</mark>
+
+平方根
+
+```php
+sqrt(float[num]):float
+```
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">1⑧tan()</mark>
+
+就是数学的tan（正切）
+
+#### <mark style="color:red;background-color:orange;">1⑨cosh()</mark>
+
+数学cos(双曲余弦）
+
+#### <mark style="color:red;background-color:orange;">20sinh()</mark>
+
+数学sin(正弦）
+
+#### <mark style="color:red;background-color:orange;">2①ceil()</mark>
+
+向上取整
+
+```php
+ceil(int|float[num]):float
+```
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">2②crypt（）</mark>
+
+单向字符串散列，单向是说只能加密，没有decode函数来解密；散列我们在取证的时候也学过就是哈希值。
+
+```php
+crypt(string[string],string[salt]):string
+```
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+这个地方需要注意一个事情，这个函数后面的salt在8.0版本之前是可选的，但是8.0之后必须存在，所以在8.0环境下只有一个字符串会报错，就是用不了，但是那个参考文章没有说明这个事情，事实就是所有的都是在越来越安全。所以这个方法我都不打算讲了。
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">2③getcwd()</mark>
+
+取得当前工作目录
+
+```php
+string():string|false
+```
+
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">2④realpath()</mark>
+
+返回规范化的绝对路径名
+
+```php
+realpath(string[path]):string|false
+```
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">2⑤show\_source()   / highlight\_file()</mark>
+
+{% hint style="info" %}
+这两个函数都可以使用，是一样的。
+{% endhint %}
+
+这里解释highlight\_file()的用法，因为手册上就写了这个，另外一个都没写。
+
+作用：语法高亮一个文件。因为使用这个函数的返回值，如果return被设置成了高亮后的代码不会被打印，false会被打印，默认是false。
+
+```php
+highlight_file(string[filename],bool[return]=false):string|bool
+```
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+虽然有warning，但是代码还是出现了。
+
+#### <mark style="color:red;background-color:orange;">2⑥readfile()</mark>
+
+输出文件。
+
+```php
+readfile(string[filename],bool[use_include_path],?resource[context]=null):int|false
+```
+
+{% hint style="danger" %}
+报错了，因为PHP5.3以上默认只能传递具体的变量，而不能通过函数返回值传递。参考的文章说不影响使用，但是其实在本人的环境下，是使用不了的。
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">2⑦file\_get\_contents()</mark>
+
+将整个文件读入一个字符串
+
+```php
+file_get_contents(
+    string $filename,
+    bool $use_include_path = false,
+    ?resource $context = null,
+    int $offset = 0,
+    ?int $length = null
+): string|false
+```
+
+{% hint style="danger" %}
+同样的错误
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">2⑧array\_reverse</mark>
+
+返回单元顺序相反的数组,就是输出的数组的顺序相反了。
+
+```php
+array_reverse(array $array, bool $preserve_keys = false): array
+```
+
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">2⑨array\_flip（）</mark>
+
+交换键和值。
+
+```php
+ array_flip(array $array): array
+```
+
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">30array\_rand()</mark>
+
+从数组中随机抽出一个或多个<mark style="color:red;">随机键</mark>
+
+```php
+array_rand(array $array, int $num = 1): int|string|array
+```
+
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">3①dirname()</mark>
+
+返回路径中的目录部分，他不会返回文件，之前介绍的都是会返回文件。
+
+```php
+dirname(string $path, int $levels = 1): string
+```
+
+对于这个函数的返回值需要好好的讲一下。
+
+它返回的是path的父目录，如果没有斜线，就返回`.`表示当前目录，否则就是去除了最后一根/以及后面的内容。下面是一些例子。
+
+```php
+<?php
+dirname('.');    // Will return '.'.
+dirname('/');    // Will return `\` on Windows and '/' on *nix systems.
+dirname('\\');   // Will return `\` on Windows and '.' on *nix systems.
+dirname('C:\\'); // Will return 'C:\' on Windows and '.' on *nix systems.
+?>
+```
+
+<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">3②chdir()</mark>
+
+改变目录
+
+```php
+chdir(string $directory): bool
+```
+
+这里需要注意他的返回值是0和1，所以他的应用可能有点没那么实用。
+
+<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -696,3 +945,7 @@ chr(int[codepoint]):string
 
 
 
+
+## <mark style="background-color:red;">参考传递门：</mark>
+
+[https://www.freebuf.com/articles/web/261800.html](https://www.freebuf.com/articles/web/261800.html)
