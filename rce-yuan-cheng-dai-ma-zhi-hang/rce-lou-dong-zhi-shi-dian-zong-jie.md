@@ -491,11 +491,208 @@ data://text/plain,【text】
 
 ***
 
-### <mark style="color:blue;background-color:purple;">6.无参数读文件</mark>
+### <mark style="color:blue;background-color:purple;">6.无参数读取</mark>
+
+<mark style="background-color:red;">参考</mark>[<mark style="background-color:red;">https://www.freebuf.com/articles/web/261800.html</mark>](https://www.freebuf.com/articles/web/261800.html)
 
 当我们的过滤限制非常大的时候，如以下情况
 
 <figure><img src="../.gitbook/assets/image 21 (1).png" alt=""><figcaption></figcaption></figure>
 
-我们就需要考虑无参数读文件了。
+我们就需要考虑无参数读文件了。首先我们需要知道什么叫做无参数。
+
+> 无参数：
+>
+> 就是函数包着函数，且函数没有参数。，就比如`a(b(c(d())))`这种形式就是无参数。
+
+## <mark style="color:green;background-color:blue;">1）无参数文件读取</mark>
+
+这里首先介绍很多的函数，后面用的，希望等到后面的时候可以根据这些函数，自己想到逻辑。所以第一步介绍函数比较利于后面的知识。
+
+#### <mark style="color:red;background-color:orange;">①scandir()</mark>
+
+列出指定路径中的文件和目录
+
+> scandir(string\[directory],int\[sorting\_order]=SCANDIR\_SORT\_ASCENDING,?resource\[context]=null):array|false
+
+上述参数的意义就是他们的英文的本意。所以我们如果用`scandir('.')`，就是代表当前目录下的所有文件，并且他的返回结果是数组。我们可以实验看看。
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+从上述结果可以看出来，在当前的目录下，0是当前目录，2是目录下的文件，3是.vscode下面的文件也就是当前的执行文件。
+
+{% hint style="info" %}
+我们平时利用的，就是这个array\[0]，他代表是.这个独特的字符。
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">②localeconv（）</mark>
+
+是一个获得数字格式信息。（可能你无法理解这个数字格式信息，没有关系，我们将通过实验展示这个返回值）。
+
+```php
+localeconv():array
+```
+
+可以看到这个函数是没有参数要输入的，并且返回值是一个数组。
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+因为一些格式等原因，这个上面输入不全，我们直接看最后的输出结果的正确格式。
+
+<pre class="language-php"><code class="lang-php">Array
+(
+    [decimal_point] => .  //小数点字符
+    [thousands_sep] =>    //千分隔符
+    [int_curr_symbol] => EUR //国际货币符号（即美元）
+    [currency_symbol] => €  //当地货币符号（即 $）
+    [mon_decimal_point] => ,  //货币小数点字符
+    [mon_thousands_sep] =>    //货币千分隔符
+    [positive_sign] =>      //为正值签名
+    [negative_sign] => -     //负值的符号
+    [int_frac_digits] => 2       //国际小数位数字
+    [frac_digits] => 2      //本地小数位
+    [p_cs_precedes] => 1     //如果 currency_symbol 在正值之前，则为 true，如果在正值之后，则为 false
+    [p_sep_by_space] => 1    //如果空格将currency_symbol与正空格分开，则为 true value，否则为 false
+    [n_cs_precedes] => 1     //如果空格将currency_symbol与正空格分开，则为 true value，否则为 false
+    [n_sep_by_space] => 1    //如果空格将currency_symbol与负数分开，则为 true value，否则为 false
+    [p_sign_posn] => 1       //0 - 数量和currency_symbol括号
+                             //1 - 符号字符串位于数量和currency_symbol之前
+                             //2 - 符号字符串接替数量和currency_symbol
+                             //3 - 符号字符串紧接在currency_symbol之前
+                             //4 - 符号字符串立即接替currency_symbol
+    [n_sign_posn] => 2      //0 - 数量和currency_symbol括号
+                            //1 - 符号字符串位于数量和currency_symbol之前
+                            //2 - 符号字符串接替数量和currency_symbol
+<strong>                           //3 - 符号字符串紧接在currency_symbol之前
+</strong>                            //4 - 符号字符串立即接替currency_symbol
+    [grouping] => Array    //包含数值分组的数组
+        (
+        )
+
+    [mon_grouping] => Array   //包含货币分组的数组
+        (
+            [0] => 3
+            [1] => 3
+        )
+
+)
+</code></pre>
+
+{% hint style="info" %}
+其实，我们在利用的时候，主要利用的就是第一个array\[0]的点
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">③current</mark>
+
+返回数组中的当前值
+
+```php
+current(array|object[array]):mixed
+```
+
+每个数组中都有一个内部的指针指向它“**当前的**”单元，初始化时会指向该数组中的第一个值。就是说我们用`current(array)`的时候返回的是array的第一个值
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+可以看到返回`localeconv()`的第一个结果`.`
+
+#### <mark style="color:red;background-color:orange;">④pos()</mark>
+
+是`current()`的别名，就是说等同于`current()`一样的。
+
+#### <mark style="color:red;background-color:orange;">⑤reset()</mark>
+
+将数组的内部指针指向<mark style="color:purple;">**第一个单元**</mark>。
+
+```php
+reset(array|object[array]):mixed
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+可以看到虽然有警告，但是还是输出了.
+
+#### <mark style="color:red;background-color:orange;">⑥end()</mark>
+
+将数组的内部指针指向最后一个单元
+
+```php
+end(array|object[array]):mixed
+```
+
+易得，就是得到数组的最后一个元素。
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">⑦next()</mark>
+
+将数组中的内部指针向前移动一位，返回当前指针的下一位。
+
+```php
+next(array|object[array]):mixed
+```
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="danger" %}
+这里有一个重要的地方，就是当我在用`next(localeconv())`实验时，结果出不来。后来通过chatgpt了解到因为 `localeconv()` 返回的是一个关联数组，而 `next()` 通常用于数组的内部指针移动，而不是关联数组
+{% endhint %}
+
+#### <mark style="color:red;background-color:orange;">⑧prev()</mark>
+
+将指针往前移一位
+
+```php
+prev(array|object[array]):mixed
+```
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+#### <mark style="color:red;background-color:orange;">⑨each（）</mark>
+
+{% hint style="danger" %}
+在这个函数之前先强调:这个函数PHP7.2.0之后（8也别想了），都用不了。
+{% endhint %}
+
+返回当前的键值对，并且将指针向前移动一步。
+
+（本人环境8.0，实验不了）
+
+#### <mark style="color:red;background-color:orange;">⑩chr()</mark>
+
+从数字生成单字节字符串,就是根据ASCII码生成对应的char。
+
+```php
+chr(int[codepoint]):string
+```
+
+{% hint style="info" %}
+因为ascii码是从0-255，所以当大于255之后，就会通过<mark style="color:red;">%256</mark>来得到最后的ascii码
+{% endhint %}
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+所以这里贴出来ascii码的表，有几个需要特别记住的。
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+我们需要特别知道46对应的`.`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
