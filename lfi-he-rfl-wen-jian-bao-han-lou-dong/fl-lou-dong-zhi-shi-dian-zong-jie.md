@@ -1,5 +1,5 @@
 ---
-description: 这里将通过参考文章和做题一起进行总结
+description: 这里将通过参考文章和做题一起进行总结，并且文件包含漏洞，很多都利用了文件上传漏洞，所以这里也会总结一些文件上传漏洞的知识。
 ---
 
 # 🍉 FL漏洞知识点总结
@@ -40,9 +40,22 @@ description: 这里将通过参考文章和做题一起进行总结
 [rce-lou-dong-zhi-shi-dian-zong-jie.md](../rce-yuan-cheng-dai-ma-zhi-hang/rce-lou-dong-zhi-shi-dian-zong-jie.md)
 {% endcontent-ref %}
 
+{% hint style="info" %}
+这里总结一下四个主要的协议是用在哪些方面。
+
+```php
+1.php://filter              主要用于读取源码
+2.php://input               经常使用file_get_contents获取php://input内容
+3.data://                   执行命令
+4.file://                   访问本地文件系统
+```
+{% endhint %}
+
 ***
 
-在有以上的知识的基础上我们要介绍这个FL漏洞了。
+在有以上的知识的基础上我们要介绍这个FL漏洞了。主要是分为本地文件包含漏洞和远程文件包含漏洞。
+
+## <mark style="color:blue;background-color:green;">1.本地文件包含漏洞</mark>
 
 
 
@@ -66,17 +79,7 @@ description: 这里将通过参考文章和做题一起进行总结
 
 
 
+## <mark style="color:red;background-color:orange;">参考门：</mark>
 
-
-
-
-
-
-
-
-
-
-
-
-
+[https://www.freebuf.com/articles/web/182280.html](https://www.freebuf.com/articles/web/182280.html)
 
