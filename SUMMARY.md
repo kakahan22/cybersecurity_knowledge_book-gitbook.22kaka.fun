@@ -9,3 +9,4 @@
 * [🍏 LFI和RFL（文件包含漏洞）](lfi-he-rfl-wen-jian-bao-han-lou-dong/README.md)
   * [🍉 FL漏洞知识点总结](lfi-he-rfl-wen-jian-bao-han-lou-dong/fl-lou-dong-zhi-shi-dian-zong-jie.md)
   * [🍌 CTFSHOW文件包含](lfi-he-rfl-wen-jian-bao-han-lou-dong/ctfshow-wen-jian-bao-han.md)
+  * [🥥 编写一句话木马](lfi-he-rfl-wen-jian-bao-han-lou-dong/bian-xie-yi-ju-hua-mu-ma.md)
