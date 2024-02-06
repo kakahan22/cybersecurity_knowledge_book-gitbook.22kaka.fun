@@ -303,7 +303,7 @@ echo '63617420312e706870'|xxd -r -p |bash
 
 ### <mark style="color:green;background-color:blue;">6）空格过滤</mark>
 
-我们可以用`<>,%20,%09,$IFS,${IFS},(cat,flag)`,这些去过滤
+我们可以用`<>,%20,%09,$IFS,${IFS},(cat,flag),<,>`这些去过滤
 
 ### <mark style="color:green;background-color:blue;">7）括号过滤</mark>
 
@@ -326,6 +326,8 @@ echo '63617420312e706870'|xxd -r -p |bash
 [https://forum.ywhack.com/shell.php](https://forum.ywhack.com/shell.php)
 
 反弹shell的目的是为了让受害者（也就是目标机）自己来连接攻击机，因为攻击机如果正向连接，需要突破防火墙，防火墙一般是防进不防出，所以我们可以通过命令执行去让受害者来自己连接我们。
+
+
 
 ***
 
@@ -517,7 +519,7 @@ data://text/plain,【text】
 
 上述参数的意义就是他们的英文的本意。所以我们如果用`scandir('.')`，就是代表当前目录下的所有文件，并且他的返回结果是数组。我们可以实验看看。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 从上述结果可以看出来，在当前的目录下，0是当前目录，2是目录下的文件，3是.vscode下面的文件也就是当前的执行文件。
 
@@ -535,7 +537,7 @@ localeconv():array
 
 可以看到这个函数是没有参数要输入的，并且返回值是一个数组。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 因为一些格式等原因，这个上面输入不全，我们直接看最后的输出结果的正确格式。
 
@@ -592,7 +594,7 @@ current(array|object[array]):mixed
 
 每个数组中都有一个内部的指针指向它“**当前的**”单元，初始化时会指向该数组中的第一个值。就是说我们用`current(array)`的时候返回的是array的第一个值
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到返回`localeconv()`的第一个结果`.`
 
@@ -608,7 +610,7 @@ current(array|object[array]):mixed
 reset(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到虽然有警告，但是还是输出了.
 
@@ -622,7 +624,7 @@ end(array|object[array]):mixed
 
 易得，就是得到数组的最后一个元素。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">⑦next()</mark>
 
@@ -632,7 +634,7 @@ end(array|object[array]):mixed
 next(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 这里有一个重要的地方，就是当我在用`next(localeconv())`实验时，结果出不来。后来通过chatgpt了解到因为 `localeconv()` 返回的是一个关联数组，而 `next()` 通常用于数组的内部指针移动，而不是关联数组
@@ -646,7 +648,7 @@ next(array|object[array]):mixed
 prev(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">⑨each（）</mark>
 
@@ -670,11 +672,11 @@ chr(int[codepoint]):string
 因为ascii码是从0-255，所以当大于255之后，就会通过<mark style="color:red;">%256</mark>来得到最后的ascii码
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 所以这里贴出来ascii码的表，有几个需要特别记住的。
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们需要特别知道46对应的`.`
 
@@ -689,7 +691,7 @@ rand(int[min],int[max]):int
 
 其实我们通过c语言知道他是伪随机，但是我们只能用rand（）在无参数的情况下，所以我们得到的结果是非常不确定的。就也不知道究竟什么时候能用到。
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1②time()</mark>
 
@@ -699,7 +701,7 @@ rand(int[min],int[max]):int
 time():int
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1③localtime()</mark>
 
@@ -711,11 +713,11 @@ localtime(?int[timestamp]=null,bool[associative]=false):array
 
 和我们当时的localeconv一样，返回一个数组，上面的timestamp是某一个时间戳，如果没有指定就是本地时间。后面是选择数字数组还是关联数组。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很明显我得到的是数字数组，算了，直接把代表的含义贴出来了，反正我这是数字数组，没啥好看的。
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1④phpversion()</mark>
 
@@ -725,7 +727,7 @@ localtime(?int[timestamp]=null,bool[associative]=false):array
 phpversion()
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1⑤ord（）</mark>
 
@@ -741,7 +743,7 @@ phpversion()
 floor(int|float[num]):float
 ```
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这个地方注意一下啊，如果要用于版本号，那么版本号只能有一个小数点，我看都参考的文章用了这个`floor(phpversion()),这个用在我的环境下是报错的，因为我的版本是8.2.12，不是小数，用不了。`
@@ -757,7 +759,7 @@ floor(int|float[num]):float
 sqrt(float[num]):float
 ```
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1⑧tan()</mark>
 
@@ -779,7 +781,7 @@ sqrt(float[num]):float
 ceil(int|float[num]):float
 ```
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">2②crypt（）</mark>
 
@@ -789,7 +791,7 @@ ceil(int|float[num]):float
 crypt(string[string],string[salt]):string
 ```
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这个地方需要注意一个事情，这个函数后面的salt在8.0版本之前是可选的，但是8.0之后必须存在，所以在8.0环境下只有一个字符串会报错，就是用不了，但是那个参考文章没有说明这个事情，事实就是所有的都是在越来越安全。所以这个方法我都不打算讲了。
@@ -803,7 +805,7 @@ crypt(string[string],string[salt]):string
 string():string|false
 ```
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">2④realpath()</mark>
 
@@ -813,7 +815,7 @@ string():string|false
 realpath(string[path]):string|false
 ```
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">2⑤show\_source()   / highlight\_file()</mark>
 
@@ -829,7 +831,7 @@ realpath(string[path]):string|false
 highlight_file(string[filename],bool[return]=false):string|bool
 ```
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 虽然有warning，但是代码还是出现了。
 
@@ -871,7 +873,7 @@ file_get_contents(
 array_reverse(array $array, bool $preserve_keys = false): array
 ```
 
-<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">2⑨array\_flip（）</mark>
 
@@ -881,7 +883,7 @@ array_reverse(array $array, bool $preserve_keys = false): array
  array_flip(array $array): array
 ```
 
-<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">30array\_rand()</mark>
 
@@ -891,7 +893,7 @@ array_reverse(array $array, bool $preserve_keys = false): array
 array_rand(array $array, int $num = 1): int|string|array
 ```
 
-<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">3①dirname()</mark>
 
@@ -914,7 +916,7 @@ dirname('C:\\'); // Will return 'C:\' on Windows and '.' on *nix systems.
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">3②chdir()</mark>
 
@@ -926,7 +928,7 @@ chdir(string $directory): bool
 
 这里需要注意他的返回值是0和1，所以他的应用可能有点没那么实用。
 
-<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="background-color:purple;">**接下来我们要介绍一些比较固定的搭配**</mark>
 
@@ -943,7 +945,7 @@ print_r(scandir(reset(localeconv())));
 
 其实后面的`current(localeconv()),pos(localeconv()),reset(localeconv())`都是在构造`'.'`。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 除上述之外还有一些也能这样，但是是概率事件，就不是确定。
 
@@ -956,7 +958,7 @@ print_r(scandir(reset(localtime(time()))));
 
 其实后面三个都是要看运气的，这里是因为后面三个生成的数字太大了，不存在，所以就输出了这个唯一的路径。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 对于这个.的构造我们还可以通过数学方法计算来得到46，可以但是应该很难算，而且现在来说限制太大了，我的环境实验不出来，但是还是贴出一些例子大家参考参考
 
@@ -971,7 +973,7 @@ print_r(end(scandir(getcwd())));
 print_r(end(scandir(realpath('.'))));
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">（2)读取当前目录下文件内容</mark>
 
@@ -982,9 +984,9 @@ readfile(end(scandir(getcwd())));
 file_get_contents(end(scandir(getcwd())));
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:green;">其实对于这个实验结果我是有点惊讶的。因为最开始对单个函数实验的时候，只有一个成功了，结果用无参数读取的时候，只有第四个没有成功，所以我们可以得到，前三个都是可用的。</mark>
 
@@ -1022,7 +1024,7 @@ show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd())))))));
 
 当出现以下这种情况的时候，我们就需要知道他是要我们采取无参数命令执行了。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

