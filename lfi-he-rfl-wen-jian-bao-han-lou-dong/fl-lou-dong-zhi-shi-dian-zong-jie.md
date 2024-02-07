@@ -381,13 +381,14 @@ if (isset($_GET['file'])) {
 4.IIS7.0+win2003 默认日志文件：%SystemDrive%\inetpub\logs\LogFiles
 
 5.nginx 日志文件：日志文件在用户安装目录logs目录下,假设安装路径为/usr/local/nginx,那日志目录就是在/usr/local/nginx/logs下面
+linux/var/log/nginx/access.log
 ```
 
 除了路径，我们需要看一下日志文件长什么样子
 
 <figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>我的日志文件路径就在/var/log/apache2下面</p></figcaption></figure>
 
-上面就包含了我刚刚用burpsuite发送的请求。所以只要是请求发送了他都能记录下来。并且我们发现包含进去的其实是路径里面的内容，所以我们的payload也是写在这个地方。
+上面就包含了我刚刚用burpsuite发送的请求。所以只要是请求发送了他都能记录下来。并且我们发现包含进去的其实是路径里面的内容，以及user-agent也能包含，所以我们的payload也是写在这个地方。
 
 ### <mark style="color:purple;background-color:yellow;">2）利用</mark>
 
@@ -458,7 +459,25 @@ if (isset($_GET['file'])) {
 
 ***
 
-## <mark style="color:blue;background-color:green;">10）绕过</mark>
+## <mark style="color:blue;background-color:green;">10）竞争条件</mark>
+
+本来以为可以不做这个，结果发现5道题全是竞争条件，被迫学习。首先对原理进行讲解，因为自己原理都理解了很久。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## <mark style="color:blue;background-color:green;">11）绕过</mark>
 
 我算是发现了有防御就会有绕过。这里有很多绕过方法
 
@@ -494,7 +513,7 @@ if (isset($_GET['file'])) {
 
 
 
-
+遇到die（）
 
 
 

