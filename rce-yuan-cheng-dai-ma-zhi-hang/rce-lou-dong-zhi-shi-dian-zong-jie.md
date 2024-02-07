@@ -610,7 +610,7 @@ current(array|object[array]):mixed
 reset(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到虽然有警告，但是还是输出了.
 
@@ -624,7 +624,7 @@ end(array|object[array]):mixed
 
 易得，就是得到数组的最后一个元素。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">⑦next()</mark>
 
@@ -634,7 +634,7 @@ end(array|object[array]):mixed
 next(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 这里有一个重要的地方，就是当我在用`next(localeconv())`实验时，结果出不来。后来通过chatgpt了解到因为 `localeconv()` 返回的是一个关联数组，而 `next()` 通常用于数组的内部指针移动，而不是关联数组
@@ -648,7 +648,7 @@ next(array|object[array]):mixed
 prev(array|object[array]):mixed
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">⑨each（）</mark>
 
@@ -672,11 +672,11 @@ chr(int[codepoint]):string
 因为ascii码是从0-255，所以当大于255之后，就会通过<mark style="color:red;">%256</mark>来得到最后的ascii码
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 所以这里贴出来ascii码的表，有几个需要特别记住的。
 
-<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们需要特别知道46对应的`.`
 
@@ -691,7 +691,7 @@ rand(int[min],int[max]):int
 
 其实我们通过c语言知道他是伪随机，但是我们只能用rand（）在无参数的情况下，所以我们得到的结果是非常不确定的。就也不知道究竟什么时候能用到。
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1②time()</mark>
 
@@ -727,7 +727,7 @@ localtime(?int[timestamp]=null,bool[associative]=false):array
 phpversion()
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1⑤ord（）</mark>
 
@@ -743,7 +743,7 @@ phpversion()
 floor(int|float[num]):float
 ```
 
-<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这个地方注意一下啊，如果要用于版本号，那么版本号只能有一个小数点，我看都参考的文章用了这个`floor(phpversion()),这个用在我的环境下是报错的，因为我的版本是8.2.12，不是小数，用不了。`
@@ -986,7 +986,7 @@ file_get_contents(end(scandir(getcwd())));
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 <mark style="color:green;">其实对于这个实验结果我是有点惊讶的。因为最开始对单个函数实验的时候，只有一个成功了，结果用无参数读取的时候，只有第四个没有成功，所以我们可以得到，前三个都是可用的。</mark>
 
@@ -1024,7 +1024,7 @@ show_source(array_rand(array_flip(scandir(dirname(chdir(dirname(getcwd())))))));
 
 当出现以下这种情况的时候，我们就需要知道他是要我们采取无参数命令执行了。
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

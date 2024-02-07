@@ -139,7 +139,6 @@ if(isset($_GET['file'])){
 这次不止过滤了php，还过滤了data，所以现在只能使用
 
 ```
-// Some code
 ```
 
 
