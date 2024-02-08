@@ -1,6 +1,7 @@
 # Table of contents
 
-* [🤬 RCE（远程代码执行）](README.md)
+* [😻 这里放一下我偶像p神的个人播客吧](README.md)
+* [🤬 RCE（远程代码执行）](<README (1).md>)
   * [😀 PHP语法](rce-yuan-cheng-dai-ma-zhi-hang/php-yu-fa.md)
   * [😅 RCE漏洞知识点总结](rce-yuan-cheng-dai-ma-zhi-hang/rce-lou-dong-zhi-shi-dian-zong-jie.md)
   * [😇 CTFSHOW命令执行](rce-yuan-cheng-dai-ma-zhi-hang/ctfshow-ming-ling-zhi-hang.md)
@@ -10,3 +11,6 @@
   * [🍉 FL漏洞知识点总结](lfi-he-rfl-wen-jian-bao-han-lou-dong/fl-lou-dong-zhi-shi-dian-zong-jie.md)
   * [🍌 CTFSHOW文件包含](lfi-he-rfl-wen-jian-bao-han-lou-dong/ctfshow-wen-jian-bao-han.md)
   * [🥥 编写一句话木马](lfi-he-rfl-wen-jian-bao-han-lou-dong/bian-xie-yi-ju-hua-mu-ma.md)
+* [⚽ PHP特性](php-te-xing/README.md)
+  * [🏀 PHP特性知识点总结](php-te-xing/php-te-xing-zhi-shi-dian-zong-jie.md)
+  * [🏈 CTFSHOW PHP特性](php-te-xing/ctfshow-php-te-xing.md)

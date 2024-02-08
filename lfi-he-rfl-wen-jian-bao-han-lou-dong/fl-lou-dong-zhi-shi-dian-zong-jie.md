@@ -314,11 +314,11 @@ echo "hell0";
 
 我们可以通过editthecookie插件看到phpsessid是is4978nk7n9nuajv21qe688svg
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后从前面我们就知道我们的session文件存在/var/lib/php/sessions下面，然后我们进行查看出现了一个新的sess\_xxxxx文件，这个文件就是产生的session文件。
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:purple;background-color:yellow;">3）利用</mark>
 
@@ -386,7 +386,7 @@ linux/var/log/nginx/access.log
 
 除了路径，我们需要看一下日志文件长什么样子
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>我的日志文件路径就在/var/log/apache2下面</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption><p>我的日志文件路径就在/var/log/apache2下面</p></figcaption></figure>
 
 上面就包含了我刚刚用burpsuite发送的请求。所以只要是请求发送了他都能记录下来。并且我们发现包含进去的其实是路径里面的内容，以及user-agent也能包含，所以我们的payload也是写在这个地方。
 
@@ -429,7 +429,7 @@ linux/var/log/nginx/access.log
 >
 >
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 那篇文章里面写它包含了user-agent（http请求头里面的），虽然我在我的文件里面没有看到。
 
