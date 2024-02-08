@@ -372,13 +372,37 @@ http://597fa6fc-ea54-4078-b972-0c0e6295813d.challenge.ctf.show/?file=data://text
 
 ***
 
-## <mark style="color:purple;background-color:green;">（12）WEB  116</mark>
+## <mark style="color:purple;background-color:green;">（12）WEB  117</mark>
 
+116需要misc，先不写了。
 
+```php
+<?php
 
+/*
+# -*- coding: utf-8 -*-
+# @Author: yu22x
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-10-01 18:16:59
 
+*/
+highlight_file(__FILE__);
+error_reporting(0);
+function filter($x){
+    if(preg_match('/http|https|utf|zlib|data|input|rot13|base64|string|log|sess/i',$x)){
+        die('too young too simple sometimes naive!');
+    }
+}
+$file=$_GET['file'];
+$contents=$_POST['contents'];
+filter($file);
+file_put_contents($file, "<?php die();?>".$contents); 
+```
 
+<figure><img src="../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
+需要死亡绕过，然后base64和rot13都被ban了。所以只能寻找其他的过滤方式。补充死亡绕过的过滤方式了，jrm谁懂啊
 
 
 

