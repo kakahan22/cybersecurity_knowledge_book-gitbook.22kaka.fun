@@ -519,7 +519,7 @@ data://text/plain,【text】
 
 上述参数的意义就是他们的英文的本意。所以我们如果用`scandir('.')`，就是代表当前目录下的所有文件，并且他的返回结果是数组。我们可以实验看看。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 从上述结果可以看出来，在当前的目录下，0是当前目录，2是目录下的文件，3是.vscode下面的文件也就是当前的执行文件。
 
@@ -701,7 +701,7 @@ rand(int[min],int[max]):int
 time():int
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### <mark style="color:red;background-color:orange;">1③localtime()</mark>
 
@@ -713,7 +713,7 @@ localtime(?int[timestamp]=null,bool[associative]=false):array
 
 和我们当时的localeconv一样，返回一个数组，上面的timestamp是某一个时间戳，如果没有指定就是本地时间。后面是选择数字数组还是关联数组。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很明显我得到的是数字数组，算了，直接把代表的含义贴出来了，反正我这是数字数组，没啥好看的。
 
@@ -945,7 +945,7 @@ print_r(scandir(reset(localeconv())));
 
 其实后面的`current(localeconv()),pos(localeconv()),reset(localeconv())`都是在构造`'.'`。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 除上述之外还有一些也能这样，但是是概率事件，就不是确定。
 
@@ -958,7 +958,7 @@ print_r(scandir(reset(localtime(time()))));
 
 其实后面三个都是要看运气的，这里是因为后面三个生成的数字太大了，不存在，所以就输出了这个唯一的路径。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 对于这个.的构造我们还可以通过数学方法计算来得到46，可以但是应该很难算，而且现在来说限制太大了，我的环境实验不出来，但是还是贴出一些例子大家参考参考
 

