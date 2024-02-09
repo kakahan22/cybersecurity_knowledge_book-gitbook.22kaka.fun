@@ -2,7 +2,7 @@
 description: 这里主要是记录ctfshow的web入门的文件包含的wp。
 ---
 
-# CTFSHOW文件包含
+# 🍌 CTFSHOW文件包含
 
 ## <mark style="color:purple;background-color:green;">（1）WEB 78</mark>
 
