@@ -18,31 +18,29 @@ description: 先说什么叫弱类型比较吧。就是==和！=
 
 intval主要利用有三个。
 
-### <mark style="color:orange;background-color:yellow;">①特性一：返回值</mark> 
+### <mark style="color:orange;background-color:yellow;">①特性一：返回值</mark>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 这个重点在非空的数组会返回1。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里想提醒一下`['']`这个不是数组为空，这个数组有一个元素，元素为空元素。要是`[]`才是空数组
 
 ### <mark style="color:orange;background-color:yellow;">②特性二：base转化的进制</mark>
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 前提是base是0的时候，由value来决定。其他几个情况比较熟悉，0开头是8进制需要好好记忆一下。
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">③特性三：弱类型比较下的base转换开始和结束</mark>
 
 这个是说在弱类型比较的前提下，本来在base=0的情况下，要看value的结果来判断，这个判断是<mark style="color:red;">从数字或者正负号开始才做转换，直到遇到非数字，或者字符串的结束符（\0）结束转换</mark>。
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -63,7 +61,7 @@ intval主要利用有三个。
 
 ### <mark style="color:orange;background-color:yellow;">①特性一：传递数组</mark>
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 上面显示subject得是字符串，也就是说如果是数组，会返回false。
 
@@ -104,7 +102,7 @@ else
 }
 ```
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### 2）.
 
@@ -127,55 +125,105 @@ else
 
 所以我们传入%0aflag之后
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">③回溯绕过</mark>
 
-
-
 p神的讲解我放在最后的传送门了。
 
+#### <mark style="color:green;">0X01：</mark>
 
+这里推荐一个工具[https://blog.robertelder.org/regular-expression-visualizer/](https://blog.robertelder.org/regular-expression-visualizer/)
 
+这个工具可以展示正则表达式的详细匹配过程。我们就用这个工具来理解p神的回溯过程也不失为一种高效的办法。
 
+所以回溯绕过就是利用的PHP的PCRE库也是利用的NFA为正则引擎，这样就要回溯找到其他状态。
 
+同样的正则表达式`<?.*`_``[(`;?>].* ,要匹配的字符串是<?php phpinfor();//aaaa``_
 
+自行利用上面的工具进行测试。
 
+* 可以看到当执行到\*的时候他分成了两条路，一条是greedy的，就是把后面所有的都匹配了，还有一条是懒惰的，匹配到后面有(\`;?>就不匹配了。
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+* 直接进行lazy的path的就是p神文章里提到的DFA模式，而且我们说的NFA模式，就是先greedy，也就是把整个字符串都先匹配了。like this
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
+* 这个时候他匹配进入到了failure的步骤，失败了，我们就要去看看能不能走lazy path了，发现到了末尾了，走不了。
 
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+* 这个时候我们就尝试一种新的路径。
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
+* 另一种路径当然是lazy 路径，我们就在元素列表里看看能不能找到匹配lazy path的元素，发现不行，因为已经到末尾了，所以这个时候我们就可以弹出栈顶元素然后看看能不能尝试lazy path。发现还是因为a不能匹配(·；？>中的一个，所以我们就继续吐出来。
 
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
+* 吐着吐着吐到了;发现匹配成功了。我们就继续下一个任意匹配了。又是从greedy开始。这样。
 
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
+以上一共回溯了7次。
 
+#### <mark style="color:green;">0X02：</mark>
 
+接下来我们将讲解一个php配置里面的pcre.backtrack\_limit
 
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
+p神的文章里也说了，中文版和英文版不一样，英文版是1000000，我们以1000000为准。我们可以通过下面的代码去查看当前环境的限制值
 
+```php
+<?php
 
+$c=ini_get('pcre.backtrack_limit');
+var_dump($c);
+?>
+```
 
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
+#### <mark style="color:green;">0X03：</mark>
 
+现在我们将试验一下如果超过这个回溯限制的话，会发生什么情况呢。
 
+```php
+<?php
 
+$c=preg_match('/<\?.*[(`;?>].*/is','<?php phpinfo()://'.str_repeat('c',10000000));
+var_dump($c);
+?>
+```
 
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
+可以看到返回的是bool值false。正则执行失败。
 
+#### <mark style="color:green;">0X04</mark>
 
+所以这个绕过脚本大致是
 
+```python
+import requests
 
+url = ''
 
+data = {}
 
+reponse = requests.post(url,data=data)
 
+print(reponse.text)
+```
 
+***
 
+## （3）
 
 
 
@@ -206,6 +254,3 @@ p神的讲解我放在最后的传送门了。
 {% embed url="https://www.cnblogs.com/20175211lyz/p/12198258.html" %}
 
 {% embed url="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html" %}
-
-
-

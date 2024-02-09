@@ -31,6 +31,9 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 代码很简单，就是传入一个num的结果使他等于1，然后就能出flag，但是，所以我们想到了用数组。用全是字母的字母传入就可以了。
+
+
+

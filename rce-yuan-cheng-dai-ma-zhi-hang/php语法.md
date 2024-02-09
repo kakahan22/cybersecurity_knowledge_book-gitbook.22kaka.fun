@@ -13,7 +13,7 @@ description: 因为RCE执行通常会出现php代码，所以这里学习php语�
   ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>基本格式</p></figcaption></figure>
 
 {% hint style="warning" %}
 注意，如果你没有输入；会出现报错，以下报错显示期待一个分号。
@@ -303,8 +303,6 @@ $bar='baz';
 
 简单介绍一下`array`和两种特殊的，另外的复合型将在后面详细介绍。
 
-
-
 {% hint style="warning" %}
 补充一个，`IFS`代表无穷大
 {% endhint %}
@@ -479,8 +477,6 @@ echo '<br \>';
 
 <figure><img src="../.gitbook/assets/image 25 (1).png" alt=""><figcaption></figcaption></figure>
 
-
-
 {% hint style="info" %}
 其实这个和数据结构的栈和队列的操作已经很相似了，可以用这两个函数来实现他们的操作。
 {% endhint %}
@@ -539,7 +535,7 @@ echo $abc;
 
 ### <mark style="color:green;background-color:purple;">3）var\_dump()</mark>
 
-如果我们想知道变量的类型，我们可以用一个函数**`var_dump()`**。
+如果我们想知道变量的类型，我们可以用一个函数\*\*`var_dump()`\*\*。
 
 ```php
 <?php
@@ -688,8 +684,6 @@ var_dump($y<=>$x);
 
 `？？`是空合并符，比如`y=x ?? "hello"`,这个式子，就是如果x不为null，y的值就是x，如果x为空，y的值，就是`”hello”`。
 
-
-
 {% hint style="danger" %}
 接下来的是RCE要用到的一些符号。
 {% endhint %}
@@ -710,7 +704,7 @@ var_dump($y<=>$x);
 
 和c语言一样，就不介绍了。
 
-#### <mark style="color:yellow;background-color:green;">7）逻辑运算符</mark> <mark style="color:yellow;background-color:green;"></mark><mark style="color:yellow;background-color:green;">`&&， ||， and ， or，xor`</mark>
+#### <mark style="color:yellow;background-color:green;">7）逻辑运算符</mark> <mark style="color:yellow;background-color:green;">`&&， ||， and ， or，xor`</mark>
 
 `&&`:两个都为真，结果才为真。
 
@@ -1017,4 +1011,3 @@ echo "hello,world";
 ***
 
 ### <mark style="color:red;background-color:blue;">11.PHP封装协议</mark>
-
