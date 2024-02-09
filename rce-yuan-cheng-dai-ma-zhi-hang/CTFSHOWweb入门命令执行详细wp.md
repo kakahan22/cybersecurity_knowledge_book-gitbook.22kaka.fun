@@ -3,7 +3,7 @@ description: >-
   这里就记录一下ctfshow的刷题记录是web入门的命令执行专题里面的题目，他是有分类，并且覆盖也很广泛，所以就通过刷这个来，不过里面有一些脚本的题目发现我自己根本不会笑死。
 ---
 
-# 😇 CTFSHOW命令执行
+# 😅 CTFSHOW命令执行
 
 ## <mark style="color:blue;background-color:orange;">（1）Web 29</mark>
 
@@ -654,15 +654,11 @@ http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=show_source(ne
 
 ***
 
-
-
 ## <mark style="color:blue;background-color:orange;">(13)Web 41</mark>
 
 不会，需要脚本，先跳过了。
 
 ***
-
-
 
 ## <mark style="color:blue;background-color:orange;">（14）Web 42</mark>
 
@@ -790,8 +786,6 @@ http://188ca5a8-df45-49e3-9757-35702294688e.challenge.ctf.show/?c=more fla*||
 <figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
-
-
 
 ## <mark style="color:blue;background-color:orange;">（17）WEB45</mark>
 
@@ -968,8 +962,6 @@ if(isset($_GET['c'])){
 ```
 
 <figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
-
-
 
 {% hint style="danger" %}
 <mark style="color:red;">**在做这一题的时候出现了一个很重要的事情，就是<>/\</>和？一起使用时，不回显，所以我们将？换成/，让<>和/一起使用才能回显**</mark>
@@ -1164,56 +1156,5 @@ if(isset($_GET['c'])){
 
 <figure><img src="../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
 
-
-
 ```php
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

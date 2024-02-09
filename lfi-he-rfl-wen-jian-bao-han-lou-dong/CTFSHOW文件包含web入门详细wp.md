@@ -2,7 +2,7 @@
 description: 这里主要是记录ctfshow的web入门的文件包含的wp。
 ---
 
-# 🍌 CTFSHOW文件包含
+# CTFSHOW文件包含
 
 ## <mark style="color:purple;background-color:green;">（1）WEB 78</mark>
 
@@ -66,8 +66,6 @@ $flag="ctfshow{41822ab6-930c-4115-aae6-6662486fa71c}";
 ```
 
 ***
-
-
 
 ## <mark style="color:purple;background-color:green;">（2）WEB79</mark>
 
@@ -229,31 +227,13 @@ if(isset($_GET['file'])){
 
 这题是条件竞争，我们
 
-
-
 ## <mark style="color:purple;background-color:green;">（6）WEB 83</mark>
-
-
-
-
 
 ## <mark style="color:purple;background-color:green;">（7）WEB 84</mark>
 
-
-
-
-
 ## <mark style="color:purple;background-color:green;">（8）WEB 85</mark>
 
-
-
-
-
 ## <mark style="color:purple;background-color:green;">（9）WEB 86</mark>
-
-
-
-
 
 ## <mark style="color:purple;background-color:green;">（10）WEB87</mark>
 
@@ -350,8 +330,6 @@ if(isset($_GET['file'])){
 }
 ```
 
-
-
 <figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到过滤了php的协议，但是没有过滤=，所以我们用data://伪协议直接传递php代码，然后执行
@@ -372,7 +350,7 @@ http://597fa6fc-ea54-4078-b972-0c0e6295813d.challenge.ctf.show/?file=data://text
 
 ***
 
-## <mark style="color:purple;background-color:green;">（12）WEB  117</mark>
+## <mark style="color:purple;background-color:green;">（12）WEB 117</mark>
 
 116需要misc，先不写了。
 
@@ -433,22 +411,3 @@ POST:
 ```
 
 <figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
