@@ -81,23 +81,23 @@ intval主要利用有三个。
 
 这个重点在非空的数组会返回1。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里想提醒一下`['']`这个不是数组为空，这个数组有一个元素，元素为空元素。要是`[]`才是空数组
 
 ### <mark style="color:orange;background-color:yellow;">②特性二：base转化的进制</mark>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 前提是base是0的时候，由value来决定。其他几个情况比较熟悉，0开头是8进制需要好好记忆一下。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">③特性三：弱类型比较下的base转换开始和结束</mark>
 
 这个是说在弱类型比较的前提下，本来在base=0的情况下，要看value的结果来判断，这个判断是<mark style="color:red;">从数字或者正负号开始才做转换，直到遇到非数字，或者字符串的结束符（\0）结束转换</mark>。开始我还理解错了。这句话的意思是比如我们要得到带4476的字符串，应该是4476abc这种。不然以abc4476是被转换为0的。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">④不影响结果的在开头的元素</mark>
 
@@ -126,7 +126,7 @@ intval主要利用有三个。
 
 ### <mark style="color:orange;background-color:yellow;">①特性一：传递数组</mark>
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 上面显示subject得是字符串，也就是说如果是数组，会返回false。
 
@@ -190,7 +190,7 @@ else
 
 所以我们传入%0aflag之后
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">③回溯绕过</mark>
 
@@ -214,25 +214,25 @@ p神的讲解我放在最后的传送门了。
 
 * 直接进行lazy的path的就是p神文章里提到的DFA模式，而且我们说的NFA模式，就是先greedy，也就是把整个字符串都先匹配了。like this
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 这个时候他匹配进入到了failure的步骤，失败了，我们就要去看看能不能走lazy path了，发现到了末尾了，走不了。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 这个时候我们就尝试一种新的路径。
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 另一种路径当然是lazy 路径，我们就在元素列表里看看能不能找到匹配lazy path的元素，发现不行，因为已经到末尾了，所以这个时候我们就可以弹出栈顶元素然后看看能不能尝试lazy path。发现还是因为a不能匹配(·；？>中的一个，所以我们就继续吐出来。
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 吐着吐着吐到了;发现匹配成功了。我们就继续下一个任意匹配了。又是从greedy开始。这样。
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 以上一共回溯了7次。
 
@@ -240,7 +240,7 @@ p神的讲解我放在最后的传送门了。
 
 接下来我们将讲解一个php配置里面的pcre.backtrack\_limit
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 p神的文章里也说了，中文版和英文版不一样，英文版是1000000，我们以1000000为准。我们可以通过下面的代码去查看当前环境的限制值
 
@@ -515,29 +515,57 @@ else
 
 我们首先介绍一下什么叫软链接。
 
+> 软链接：软链接文件有类似于 Windows 的快捷方式。它实际上是一个特殊的文件。在符号连接中，文件实际上是一个文本文件，其中包含的有另一文件的位置信息。其实我的理解是他很像c语言的指针的作用，软链接是一个指向某个特定文件的指针，指针的数据块内包含的是文件的位置信息。如果文件被删除了，但是指针还存在，只是指向的位置是个无效的罢了。
+>
+>
 
+其实这个博主的解答这个地方我没有看懂，有看懂的小伙伴可以解答一下
 
+```url
+/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/p
+roc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/pro
+c/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/
+self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/se
+lf/root/proc/self/root/var/www/html/flag.php
+```
 
+***
 
+## <mark style="color:purple;background-color:red;">（11）运算优先级</mark>
 
+没啥好讲的，直接贴图
 
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
+***
 
+## <mark style="color:purple;background-color:red;">（12）三目运算符</mark>
 
+构造不带分号的payload需要用到
 
+```php
+return 1?phpinfo():1;
+```
 
+这样就永远都会执行phpinfo（），这个phpinfo可以替换为其他的代码。
 
+***
 
+## <mark style="color:purple;background-color:red;">（13）函数与数字运算</mark>
 
+在php中，函数和数字一起运算，函数能被正常执行。比如
 
+```php
+1+phpinfo()+1;
+```
 
+phpinfo（）能被正常执行。以下符号都能够正常执行。
 
-
-
-
-
-
+```
++ - * / && ||
+```
 
 
 

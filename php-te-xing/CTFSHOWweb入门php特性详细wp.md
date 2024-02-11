@@ -33,7 +33,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 代码逻辑很简单，就是我们要让匹配$num的结果是0，然后$num变量通过intval为1就可以了。对于preg\_match匹配要是0，就说明不能是数字，但是如果是字符串的话，在下面的intval匹配中就会为0，这个时候我们要想到如果$num传入一个数组，那么对于pre\_match的特性，就会输出false然后我们就会进入else语句然后num是个数组并且不为空的话，就会输出1，也就是我们的num要通过url解析成一个不为空的数组。
 
@@ -54,7 +54,7 @@ URL解析差异！！！！！！！！！
 http://65b4d1c3-5cc4-426c-b856-e5c14d755ef0.challenge.ctf.show/?num[]="abc"
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -93,7 +93,7 @@ if(isset($_GET['num'])){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -109,7 +109,7 @@ if(isset($_GET['num'])){
 http://f855998e-1508-4b60-9956-e03eadde4e40.challenge.ctf.show/?num=4476ab
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -148,7 +148,7 @@ Notice: Undefined index: cmd in /var/www/html/index.php on line 15
 nonononono
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -162,7 +162,7 @@ nonononono
 http://4e1772d9-0414-4f78-a71b-8b49260e5e5e.challenge.ctf.show/?cmd=%0aphp
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -195,7 +195,7 @@ if(isset($_GET['num'])){
     } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -209,7 +209,7 @@ if(isset($_GET['num'])){
 http://33ebd11e-67ab-47ec-af2f-b2571baba355.challenge.ctf.show/?num=0x117c
 ```
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -248,7 +248,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -438,55 +438,157 @@ if(isset($_GET['u'])){
 
 <figure><img src="../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">①代码解释</mark>
 
+我们要查看flag.php文件，但是变量u不能直接为flag.php
 
+### <mark style="color:green;">②思路解释</mark>
 
+我们可以用路径绕过中的知识点，所以我们采取的方案，这里简单一点了，直接就是当前目录下查看算了。
 
+```url
+http://0436b3c8-9edb-4ec3-8bf3-bf546aa4699b.challenge.ctf.show/?u=./flag.php
+```
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+***
 
+## <mark style="color:purple;background-color:red;">（9）web 97</mark>
 
+```php
+<?php
 
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-18 19:36:32
+# @link: https://ctfer.com
 
+*/
 
+include("flag.php");
+highlight_file(__FILE__);
+if (isset($_POST['a']) and isset($_POST['b'])) {
+if ($_POST['a'] != $_POST['b'])
+if (md5($_POST['a']) === md5($_POST['b']))
+echo $flag;
+else
+print 'Wrong.';
+}
+?> 
+```
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">①代码解释</mark>
 
+就是我们传入两个变量a和b，并且要求a和b不相等以后，如果a和b的md5在强类型比较下能够相等后，就能输出flag。
 
+### <mark style="color:green;">②思路解释</mark>
 
+很明显这里是强类型比较，并且要不相等，只能两个都传入数组。所以我们的解答是
 
+GET：
 
+```url
+http://8c6bea3f-126e-4b07-a12f-b4dc67382625.challenge.ctf.show/
+```
 
+POST:
 
+```url
+a[]=1&b[]=2
+```
 
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
+***
 
+## <mark style="color:purple;background-color:red;">(10)web98</mark>
 
+```php
 
+Notice: Undefined index: flag in /var/www/html/index.php on line 15
 
+Notice: Undefined index: flag in /var/www/html/index.php on line 16
 
+Notice: Undefined index: HTTP_FLAG in /var/www/html/index.php on line 17
+<?php
 
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-18 21:39:27
+# @link: https://ctfer.com
 
+*/
 
+include("flag.php");
+$_GET?$_GET=&$_POST:'flag';
+$_GET['flag']=='flag'?$_GET=&$_COOKIE:'flag';
+$_GET['flag']=='flag'?$_GET=&$_SERVER:'flag';
+highlight_file($_GET['HTTP_FLAG']=='flag'?$flag:__FILE__);
 
+?>
 
+```
 
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
+## <mark style="color:green;">①代码解释</mark>
 
+这段代码我第一次看的时候还没看懂，甚至被吓到了。但是我们还是秉持着慢慢看的原则。
 
+这里先了解$_COOKIE 和$_SERVER
 
+> $COOKIE
+>
+> 通过 HTTP Cookies 方式传递给当前脚本的变量的数组。
 
+> $\_SERVER
+>
+> 服务器和执行环境信息。所以一般server里面的结果应该是一些比如PHP\_SELF这种关键词。
 
+其实当时我没看懂这个&，后来看题解发现他是我们在php语法中提过的引用。所以这段代码的意思就渐渐明了了。
 
+其实我们以没一句的三元运算符？ ：来做隔断，分为三部分来看，每一句的意思其实就变得清晰了。
 
+首先是，如果$_GET获得了元素，就将$POST的值赋值给$_\_GET原来的值，就原来的值被post得到的值覆盖了，否则就让他等于flag。
 
+然后是如果$\_GET得到的变量flag弱类型等于’flag‘，那么我们就用cookie值去覆盖他，否则就是用flag去覆盖他。
 
+第三句同理。
 
+最后一句是高亮文件，get得到的http\_flag变量如果等于flag的话，就输出flag变量，否则就是当前文件。
 
+### <mark style="color:green;">②思路解释</mark>
 
+我们逆向思维一下啊。我们只要知道变量$flag的值就是flag，所以如果要得到flag变量的值，只需要传入get变量http\_flag的值等于flag，就可以。既然我们要传入的是http\_flag,就和第二和第三句没有关系。所以变量用flag来覆盖就是不执行的，所以我们第一句执行的是？后面的部分，就是我们用post得到的结果去覆盖了get得到的变量。所以其实http\_flag等于flag是post方式传进去的参数。但是get又需要有东西传进去，我们就随便传个确定的1=1就行
 
+所以最后得到的就是
 
+GET：
 
+```url
+http://6e5b7bbc-dfaf-423b-a558-eb1b0e1807f1.challenge.ctf.show/?2=2
+```
+
+POST：
+
+```url
+HTTP_FLAG=flag
+```
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:red;">（11）web 99</mark>
 
 
 
