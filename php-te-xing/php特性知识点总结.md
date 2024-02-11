@@ -1,10 +1,67 @@
 ---
-description: 先说什么叫弱类型比较吧。就是==和！=
+description: 专门出的关于php的特性比较，后面好像也有java的特性。
 ---
 
 # 🏀 PHP特性知识点总结
 
-## <mark style="color:purple;background-color:red;">（1）intval（）函数绕过</mark>
+## <mark style="color:purple;background-color:red;">（1）类型转换</mark>
+
+之前提到过的是字符串转为整型。其实php手册里面提到了各种类型的转换。先把他放在这里。
+
+[https://www.php.net/manual/zh/language.types.type-juggling.php#language.types.typecasting](https://www.php.net/manual/zh/language.types.type-juggling.php#language.types.typecasting)
+
+我们按照php手册上的顺序来介绍，只介绍几个比较常用的。
+
+### <mark style="color:green;">①转化为bool</mark>
+
+<figure><img src="../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:green;">②转化为整型int</mark>
+
+#### 0x01：从bool转换为int
+
+false为0，true为1
+
+#### 0x02：从float转换为int
+
+向下取整（直接舍去小数位）
+
+#### 0x03：从string转换为int
+
+如果 string 是 numeric（数字字符串） 或者前导数字， 则将它解析为相应的 int 值，否则将转换为零（`0`）
+
+> 数字字符串：\
+> 这只是一个字符串，其开头类似于数字字符串，后跟任何字符。但是如果含 e 的字符串转换成 int 类型时会被当做科学计数法处理, `123e456` 表示 123 的 456 次方。
+
+#### 0x04：从null转换为int
+
+为0
+
+### <mark style="color:green;">③转换为float</mark>
+
+0x01：从string转换为float
+
+如果 string 是 numeric（数字字符串） 或者前导数字， 则将它解析为相应的 int 值，否则将转换为零（`0`）
+
+0x02：其他类型转换为float
+
+先将其他类型转换为int，再由int转换为float。（而其他类型转换为float，就在上面的②）
+
+
+
+***
+
+## <mark style="color:purple;background-color:red;">（2）==与===</mark>
+
+\== 弱类型比较, 仅要求两边变量类型转换后的值相等
+
+\=== 强类型比较, 不仅要求两个变量的值相等, 还要求变量的类型相同
+
+同理 != 是弱类型比较, 而 !== 是强类型比较
+
+***
+
+## <mark style="color:purple;background-color:red;">（3）intval（）函数绕过</mark>
 
 首先我们去php手册了解这是什么东西。
 
@@ -52,7 +109,7 @@ intval主要利用有三个。
 
 ***
 
-## <mark style="color:purple;background-color:red;">（2）preg\_match()函数绕过</mark>
+## <mark style="color:purple;background-color:red;">（4）preg\_match()函数绕过</mark>
 
 > preg\_match():\
 > 执行匹配正则表达式
@@ -231,7 +288,300 @@ print(reponse.text)
 
 ***
 
-## （3）
+## <mark style="color:purple;background-color:red;">（5）strpos绕过</mark>
+
+<figure><img src="../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+
+需要特别注意的是，顺序是从0开始的。如果找到了就返回位置。如果没有找到就是返回false。
+
+### <mark style="color:orange;background-color:yellow;">①特性一：八进制首位绕过</mark>
+
+如果对八进制（首位是0）遇到了if（!strpos($string,0))进行过滤，我们想让八进制还能成功通过的话，需要在首位想想办法。一般是在前面加<mark style="color:red;">空格和加号</mark>。我们可以进行实验
+
+```php
+<?php 
+$string=$_GET["string"];
+if(!strpos($string,0))
+{
+    echo "hello,world";
+}
+else
+{
+    echo "success";
+}
+```
+
+<figure><img src="../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+
+并且空格还可以用%20，%0a，%09来代替，加号可以用%2b代替。
+
+### <mark style="color:orange;background-color:yellow;">②特性二：传递数组</mark>
+
+对于如果strpos传递的不是字符串，而是数组的话，返回值为null。
+
+{% hint style="warning" %}
+结论对`strrpos() stripos() strripos()` 同理
+{% endhint %}
+
+***
+
+## <mark style="color:purple;background-color:red;">（6）is\_numeric()函数绕过</mark>
+
+<figure><img src="../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:orange;background-color:yellow;">①特性一：科学计数法绕过</mark>
+
+我们知道科学计数法是含有e的数字字符串，对于is\_numeric来说，他是能识别科学计数法的，并且能返回true。试验一下
+
+```php
+
+<?php 
+$string= 11e11;
+if(is_numeric($string))
+{
+    echo "hello,world";
+}
+else
+{
+    echo "failure";
+}
+```
+
+<figure><img src="../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+
+所以，对于某些字符串，我们可以尝试利用 base64 + bin2hex 找到一些只含 e 和数字的 payload
+
+### <mark style="color:orange;background-color:yellow;">②特性二：开头加特殊字符</mark>
+
+在数字前面加上/n，/t等这种特殊字符仍然可以返回true，但是放在数字后面就不行了。
+
+```php
+<?php 
+$string="\t123" ;
+if(is_numeric($string))
+{
+    echo "hello,world";
+}
+else
+{
+    echo "failure";
+}
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:red;">（7）in\_array()函数</mark>
+
+<figure><img src="../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+
+如果找到了返回true，没找到返回false。
+
+### <mark style="color:orange;background-color:yellow;">①特性一：自动转换</mark>
+
+函数在作用时会将needle的值自动转化为和array一个类型。
+
+其实这个实验在我的环境下失败了，这结论也不在成立。后面我看了手册，发现了还是版本问题。
+
+<figure><img src="../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:red;">（8）trim（）函数</mark>
+
+<figure><img src="../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+
+返回值是过滤后的字符串。
+
+### <mark style="color:orange;background-color:yellow;">①特性一：不过滤/f</mark>
+
+我们可以看到，上面写了去除\t,\n,\r,\0,\v但是他没有过滤<mark style="color:red;">\f(换页符），他的url编码是%0c36</mark>
+
+***
+
+## <mark style="color:purple;background-color:red;">（9）md5（）和sha1（）</mark>
+
+<figure><img src="../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
+
+返回值sha1的散列值的字符串形式。
+
+<figure><img src="../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+
+以 32 字符的十六进制数形式返回散列值。
+
+{% hint style="info" %}
+两函数的性质啥的都是一样的。所以我们直接一起说了，有些情况只列举了一个，但是对两个函数都是一样的。
+{% endhint %}
+
+### <mark style="color:orange;background-color:yellow;">①特性一：比较缺陷（或者说0e漏洞）</mark>
+
+`PHP`在处理哈希字符串时，通过`!=`或`==`来对哈希值进行比较，它把每一个以`0e`开头的哈希值都解释为`0`，所以如果两个不同的密码经过哈希以后，其哈希值都是以`0e`开头的，那么`PHP`将会认为他们相同，都是`0。这个通常是对于科学计数法的时候会遇到0e漏洞。`
+
+可以实验一下。
+
+```php
+<?php 
+$a="0e123";
+$b="0e456";
+if($a==$b)
+{
+    echo "equal";
+}
+else
+{
+    echo "wrong";
+}
+
+?>
+```
+
+<figure><img src="../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+
+可以看到在php解释其中，他们会认为0e开头的都相等。
+
+所以我们如果如果我们要绕过if(md5($a)==md5($b))这个条件的话。我们可以选择一些md5编码后都为0e的a，b字符串。
+
+所以这里介绍一些。
+
+* [ ] _**md5加密后以0e开头的字符串**_
+
+<pre class="language-php"><code class="lang-php">1.   QNKCDZO             ----------0e830400451993494058024219903391
+<strong>2.   s878926199a         ----------0e545993274517709034328855841020
+</strong>3.   s155964671a         ----------0e342768416822451524974117254469
+4.   s214587387a         ----------0e848240448830537924465865611904
+5.   s214587387a         ----------0e848240448830537924465865611904
+6.   s878926199a         ----------0e545993274517709034328855841020
+7.   s1091221200a        ----------0e940624217856561557816327384675
+</code></pre>
+
+* [ ] _**sha1加密后以0e开头的字符串**_
+
+<pre class="language-php"><code class="lang-php">1.   aaroZmOk            ----------0e66507019969427134894567494305185566735
+2.   aaK1STfY            ----------0e76658526655756207688271159624026011393
+3.   aaO8zKZF            ----------0e89257456677279068558073954252716165668
+4.   aa3OFF9m            ----------0e36977786278517984959260394024281014729
+5.   0e1290633704        ----------0e19985187802402577070739524195726831799
+<strong>6.   10932435112         ----------0e07766915004133176347055865026311692244
+</strong>
+</code></pre>
+
+{% hint style="info" %}
+注意这个特性是在**弱类型的条件**下。
+{% endhint %}
+
+### <mark style="color:orange;background-color:yellow;">②特性二：数组绕过</mark>
+
+在强类型的条件下，我们特性一就失效了，这时候我们可以用数组绕过。我们知道md5和sha1是对字符串起的作用，如果我们传入的是数组：
+
+* `md5()`函数获取不到数组的值，默认数组为0
+* `sha1()`函数无法处理数组类型，将报错并返回false
+
+所以我们可以对于if(md5($a)===md5($b))，可以用<mark style="color:red;">**`取a，b为数组`**</mark>来绕过。
+
+{% hint style="info" %}
+这个对于强类型和弱类型比较都可以成功。
+{% endhint %}
+
+{% hint style="warning" %}
+这个应该有版本要求，我是8.3的版本实验的时候发现全部都是报错，无法执行我最后预期的结果。
+{% endhint %}
+
+***
+
+## <mark style="color:purple;background-color:red;">（10）路径穿越</mark>
+
+### <mark style="color:orange;background-color:yellow;">①特性一：利用绝对路径和相对路径</mark>
+
+路径绕过就是通过绝对路径或者相对路径去绕过正则对文件名的检测。比如`preg_match('/flag.php/', $str)`
+
+（关于路径的知识忘记的，可以去看我们当时在讲file：//协议中讲过的。这里放一个传送门  [#id-1file](../rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md#id-1file "mention")   )
+
+我们可以写
+
+```url
+./flag.php
+/var/www/html/flag.php
+./ctfshow/../flag.php
+```
+
+### <mark style="color:orange;background-color:yellow;">②特性二：利用linux下的软链接绕过</mark>
+
+
+
+我们首先介绍一下什么叫软链接。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -262,3 +612,5 @@ print(reponse.text)
 {% embed url="https://www.cnblogs.com/20175211lyz/p/12198258.html" %}
 
 {% embed url="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html" %}
+
+{% embed url="https://exp10it.io/2022/08/php-%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" %}

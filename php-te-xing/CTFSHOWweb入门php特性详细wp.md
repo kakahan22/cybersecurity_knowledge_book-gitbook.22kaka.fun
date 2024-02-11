@@ -316,43 +316,127 @@ if(isset($_GET['num'])){
 
 ### <mark style="color:green;">②思路解释</mark>
 
+其实这个从最开始的时候我没有想到，我甚至忘记了intval最基本的功能，就是整型转换，可以把小数转换为整数。
+
+```url
+http://6eba394b-d150-47ed-9158-0a9ad1eb8bd7.challenge.ctf.show/?num=4476.0
+```
+
+<figure><img src="../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
+
+后面又看了别人的题解还有就是在8进制的前面用空格或者+，不改变结果。
+
+```url
+http://6eba394b-d150-47ed-9158-0a9ad1eb8bd7.challenge.ctf.show/?num= 010574
+```
+
+<figure><img src="../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
+
+```url
+http://6eba394b-d150-47ed-9158-0a9ad1eb8bd7.challenge.ctf.show/?num=+010574
+```
+
+<figure><img src="../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 
 
+***
+
+## <mark style="color:purple;background-color:red;">（7）web 95</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-18 16:53:59
+# @link: https://ctfer.com
+
+*/
+
+include("flag.php");
+highlight_file(__FILE__);
+if(isset($_GET['num'])){
+    $num = $_GET['num'];
+    if($num==4476){
+        die("no no no!");
+    }
+    if(preg_match("/[a-z]|\./i", $num)){
+        die("no no no!!");
+    }
+    if(!strpos($num, "0")){
+        die("no no no!!!");
+    }
+    if(intval($num,0)===4476){
+        echo $flag;
+    }
+} 
+```
+
+<figure><img src="../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:green;">①代码解释</mark>
+
+和上一题不一样的是，他的匹配正则表达式多了个.所以我们的用小数表示就行不通了。但是空格和正号+还是可以用的。可以把这些用url的编码代替也可以。比如%20，%0a,%2b,%09,这种。
+
+### <mark style="color:green;">②思路解释</mark>
+
+加号和空格这个可以把这些用url的编码代替也可以。比如%20，%0a,%2b,%09,这种。
+
+```url
+http://aa5282af-22ac-4fd0-af69-6be13ab20eab.challenge.ctf.show/?num=+010574
+```
+
+<figure><img src="../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+
+其他的写法我们也写在这。
+
+```url
+num= 010574
+num=%20010574
+num=%0a010574
+num=%2b010574
+num=%09010574
+```
 
 
 
+***
+
+## <mark style="color:purple;background-color:red;">(8)web 96</mark>
+
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-18 19:21:24
+# @link: https://ctfer.com
+
+*/
 
 
+highlight_file(__FILE__);
+
+if(isset($_GET['u'])){
+    if($_GET['u']=='flag.php'){
+        die("no no no");
+    }else{
+        highlight_file($_GET['u']);
+    }
 
 
+}
 
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<figure><img src="../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
 
 
