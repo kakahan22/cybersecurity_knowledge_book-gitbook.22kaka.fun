@@ -15,3 +15,5 @@
   * [🍌 CTFSHOW文件包含](lfi-he-rfl-wen-jian-bao-han-lou-dong/CTFSHOW文件包含web入门详细wp.md)
 * [🐷 SQLINJECTION（sql注入）](sqlinjectionsql-zhu-ru/README.md)
   * [🐶 SQL语法](sqlinjectionsql-zhu-ru/SQL语法.md)
+* [🚲 文件上传漏洞](wen-jian-shang-chuan-lou-dong/README.md)
+  * [🏍 文件上传漏洞知识点总结](wen-jian-shang-chuan-lou-dong/wen-jian-shang-chuan-lou-dong-zhi-shi-dian-zong-jie.md)
