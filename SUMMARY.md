@@ -17,3 +17,4 @@
   * [🐶 SQL语法](sqlinjectionsql-zhu-ru/SQL语法.md)
 * [🚲 文件上传漏洞](wen-jian-shang-chuan-lou-dong/README.md)
   * [🏍 文件上传漏洞知识点总结](wen-jian-shang-chuan-lou-dong/wen-jian-shang-chuan-lou-dong-zhi-shi-dian-zong-jie.md)
+  * [🚗 CTFSHOW文件上传web入门](wen-jian-shang-chuan-lou-dong/ctfshow-wen-jian-shang-chuan-web-ru-men.md)

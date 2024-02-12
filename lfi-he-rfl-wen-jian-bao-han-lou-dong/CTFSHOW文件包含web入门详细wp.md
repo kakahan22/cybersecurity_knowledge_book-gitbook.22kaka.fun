@@ -300,7 +300,7 @@ http://1bd6bcd0-f840-4cc2-9665-0601cbe23a6d.challenge.ctf.show/?file=%25%37%30%2
 
 最后得到flag。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -330,7 +330,7 @@ if(isset($_GET['file'])){
 }
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到过滤了php的协议，但是没有过滤=，所以我们用data://伪协议直接传递php代码，然后执行
 

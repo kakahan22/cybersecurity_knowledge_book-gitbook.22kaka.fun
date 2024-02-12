@@ -97,7 +97,7 @@ intval主要利用有三个。
 
 这个是说在弱类型比较的前提下，本来在base=0的情况下，要看value的结果来判断，这个判断是<mark style="color:red;">从数字或者正负号开始才做转换，直到遇到非数字，或者字符串的结束符（\0）结束转换</mark>。开始我还理解错了。这句话的意思是比如我们要得到带4476的字符串，应该是4476abc这种。不然以abc4476是被转换为0的。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">④不影响结果的在开头的元素</mark>
 
@@ -224,11 +224,11 @@ p神的讲解我放在最后的传送门了。
 
 * 这个时候我们就尝试一种新的路径。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 另一种路径当然是lazy 路径，我们就在元素列表里看看能不能找到匹配lazy path的元素，发现不行，因为已经到末尾了，所以这个时候我们就可以弹出栈顶元素然后看看能不能尝试lazy path。发现还是因为a不能匹配(·；？>中的一个，所以我们就继续吐出来。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 吐着吐着吐到了;发现匹配成功了。我们就继续下一个任意匹配了。又是从greedy开始。这样。
 
@@ -537,7 +537,7 @@ lf/root/proc/self/root/var/www/html/flag.php
 
 <figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
