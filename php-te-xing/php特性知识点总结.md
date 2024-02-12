@@ -569,16 +569,6 @@ phpinfo（）能被正常执行。以下符号都能够正常执行。
 
 ***
 
-## <mark style="color:purple;background-color:red;">（14）PHP中类的应用</mark>
-
-首先我们把类的定义放在这里，其实如果我们学过数据结构的话，我们知道类其实是每一章的抽象出来的那个表达方式有异曲同工之妙。
-
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
-
-这里重点介绍几种常考的类。
-
-### <mark style="color:green;">①反射类ReflectionClass</mark>
-
 
 
 
