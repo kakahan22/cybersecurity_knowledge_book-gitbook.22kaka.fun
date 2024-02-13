@@ -90,7 +90,6 @@ php版本小于5.3.4,PHP的magic\_quotes\_gpc为OFF状态
 
 形式：
 
-{% embed url="http://%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A/*.asp/*.jpg" %}
 
 
 
