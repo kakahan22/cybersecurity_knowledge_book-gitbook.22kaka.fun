@@ -75,9 +75,128 @@ package net.java.util
 
 ***
 
-## （2）类型
+## （2）Primitive类型
 
 java中也有一些基本类型，是我们在c语言中也学过的。
+
+<figure><img src="../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
+
+### ①int
+
+对于int来说，数字与数字之间可以用\_(下划线）来连接。
+
+```java
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        byte age=30;
+        int viewsCount=123_456_789;
+        System.out.println(viewsCount);
+
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+
+### ②long
+
+如果数字太大，那么我们需要用long来表示类型，同时需要在数字的后面加一个L，来表示他是个很大的长整型。当然如果数字没有很大就不用了。
+
+```java
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        byte age=30;
+        long viewsCount=123456789000000L;
+        System.out.println(viewsCount);
+
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+
+### ③float
+
+因为java中小数默认为double，所以我们在需要用float的时候，需要在数字后面加一个F，来代表是float型
+
+```java
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        byte age=30;
+        float price=10.99F;
+        System.out.println(price);
+
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
+
+### ④char
+
+一个字符，用单引号括起来。
+
+```java
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        byte age=30;
+        char letter='A';
+        System.out.println(letter);
+
+    }
+```
+
+<figure><img src="../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## （3） Reference 类型（引用类型）
+
+我理解的引用类型是引用不同的包里面的一些type，比如日期，时间，邮件之类的。并且reference需要分配内存。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
