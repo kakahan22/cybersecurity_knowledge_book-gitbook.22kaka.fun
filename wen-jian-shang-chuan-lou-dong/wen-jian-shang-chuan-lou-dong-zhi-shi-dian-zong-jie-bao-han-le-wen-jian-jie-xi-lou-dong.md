@@ -16,7 +16,7 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 因为前端是用户可以自己可以修改的，所以这个绕过姿势就可以是用户自己修改前端的代码，然后再执行代码。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">②绕过姿势二：</mark>
 
@@ -30,11 +30,11 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 火狐：
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 谷歌：
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -297,6 +297,44 @@ bp抓包修改content-type的字段就可以了。
 
 {% file src="../.gitbook/assets/winhex.zip" %}
 
+***
+
+## <mark style="color:yellow;background-color:green;">（6）后端检验之user.ini文件配置</mark>
+
+user.ini文件配置和.htaccess文件配置很相似，但是用途更广泛。这里也是参考p神的文章，友链放在下面了，谁懂啊，这个大佬怎么总是能钻研出这么多东西/(ㄒoㄒ)/\~\~。
+
+首先简单介绍一下什么是user.ini
+
+> 我们知道php.ini是php的配置文件，`.user.ini`实际上就是一个可以由用户“自定义”的php.ini，实际上，除了`PHP_INI_SYSTEM`以外的模式（包括PHP\_INI\_ALL）都是可以通过.user.ini来设置的。比如`“PHP_INI_PERDIR 、 PHP_INI_USER”。`而且，和`php.ini`不同的是，`.user.ini`是一个能被动态加载的ini文件。也就是说我修改了`.user.ini`后，不需要重启服务器中间件，只需要等待`user_ini.cache_ttl`所设置的时间（默认为300秒），即可被重新加载。
+
+* 制造后门：
+
+php配置项中有两个选项可以用来包含后门。一个是auto\_append\_file,还有一个是auto\_append\_file。
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+就类似于require（）的作用，直接包含一个文件。
+
+格式就是：
+
+```
+auto_prepend_file=*****
+```
+
+```
+auto_append_file=*******
+```
+
+这个文件就是我们的木马文件。
+
+***
+
+
+
+
+
 
 
 ## <mark style="color:red;background-color:red;">参考门：</mark>
@@ -306,3 +344,5 @@ bp抓包修改content-type的字段就可以了。
 {% embed url="https://wiki.wgpsec.org/knowledge/ctf/uploadfile.html" %}
 
 {% embed url="https://zhuanlan.zhihu.com/p/399452532" %}
+
+{% embed url="https://wooyun.js.org/drops/user.ini%E6%96%87%E4%BB%B6%E6%9E%84%E6%88%90%E7%9A%84PHP%E5%90%8E%E9%97%A8.html" %}
