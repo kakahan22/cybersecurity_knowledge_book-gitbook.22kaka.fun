@@ -65,9 +65,19 @@ Methods：（驼峰命名法，除了第一个首字母小写，其他单词首�
 camelNamingconvention
 ```
 
+### ③package：包：
 
+包是用来组织类的，一般把功能相同的类和接口放在同一个包中，方便查找。
 
+```java
+package net.java.util
+```
 
+***
+
+## （2）类型
+
+java中也有一些基本类型，是我们在c语言中也学过的。
 
 
 
