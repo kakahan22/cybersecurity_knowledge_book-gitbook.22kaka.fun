@@ -16,7 +16,7 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 因为前端是用户可以自己可以修改的，所以这个绕过姿势就可以是用户自己修改前端的代码，然后再执行代码。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">②绕过姿势二：</mark>
 
@@ -30,11 +30,11 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 火狐：
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 谷歌：
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
