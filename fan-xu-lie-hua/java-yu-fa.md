@@ -338,7 +338,144 @@ public class Main{
 
 ***
 
+## （11）判断和循环
 
+### 1）判断
+
+#### ①if -else
+
+其实它的语法格式和c语言也差不多，我这里直接上代码了。
+
+```java
+import java.util.Date;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main{
+
+    public static void main(String[] args){
+       Scanner sc=new Scanner(System.in);
+       System.out.println("请输入酒量");
+       int wine=sc.nextInt();
+       if(wine>100&&wine<200) {
+           System.out.println("小伙子不错哦");
+       }
+       else if(wine>200){
+           System.out.println("小伙子太棒了");
+        }
+       else {
+           System.out.println("小伙子再去练练吧");
+       }
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
+
+#### ②switch
+
+同c语言，其实在学了很多很多的语言之后，感觉语法确实是最不值得花时间的。
+
+```java
+import java.util.Date;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main{
+
+    public static void main(String[] args){
+       Scanner sc=new Scanner(System.in);
+       System.out.println("请输入课程编号");
+       int classorder=sc.nextInt();
+       switch(classorder)
+       {
+           case 1:
+               System.out.println("计算机");
+               break;
+           case 2:
+               System.out.println("高等数学");
+               break;
+           case 3:
+               System.out.println("大学物理");
+               break;
+           case 4:
+               System.out.println("线性代数");
+               break;
+           default:
+               System.out.println("没有");
+       }
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+
+当然java这里和c语言有了一点区别了哦，有一种省略break的写法。将冒号用->代替，将break用{}代替
+
+```java
+import java.util.Date;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main{
+
+    public static void main(String[] args){
+       Scanner sc=new Scanner(System.in);
+       System.out.println("请输入课程编号");
+       int classorder=sc.nextInt();
+       switch(classorder) {
+           case 1 -> {
+               System.out.println("计算机");
+           }
+           case 2 -> {
+               System.out.println("高等数学");
+           }
+           case 3 -> {
+               System.out.println("大学物理");
+           }
+           case 4->{
+               System.out.println("线性代数");
+           }
+           default->{
+               System.out.println("没有");
+           }
+       }
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+
+### 2）循环
+
+#### ①for：
+
+和c语言语法还是一样的，没啥区别。直接上代码
+
+```java
+import java.util.Date;
+import java.util.Scanner;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main{
+
+    public static void main(String[] args) {
+        int i;
+        for(i=5;i<=10;i++)
+        {
+            System.out.println(i);
+        }
+    }
+}
+```
+
+<figure><img src="../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+
+#### ②while
 
 
 
