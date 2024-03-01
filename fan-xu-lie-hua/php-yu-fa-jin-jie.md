@@ -33,9 +33,15 @@ new 类名;
 new 类名(); #使用较多
 ```
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+所以上述中首先定义了一个类，然后类实例化产生了对象。var\_dump打印出来的信息格式是：
+
+`对象（类名）【对象编号】 具体成员信息`
+
 ### ④类成员（member）：
 
-指类class结构中的所有内容，类成员里有三种
+指类class结构中的所有内容，直接属于大括号的内容，二级括号就不属于了。属性和方法需要用到访问限制修饰符。类成员里有三种
 
 #### （1）方法（method）：
 
@@ -48,6 +54,165 @@ new 类名(); #使用较多
 #### （3）类常量（const）：
 
 本质是在类class结构中创建的常量。
+
+```php
+class 类名{
+    #类常量（可以多个）
+    const 常量名=值;
+    #属性
+    public $属性名[=值]; #可以赋值也可以不赋值，只声明
+    #方法（可以多个）
+    [public]function 方法名([形参列表])
+    #方法体（返回值）
+    
+    }
+```
+
+***
+
+
+
+## <mark style="color:orange;">2.类成员的访问</mark>
+
+对于类成员的访问，有对象访问(->)和类访问（::)。属性和方法都属于对象访问，类常量属于类访问。
+
+### ①对象访问：
+
+
+
+```php
+$object=new 类名();
+#属性访问
+$object->属性名; #此时不带属性本身的$（前面保存对象的变量带$符号了)
+#方法访问
+$object->方法名([实参列表]);
+```
+
+我们可以通过对对象的访问对类进行各种修改接下来就有一个例子。
+
+```php
+
+<?php 
+
+class Buyer{
+    public $name;
+    public $money=0;
+    function display(){
+        echo __CLASS__;
+    }
+    const BIG_NAME='BUYER';
+}
+
+$b=new Buyer();
+#查找
+echo $b->money;
+#修改
+$b->money=1000;
+#删除
+unset($b->name);
+#增加
+$b->age=20;
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:orange;">3.访问修饰限定符</mark>
+
+用在属性和方法前的修饰关键字，是用来控制属性或者方法的访问位置。属性必须带有访问修饰限定符，方法可以没有访问修饰限定符（默认public）
+
+### ①公有（public）：
+
+类内和类外都可以访问
+
+### ②受保护（protected）：
+
+只允许在相关类内部访问
+
+### ③私有（private）：
+
+只允许在定义类内部访问
+
+***
+
+
+
+## <mark style="color:orange;">4.类内部对象</mark>
+
+$this，方法内部内置的一个对象，对自动指向用来调用方法的对象。$this存在于方法内部（仅限内部使用），所以相当于在类的结构内部。
+
+{% hint style="info" %}
+可以访问任意房屋内修饰限定符修饰的成员（私有的也可以）
+{% endhint %}
+
+最开始的时候其实还是没有懂$this存在的意义直到后来发现，其实不能因为包了一层类，函数就不是函数了，也就是说，函数中引用的变量还得是函数里面定义的，不然就会报错。为了解决这个问题，让函数可以访问类里面的属性，我们引入了$this。
+
+```php
+
+<?php 
+
+class Saler{
+    public $count =100;
+    protected $discount=0.8;
+    private $money=100;
+
+    public function getAll(){
+
+        echo $this->count,$this->discount,$this->money;
+    }
+}
+
+$s=new Saler();
+$s->getAll();
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+除此之外我们呢还可以用global（全局变量来访问）。
+
+我们可以将对象的名字设置成全局变量，然后就可以在函数内部进行访问。
+
+```php
+
+<?php 
+
+class Saler{
+    public $count =100;
+    protected $discount=0.8;
+    private $money=100;
+
+    public function getAll(){
+        global $s;
+        echo $s->count,$s->discount,$s->money;
+    }
+}
+
+$s=new Saler();
+$s->getAll();
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

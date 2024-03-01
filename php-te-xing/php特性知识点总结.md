@@ -81,23 +81,23 @@ intval主要利用有三个。
 
 这个重点在非空的数组会返回1。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里想提醒一下`['']`这个不是数组为空，这个数组有一个元素，元素为空元素。要是`[]`才是空数组
 
 ### <mark style="color:orange;background-color:yellow;">②特性二：base转化的进制</mark>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 前提是base是0的时候，由value来决定。其他几个情况比较熟悉，0开头是8进制需要好好记忆一下。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">③特性三：弱类型比较下的base转换开始和结束</mark>
 
 这个是说在弱类型比较的前提下，本来在base=0的情况下，要看value的结果来判断，这个判断是<mark style="color:red;">从数字或者正负号开始才做转换，直到遇到非数字，或者字符串的结束符（\0）结束转换</mark>。开始我还理解错了。这句话的意思是比如我们要得到带4476的字符串，应该是4476abc这种。不然以abc4476是被转换为0的。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:orange;background-color:yellow;">④不影响结果的在开头的元素</mark>
 
@@ -214,21 +214,21 @@ p神的讲解我放在最后的传送门了。
 
 * 直接进行lazy的path的就是p神文章里提到的DFA模式，而且我们说的NFA模式，就是先greedy，也就是把整个字符串都先匹配了。like this
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 这个时候他匹配进入到了failure的步骤，失败了，我们就要去看看能不能走lazy path了，发现到了末尾了，走不了。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 这个时候我们就尝试一种新的路径。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 另一种路径当然是lazy 路径，我们就在元素列表里看看能不能找到匹配lazy path的元素，发现不行，因为已经到末尾了，所以这个时候我们就可以弹出栈顶元素然后看看能不能尝试lazy path。发现还是因为a不能匹配(·；？>中的一个，所以我们就继续吐出来。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * 吐着吐着吐到了;发现匹配成功了。我们就继续下一个任意匹配了。又是从greedy开始。这样。
 
@@ -535,9 +535,9 @@ lf/root/proc/self/root/var/www/html/flag.php
 
 没啥好讲的，直接贴图
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
