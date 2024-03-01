@@ -200,6 +200,104 @@ $s->getAll();
 
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+***
+
+## <mark style="color:orange;">5.构造方法</mark>
+
+构造方法：\_\_construct()，是一种类结构特有的特殊方法，开发人员在定义的时候只要写一遍，走了构造方法发的的类在实例化对象之后，对象就会自动调用。
+
+> 魔术方法：是自动被触发，不需要手动调用
+
+但是他的本质还是方法。
+
+```php
+
+<?php 
+
+class saler{
+    public function __construct(){
+        echo __CLASS__;
+    }
+}
+new saler();
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+
+### ①构造方法的意义：
+
+构造方法是对象实例化的时候用来初始化对象的资源的，所以通常是用来初始化对象的属性或者其他资源的初始化。
+
+```php
+
+class saler{
+    public $count;
+    public $money;
+
+    #构造方法：初始化属性
+    public function __construct(){
+        $this->count=100;
+        $this->money=100;
+    }
+}
+```
+
+一旦构造方法拥有了形参，那么对象在调用该方法的时候就需要传入对应的实参，而构造方法是自动调用的，所以需要在实例化对象的时候使用new类名（构造方法对应的实参列表来表现）
+
+```php
+
+<?php 
+
+class saler{
+    public $count;
+    public $money;
+
+    #构造方法：初始化属性
+    public function __construct($count,$money){
+        $this->count=$count;
+        $this->money=$money;
+        echo __CLASS__;
+    }
+}
+
+$s1=new saler(100,100);
+var_dump($s1);
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## <mark style="color:orange;">6.析构方法</mark>
+
+析构方法：\_\_destruct()，与构造方法一样，对象在销毁时会自动调用。
+
+析构方法是用来对象销毁时主动释放资源的。其实php脚本执行结束会释放所有资源，所以一般较少使用析构方法。
+
+```php
+
+<?php 
+
+class saler{
+    public function __destruct(){
+        echo __FUNCTION__;
+    }
+}
+
+$s1=new saler();
+var_dump($s1);
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
+
+
+
 
 
 
