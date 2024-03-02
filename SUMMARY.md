@@ -23,3 +23,5 @@
   * [☎️ PHP语法进阶](fan-xu-lie-hua/php-yu-fa-jin-jie.md)
   * [🎥 反序列化漏洞知识点](fan-xu-lie-hua/fan-xu-lie-hua-lou-dong-zhi-shi-dian.md)
   * [💾 CTFSHOW 反序列化](fan-xu-lie-hua/ctfshow-fan-xu-lie-hua.md)
+* [🩷 BUUCTF刷题](buuctf-shua-ti/README.md)
+  * [💔 刷题wp](buuctf-shua-ti/shua-ti-wp.md)

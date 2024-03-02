@@ -36,6 +36,14 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+### <mark style="color:green;">④绕过姿势四：</mark>
+
+可以使用畸形后缀
+
+phtml，php4，php5，pht，php3
+
+
+
 ***
 
 ## <mark style="color:yellow;background-color:green;">2）后端检测之后缀名检测漏洞</mark>
