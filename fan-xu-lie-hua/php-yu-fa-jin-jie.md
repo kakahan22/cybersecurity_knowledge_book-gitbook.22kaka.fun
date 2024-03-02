@@ -2,7 +2,7 @@
 description: 主要是面向对象的基础，在序列化知识点就需要用这个思想。
 ---
 
-# 🚒 PHP语法进阶
+# ☎️ PHP语法进阶
 
 ## <mark style="color:orange;">1.面向对象关键字：</mark>
 
@@ -33,7 +33,7 @@ new 类名;
 new 类名(); #使用较多
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 所以上述中首先定义了一个类，然后类实例化产生了对象。var\_dump打印出来的信息格式是：
 
@@ -116,7 +116,7 @@ $b->age=20;
 
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -171,7 +171,7 @@ $s->getAll();
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 除此之外我们呢还可以用global（全局变量来访问）。
 
@@ -198,7 +198,7 @@ $s->getAll();
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
