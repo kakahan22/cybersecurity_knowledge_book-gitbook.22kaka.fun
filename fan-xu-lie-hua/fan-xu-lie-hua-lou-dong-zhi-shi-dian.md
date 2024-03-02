@@ -261,7 +261,7 @@ $me->getInfo();
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 其实对于结果分析我们就能看到，在调用serialize的时候，自动调用了\_\_sleep，然后因为sleep里面没有准备info，所以后面的输出，其实就没有info了。在调用unserialize的时候，自动调用了\_\_wakeup，里面又重构了了info，所以后面成功输出了info。
 
@@ -292,7 +292,7 @@ echo '__toString:' . $me . '<br>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -383,29 +383,68 @@ a:1:{s:5:"hello";s:20:"|O:8:"stdClass":0:{}";}
 $_SESSION['a:1:{s:5:"hello";s:20:"'] = object(stdClass){}
 ```
 
-#### （5）pop链
+### ③字符逃逸
+
+当出现首先对对象进行序列化，然后再进行反序列化的时候就会出现字符逃逸。
+
+出现的原因主要是因为，反序列化底层代码是以 ; 作为字段的分隔，以 } 作为结尾，并且是根据长度判断内容的 ，同时反序列化的过程中必须严格按照序列化规则才能成功实现反序列化 ，超出的部分并不会被反序列化成功，这说明反序列化的过程是有一定识别范围的，在这个范围之外的字符都会被忽略，不影响反序列化的正常进行。而且可以看到反序列化字符串都是以_**";}**_结束的，那如果把_**";}**_添入到需要反序列化的字符串中（除了结尾处），就能让反序列化提前闭合结束，后面的内容就相应的丢弃了。
+
+并且长度不对劲的时候会报错。
+
+#### （1）替换修改后导致序列化字符串变长
+
+这里用先知社区的代码作为例子。
+
+```php
+<?php
+function filter($str)
+{
+    return str_replace('bb', 'ccc', $str);
+}
+class A
+{
+        public $name = 'aaaabb';
+        public $pass = '123456';
+}
+$AA = new A();
+echo serialize($AA) . "\n";
+$res = filter(serialize($AA));
+echo $res."\n";
+$c=unserialize($res);
+var_dump($c);
+?>
+
+```
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+很显然报错了，但是要的就是这个效果。我们还是先解释一下这个代码，我们首先对他进行序列化，这个时候没有问题，然后我们进行字符串替换了，这个时候，bb替换为ccc，这个时候，nameccc是7个字符，但是我们的序列化的结果不能自动更新，所以它还是显示6个字符，这个时候就出问题了。我们再在这个时候落进下石的话，进行反序列化，就会报错。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### （6）pop链
 
 POP链：
 
 > POP（Property-Oriented Programing）面向属性编程，常用于上层语言构造特定调用链的方法，与二进制利用中的ROP（Return-Oriented Programing）面向返回编程的原理相似，都是从现有运行环境中寻找一系列的代码或者指令调用，然后根据需求构成一组连续的调用链。在控制代码或者程序的执行流程后就能够使用这一组调用链做一些工作了。
 
-这个暂时看不懂，所以不写。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+这个暂时看不懂，所以不写。但是做了一道这样的题，发现其实就是看懂代码然后利用，我是不知道有啥需要我特别总结的。
 
 
 
