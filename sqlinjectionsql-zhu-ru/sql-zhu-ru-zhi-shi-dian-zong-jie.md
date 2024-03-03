@@ -160,31 +160,83 @@ GROUP_CONCAT(str1,str2,…)
 
 ***
 
-## <mark style="color:green;">（4）寻找注入点</mark>
+## <mark style="color:green;">（4）数字型注入</mark>
 
-### <mark style="color:yellow;">①</mark><mark style="color:yellow;">`'`</mark><mark style="color:yellow;">或者</mark><mark style="color:yellow;">`"`</mark>
+### <mark style="color:yellow;">①加</mark> <mark style="color:yellow;"></mark><mark style="color:yellow;">`'`</mark><mark style="color:yellow;">或者</mark><mark style="color:yellow;">`"`</mark>
 
-一般在参数后添加单引号，或者双引号，如果报错或者长度变化，那么就可能存在sql注入。
+```url
+http://xxxxxxxx?id=3'
+```
+
+这个时候sql语句的语法是错误的，程序根本就不执行，所以会报错。这个时候执行的sql逻辑是
+
+```sql
+select * from table where id =3'
+```
+
+### <mark style="color:yellow;">②加and 1=1</mark>
+
+```
+http://xxxxxxxxxxxx?id =3 and 1=1 
+```
+
+如果这个时候执行结果是与原页面没有差异的话，就说明这一步是成功的。因为这个sql语句是正确的，所以没有差异。这个时候执行的sql逻辑是
+
+```sql
+select * from table where id=3 and 1=1
+```
+
+### <mark style="color:yellow;">③加and 1=2</mark>
+
+```
+http://xxxxxxxxxxx?id=3 and 1=2
+```
+
+这个时候语句执行是正常的，没有语法错误，但是无法查询出结果，所以返回的数据与原页面存在一定的差异。这个时候执行的sql逻辑是
+
+```sql
+select * from table where id=3 and 1=2
+```
+
+以上这些步骤说明URL存在数字型注入
 
 ***
 
+## <mark style="color:green;">(5)字符型注入</mark>
 
+字符型比数字型稍微复杂一点，他需要考虑到闭合单（双）引号的问题，就需要加一个引号并且注释后面的引号。
 
+### <mark style="color:yellow;">①加'</mark> <mark style="color:yellow;">或者"</mark>
 
+```
+http://xxxxxxxxxxxx?username='admin
+```
 
+这个时候会报错，因为字符型本身就带有一对引号，所以额外加了一个引号之后其实无法闭合了，就会报错。这个时候sql逻辑语句是
 
+```
+select * from table where username= ''admin'
+```
 
+### <mark style="color:yellow;">②加 ' and 1=1 #</mark>
 
+```
+http://xxxxxxxxx?username=admin'and 1=1 #
+```
 
+如果这个时候成功执行并且返回了正确的结果的话，那么就说明字符型注入成功了。因为相当于admin'和前面的’进行了闭合，然后后面的单引号又被注释了，所以其实拼接的语句就是
 
+```sql
+select * from table where username='admin' and 1=1 #
+```
 
+### <mark style="color:yellow;">③加 ‘ and 1=2#</mark>
 
+```
+http://xxxxxxxxxxxx?username=admin' and 1=2#
+```
 
-
-
-
-
-
+这个时候执行了但是会报错，语法没有错误，但是
 
 
 
