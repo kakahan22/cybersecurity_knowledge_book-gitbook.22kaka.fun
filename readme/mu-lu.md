@@ -38,6 +38,51 @@ description: 之前因为随意修改差点把这个都弄丢了，害，算了�
 <!---->
 
 * :dog:SQL语法 [SQL语法.md](../sqlinjectionsql-zhu-ru/SQL语法.md "mention")
+* &#x20;:cow:SQL注入知识点总结 [sql-zhu-ru-zhi-shi-dian-zong-jie.md](../sqlinjectionsql-zhu-ru/sql-zhu-ru-zhi-shi-dian-zong-jie.md "mention")
+
+
+
+* [ ] &#x20;:bike:文件上传漏洞 [wen-jian-shang-chuan-lou-dong](../wen-jian-shang-chuan-lou-dong/ "mention")
+
+<!---->
+
+* &#x20;:motorcycle:文件上传漏洞知识点总结（包含了文件解析漏洞） [wen-jian-shang-chuan-lou-dong-zhi-shi-dian-zong-jie-bao-han-le-wen-jian-jie-xi-lou-dong.md](../wen-jian-shang-chuan-lou-dong/wen-jian-shang-chuan-lou-dong-zhi-shi-dian-zong-jie-bao-han-le-wen-jian-jie-xi-lou-dong.md "mention")
+* &#x20;:red\_car:CTFSHOW文件上传web入门 [ctfshow-wen-jian-shang-chuan-web-ru-men.md](../wen-jian-shang-chuan-lou-dong/ctfshow-wen-jian-shang-chuan-web-ru-men.md "mention")
+
+
+
+* [ ] &#x20;:watch:反序列化 [fan-xu-lie-hua](../fan-xu-lie-hua/ "mention")
+
+<!---->
+
+* &#x20;:mobile\_phone:JAVA语法 [java-yu-fa.md](../fan-xu-lie-hua/java-yu-fa.md "mention")
+* &#x20;:telephone:PHP语法进阶 [php-yu-fa-jin-jie.md](../fan-xu-lie-hua/php-yu-fa-jin-jie.md "mention")
+* &#x20;:movie\_camera:反序列化漏洞知识点  [fan-xu-lie-hua-lou-dong-zhi-shi-dian.md](../fan-xu-lie-hua/fan-xu-lie-hua-lou-dong-zhi-shi-dian.md "mention")
+* &#x20;:floppy\_disk:CTFSHOW反序列化 [ctfshow-fan-xu-lie-hua.md](../fan-xu-lie-hua/ctfshow-fan-xu-lie-hua.md "mention")
+
+
+
+* [ ] &#x20;:pink\_heart:BUUCTF刷题 [buuctf-shua-ti](../buuctf-shua-ti/ "mention")
+
+<!---->
+
+* &#x20;:broken\_heart:刷题wp [shua-ti-wp.md](../buuctf-shua-ti/shua-ti-wp.md "mention")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
