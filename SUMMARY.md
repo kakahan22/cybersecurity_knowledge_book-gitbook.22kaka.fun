@@ -26,3 +26,6 @@
   * [💾 CTFSHOW 反序列化](fan-xu-lie-hua/ctfshow-fan-xu-lie-hua.md)
 * [🩷 BUUCTF刷题](buuctf-shua-ti/README.md)
   * [💔 刷题wp](buuctf-shua-ti/shua-ti-wp.md)
+  * [💘 BUUCTF补充知识点](buuctf-shua-ti/buuctf-bu-chong-zhi-shi-dian.md)
+* [🏴‍☠️ 工具介绍](gong-ju-jie-shao/README.md)
+  * [🚩 web常用工具](gong-ju-jie-shao/web-chang-yong-gong-ju.md)
