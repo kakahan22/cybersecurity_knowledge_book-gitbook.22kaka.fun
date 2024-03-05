@@ -386,15 +386,18 @@ http://******?id=1' union select 1,group_concat(0x7e,字段，0x7e),3 from 数�
 
 ### <mark style="color:yellow;">①floor（）报错</mark>
 
-floor()报错要配合rand（）函数一起使用，一般是floor(rand(0)\*2)。实质是group by语句的报错。group by 在向临时表中插入数据时，由于rand()会进行多次计算，所以主键重复从而报错。但是报错语句之前的concat（）语句又被执行了，所以该语句报错且抛出的主键是sql语句或者函数执行后的结果。
 
-其实学过随机数就知道，随机数其实是伪随机，就是说只要种子不变，那么其实生成的数字序列是一样的，我们用到的rand(0)，并且\*2了，所以他每次产生的随机数列都是0110
+
+{% hint style="info" %}
+这个报错注入在mysql 8+的版本中不存在，我的版本是10所以这个问题根本就不存在。
+{% endhint %}
 
 所以我们的利用方法就是
 
 #### <mark style="color:purple;">（1）爆数据库</mark>
 
-
+```sql
+```
 
 
 
