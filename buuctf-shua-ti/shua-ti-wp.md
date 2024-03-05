@@ -283,9 +283,9 @@ O:4:"Name":3:{s:14:"%00Name%00username";s:5:"admin";s:14:"%00Name%00password";i:
 
 <figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
+这里有一个函数eval（）代码执行函数，这个主要是考察RCE漏洞啊，但是他过滤了很多单引号，双引号，dollar之类的全部过滤了，只有用无参数的读取文件了。这里可以参考 [#id-6.-wu-can-shu-du-qu](../rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md#id-6.-wu-can-shu-du-qu "mention")
 
-
-
+并且这里calc计算机不允许传入字母，因为会出现识别不了的情况，所以我们这个地方补充了怎么绕过这个waf的方法。&#x20;
 
 
 
