@@ -441,7 +441,7 @@ http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).c
 
 ***
 
-## （11）\[护网杯 2018]easy\_tornado 1
+## （11）\[护网杯 2018]easy\_tornado 1（未写）
 
 <figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
@@ -467,7 +467,9 @@ http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).c
 
 ## （12）\[ZJCTF 2019]NiZhuanSiWei 1
 
+<figure><img src="../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
 
+应该是个反序列化漏洞
 
 
 
