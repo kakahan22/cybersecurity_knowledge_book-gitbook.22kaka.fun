@@ -14,7 +14,7 @@ description: 因为sql注入是在sql语法的一些基础上的，所以我们�
 service mysql start
 ```
 
-<figure><img src="../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 step2：输入用户名和密码以进入mysql
 
