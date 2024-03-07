@@ -469,7 +469,60 @@ http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).c
 
 <figure><img src="../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
 
-应该是个反序列化漏洞
+后面是反序列化漏洞是肯定的，前面应该要先把这个文件给读出来。
+
+首先是text，text是个文件，但是我们目前不知道文件的目录，就需要用到php伪协议data://可以被当做文件，并且后面能带php代码。
+
+我们可以通过这个代码去查看文件了。后面又要用file去读取文件，但是又不能出现flag，就需要用filter伪协议来个base64加密。
+
+这个地方建议重新温习一下我们之前讲过的RCE漏洞里面的php伪协议部分。 [#id-2-zhi-chi-de-xie-yi-he-feng-zhuang-xie-yi](../rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md#id-2-zhi-chi-de-xie-yi-he-feng-zhuang-xie-yi "mention")
+
+<figure><img src="../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+
+然后我们就得到了useless.php，我们转换一下看看代码是什么
+
+```php
+<?php  
+
+class Flag{  //flag.php  
+    public $file;  
+    public function __tostring(){  
+        if(isset($this->file)){  
+            echo file_get_contents($this->file); 
+            echo "<br>";
+        return ("U R SO CLOSE !///COME ON PLZ");
+        }  
+    }  
+}  
+?>  
+
+```
+
+没有什么特别不一样的，直接将file传参为flag.php就可以，然后我们直接写一个脚本
+
+<figure><img src="../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+
+查看源码得到flag。
+
+<figure><img src="../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
+
+***
+
+## （13）\[极客大挑战 2019]HardSQL 1
+
+<figure><img src="../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
+
+还是sql注入，然后发现我输入注入语句被发现了。所以应该是被过滤了。我决定fuzz一下看看有哪些被过滤了。
+
+<figure><img src="../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
+
+这里一共就两种返回结果，一种是别被我抓到了臭弟弟，被过滤了，另外一种就是wrong password啥的，就是没被过滤，但是不对。
+
+
+
+
 
 
 
