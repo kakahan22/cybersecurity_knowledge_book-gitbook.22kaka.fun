@@ -29,3 +29,4 @@
   * [💘 BUUCTF补充知识点](buuctf-shua-ti/buuctf-bu-chong-zhi-shi-dian.md)
 * [🏴‍☠️ 工具介绍](gong-ju-jie-shao/README.md)
   * [🚩 web常用工具](gong-ju-jie-shao/web-chang-yong-gong-ju.md)
+  * [🏁 常用字典](gong-ju-jie-shao/chang-yong-zi-dian.md)
