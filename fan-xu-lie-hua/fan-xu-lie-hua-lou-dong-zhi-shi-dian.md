@@ -261,7 +261,7 @@ $me->getInfo();
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实对于结果分析我们就能看到，在调用serialize的时候，自动调用了\_\_sleep，然后因为sleep里面没有准备info，所以后面的输出，其实就没有info了。在调用unserialize的时候，自动调用了\_\_wakeup，里面又重构了了info，所以后面成功输出了info。
 
@@ -292,11 +292,11 @@ echo '__toString:' . $me . '<br>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
-## <mark style="color:yellow;background-color:blue;">三.PHP反序列化漏洞分析</mark>
+## <mark style="color:yellow;background-color:blue;">三.PHP反序列化漏洞分析（未完）</mark>
 
 ### <mark style="color:purple;background-color:green;">①wakeup（）绕过</mark>
 
@@ -416,27 +416,9 @@ var_dump($c);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很显然报错了，但是要的就是这个效果。我们还是先解释一下这个代码，我们首先对他进行序列化，这个时候没有问题，然后我们进行字符串替换了，这个时候，bb替换为ccc，这个时候，nameccc是7个字符，但是我们的序列化的结果不能自动更新，所以它还是显示6个字符，这个时候就出问题了。我们再在这个时候落进下石的话，进行反序列化，就会报错。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #### （6）pop链
 
@@ -445,6 +427,47 @@ POP链：
 > POP（Property-Oriented Programing）面向属性编程，常用于上层语言构造特定调用链的方法，与二进制利用中的ROP（Return-Oriented Programing）面向返回编程的原理相似，都是从现有运行环境中寻找一系列的代码或者指令调用，然后根据需求构成一组连续的调用链。在控制代码或者程序的执行流程后就能够使用这一组调用链做一些工作了。
 
 这个暂时看不懂，所以不写。但是做了一道这样的题，发现其实就是看懂代码然后利用，我是不知道有啥需要我特别总结的。
+
+
+
+
+
+
+
+
+
+***
+
+## 四.对于private，procted的空格绕过
+
+首先我们知道private和procted在反序列化的时候，protected会变成%00\*%00属性名，private会变成%00类名%00属性名。这个%00是url后的结果，没有经过url的结果其实是
+
+```
+\x00*\x00属性名
+\x00类名\x00属性名。
+```
+
+这个时候我们可能会发生截断，在这个空格的地方。
+
+为了解决这个问题，我们有两种解决方法。
+
+### （1）方法一：
+
+就是让Payload能够显示这个空格，我们一般会在属性的位置将用大写的S代替小写的s，具体的原因可以看p神的这个例子。
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+### （2）方法二
+
+直接将protected和private用public代替，就是换成public，因为php7.1以上的版本对属性类型不敏感。就是直接换成public了，真是直接！
+
+
+
+
+
+
+
+
 
 
 
