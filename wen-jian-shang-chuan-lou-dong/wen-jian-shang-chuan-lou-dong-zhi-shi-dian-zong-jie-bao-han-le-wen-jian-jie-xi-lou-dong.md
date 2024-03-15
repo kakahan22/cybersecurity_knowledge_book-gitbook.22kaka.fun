@@ -16,7 +16,7 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 因为前端是用户可以自己可以修改的，所以这个绕过姿势就可以是用户自己修改前端的代码，然后再执行代码。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">②绕过姿势二：</mark>
 
@@ -30,11 +30,11 @@ description: 我的理解是web应用允许用户上传一些头像，附件之�
 
 火狐：
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 谷歌：
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### <mark style="color:green;">④绕过姿势四：</mark>
 
@@ -293,7 +293,7 @@ bp抓包修改content-type的字段就可以了。
 
 ### <mark style="color:orange;background-color:yellow;">①常见的文件头</mark>
 
-* GIF：`47 49 46 38 39 61`​&#x20;
+* GIF：`47 49 46 38 39 61`​                         ----`GIF89a`
 * png：`89 50 4E 47 0D 0A 1A 0A`​&#x20;
 * JPG：`FF D8 FF E0 00 10 4A 46 49 46`​
 
@@ -319,9 +319,9 @@ user.ini文件配置和.htaccess文件配置很相似，但是用途更广泛。
 
 php配置项中有两个选项可以用来包含后门。一个是auto\_append\_file,还有一个是auto\_append\_file。
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 就类似于require（）的作用，直接包含一个文件。
 
@@ -336,6 +336,8 @@ auto_append_file=*******
 ```
 
 这个文件就是我们的木马文件。所以再.user.ini上传的文件夹下的每个php文件都会添加一个include（"\*\*\*\*\*\*\*"),每个php文件都会包含木马文件。
+
+并且这个时候包含的文件可以不是php后缀，只要含有php代码就可以了。
 
 ***
 

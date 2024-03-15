@@ -14,7 +14,7 @@ description: 因为sql注入是在sql语法的一些基础上的，所以我们�
 service mysql start
 ```
 
-<figure><img src="../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 step2：输入用户名和密码以进入mysql
 
@@ -471,3 +471,46 @@ DELETE FROM users WHERE id IN (2,4,5,6);
 <figure><img src="../.gitbook/assets/image 40 (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
+
+## <mark style="color:blue;background-color:green;">19.HANDLER</mark>
+
+它的作用是用来替代select来查询数据的，一般是这个作用。
+
+基本语法要配合几段一起使用，所以一般用在堆叠注入里面。
+
+所以这里提供两种
+
+### (1)语法一：
+
+```
+HANDLER 表名 OPEN;           //打开一张表，无返回结果，实际上我们在这里声明了一个名为tb1_name的句柄。
+
+HANDLER 表名 READ FIRST；   //获取句柄的第一行，通过READ NEXT依次获取其它行。最后一行执行之后再执行NEXT会返回一个空的结果。
+
+HANDLER 表名 READ NEXT；    //获得句柄的下一行，你可以一直输入这个语句读取下一行
+
+HANDLER 表名 CLOSE          //关闭打开的句柄
+```
+
+### （2）语法二：
+
+```
+HANDLER 表名 OPEN；
+
+HANDLER 表名 READ handler_index=(3);    //从第三行开始，然后再通过READnext依次读取下一行。
+
+HANDLER 表名 READ handler_index NEXT;  
+
+HANDLER 表名 CLOSE；
+```
+
+***
+
+
+
+
+
+
+
+
+

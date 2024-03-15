@@ -261,7 +261,7 @@ $me->getInfo();
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实对于结果分析我们就能看到，在调用serialize的时候，自动调用了\_\_sleep，然后因为sleep里面没有准备info，所以后面的输出，其实就没有info了。在调用unserialize的时候，自动调用了\_\_wakeup，里面又重构了了info，所以后面成功输出了info。
 
@@ -292,7 +292,7 @@ echo '__toString:' . $me . '<br>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -416,7 +416,7 @@ var_dump($c);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很显然报错了，但是要的就是这个效果。我们还是先解释一下这个代码，我们首先对他进行序列化，这个时候没有问题，然后我们进行字符串替换了，这个时候，bb替换为ccc，这个时候，nameccc是7个字符，但是我们的序列化的结果不能自动更新，所以它还是显示6个字符，这个时候就出问题了。我们再在这个时候落进下石的话，进行反序列化，就会报错。
 
@@ -455,7 +455,7 @@ POP链：
 
 就是让Payload能够显示这个空格，我们一般会在属性的位置将用大写的S代替小写的s，具体的原因可以看p神的这个例子。
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 ### （2）方法二
 
