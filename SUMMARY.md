@@ -26,6 +26,7 @@
   * [💾 CTFSHOW 反序列化](fan-xu-lie-hua/ctfshow-fan-xu-lie-hua.md)
 * [🔈 SSTI模板注入漏洞](ssti-mo-ban-zhu-ru-lou-dong/README.md)
   * [🔔 SSTI知识点总结](ssti-mo-ban-zhu-ru-lou-dong/ssti-zhi-shi-dian-zong-jie.md)
+  * [📣 Python语法](ssti-mo-ban-zhu-ru-lou-dong/python-yu-fa.md)
 * [🩷 BUUCTF刷题](buuctf-shua-ti/README.md)
   * [💔 刷题wp](buuctf-shua-ti/shua-ti-wp.md)
   * [💘 BUUCTF补充知识点](buuctf-shua-ti/buuctf-bu-chong-zhi-shi-dian.md)
