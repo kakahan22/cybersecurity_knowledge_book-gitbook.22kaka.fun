@@ -76,7 +76,7 @@ cat raw.png 1.php > shell.png
 
 ### <mark style="color:green;">①代码解释</mark>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 前端和上一题一样没啥区别，应该主要是后端的代码。
 
@@ -142,7 +142,7 @@ auto_append_file="shell.png"
 
 然后我们将文件上传上去，这个时候他的校验还没有利用文件头也没有黑白名单，直接弄个后缀和mime-type就交上了，然后我们抓个包。把.user.ini.png改回到.user.ini
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们再将shell.png图片马上传上去。抓包上传，所以现在upload下的index.php文件中包含了我们的执行代码，然后我们再看看index.php确定我们的php代码被执行了。
 

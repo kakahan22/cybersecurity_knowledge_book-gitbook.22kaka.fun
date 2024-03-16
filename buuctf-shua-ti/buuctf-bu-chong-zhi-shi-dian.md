@@ -42,6 +42,19 @@
 
 
 
+## <mark style="color:red;">※4.preg\_replace与RCE</mark>
+
+这个是做题说的preg\_replace与RCE漏洞的问题。
+
+我们是按照先知社区的来学习，因为这个完全没有遇到过，第一次看到别人这么说。
+
+### ①案例引入
+
+这例子他也是用的我碰到题目的例子。真是让人sad。但是他说案例简单，我哭死。
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+这里解释一下这个/e模式究竟是什么吧。
 
 
 
@@ -84,3 +97,9 @@
 
 
 
+
+### 参考门：
+
+
+
+{% embed url="https://xz.aliyun.com/t/2557?time__1311=n4%2BxnieDqxg7Ki%3DD%2FWT4BIalhxRex7u%2BD" %}

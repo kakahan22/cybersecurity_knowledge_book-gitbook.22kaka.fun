@@ -18,7 +18,7 @@ kali下面自带了我记得，所以我这里直接记录使用方法了。
 dirsearch -u http://*************** 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 当然也可以以指定我们需要的语言，比如我们需要的是php语言
 
