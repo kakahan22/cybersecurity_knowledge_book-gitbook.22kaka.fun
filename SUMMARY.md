@@ -24,6 +24,8 @@
   * [☎️ PHP语法进阶](fan-xu-lie-hua/php-yu-fa-jin-jie.md)
   * [🎥 反序列化漏洞知识点](fan-xu-lie-hua/fan-xu-lie-hua-lou-dong-zhi-shi-dian.md)
   * [💾 CTFSHOW 反序列化](fan-xu-lie-hua/ctfshow-fan-xu-lie-hua.md)
+* [🔈 SSTI模板注入漏洞](ssti-mo-ban-zhu-ru-lou-dong/README.md)
+  * [🔔 SSTI知识点总结](ssti-mo-ban-zhu-ru-lou-dong/ssti-zhi-shi-dian-zong-jie.md)
 * [🩷 BUUCTF刷题](buuctf-shua-ti/README.md)
   * [💔 刷题wp](buuctf-shua-ti/shua-ti-wp.md)
   * [💘 BUUCTF补充知识点](buuctf-shua-ti/buuctf-bu-chong-zhi-shi-dian.md)
