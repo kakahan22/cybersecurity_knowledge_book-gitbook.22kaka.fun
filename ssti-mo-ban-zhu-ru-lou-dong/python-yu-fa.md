@@ -1023,11 +1023,177 @@ for i in range(0, len(list2)):
 
 #### Ⅲ.使用enumerate（）函数
 
+```python
+list1 = ['hanhan', 'hello', 34, 56.7, True]
+list2 = ['hanhan', 'hello', 'abc']
+
+for index, item in enumerate(list1):
+    print(index,item)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+这里的index是序号，这个序号的开始值是可以修改的。我们可以把开始值修改成1，那么他的第一个序号就变成了1.
+{% endhint %}
+
+```python
+list1 = ['hanhan', 'hello', 34, 56.7, True]
+list2 = ['hanhan', 'hello', 'abc']
+
+for index, item in enumerate(list1, start=1):
+    print(index,item)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+这个start=可以省略不写，直接写1就行。
 
 
 
+### ④列表特有操作
+
+列表可以增删改查
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 
+
+我们将一一举例进行分析
+
+```python
+list1 = ['hello', 'world', 'hanhan', 234]
+print('原列表', list1, id(list1))
+
+# 增加元素操作
+list1.append('sql')
+print('增加元素之后', list1, id(list1))
+
+# 插入元素，在index位置上插入元素x
+list1.insert(1, 'love you')
+print('插入元素之后', list1)
+
+# 列表元素的删除操作
+list1.remove('hello')
+print('删除元素之后', list1, id(list1))
+
+# 使用pop（index）弹出某个元素并且删除
+list1.pop(1)
+print('弹出元素之后', list1)
+
+# 列表反向
+list1.reverse()
+print('列表反向后', list1)
+
+# 列表的拷贝
+new_list2 = list1.copy()
+print('拷贝列表的新列表', new_list2)
+
+# 清楚列表中所有元素
+list1.clear()
+print('清除元素后', list1, id(list1))
+
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑤列表排序
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+排序需要保证列表里面的对象的数据类型一致。并且对字符排序是先大写后小写。
+
+对sort的使用，sort是内置方法，不是函数，函数是sorted。这个要分清楚。这里就和我最开始错误的代码相关了，sort是对列表本身进行操作。但是sorted（）函数是会产生一个新的列表对象了，我们需要用另外一个新的列表去接收这个。
+
+#### Ⅰ.sort
+
+```python
+list1 = ['A', 'hanhan', 'a', 'cgt', 'TCD']
+print('原列表为', list1)
+
+# 输出升序排序后的列表
+list1.sort()
+print('升序排序后的列表为', list1)
+
+# 降序排序后的列表
+list1.sort(reverse=True)
+print('降序排序后的列表为', list1)
+
+# 忽略大小写的排序
+list1.sort(key=str.lower)
+print('忽略大小写后的排序为', list1)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅱ.sorted()
+
+```python
+list1 = ['A', 'hanhan', 'a', 'cgt', 'TCD']
+print('原列表为', list1)
+
+# 输出升序排序后的列表
+list2 = sorted(list1)
+print('升序排序后的列表为', list2)
+
+# 降序排序后的列表
+list3 = sorted(list1, reverse=True)
+print('降序排序后的列表为', list3)
+
+# 忽略大小写的排序
+list4 = sorted(list1, key=str.lower)
+print('忽略大小写后的排序为', list4)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑥列表生成式
+
+除了可以手动添加元素，还可以用生成式添加元素。
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+举个例子
+
+```python
+import random
+list1 = [item for item in range(1, 10)]
+print(list1)
+
+list2 = [item * item for item in range(1, 11)]
+print(list2)
+
+list3 = [random.randint(1, 100) for i in range(1, 11)]
+print(list3)
+
+list4 = [i for i in range(10) if i%2==0]
+print(list4)
+
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑦二维列表
+
+一个列表中又嵌套了一个列表就是二维列表
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
 
 
