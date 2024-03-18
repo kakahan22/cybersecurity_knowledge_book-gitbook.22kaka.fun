@@ -925,17 +925,103 @@ print('s.count()', s.count('l'))
 
 ### ①列表类型
 
+<figure><img src="../.gitbook/assets/image (248).png" alt=""><figcaption></figcaption></figure>
 
 
 
+### ②列表创建
+
+<figure><img src="../.gitbook/assets/image (249).png" alt=""><figcaption></figcaption></figure>
+
+如果我们用list函数创建的话，生成的结果是里面的每一个对象（就是如果是字符串，那么列表中就是每一个字符；如果是一系列数字，就是一个一个的数字）
+
+我们这里举个例子。
+
+```python
+# 直接用格式创建
+list1 = ['hello', 'wolrd', 23, 45, 67]
+print(list1)
+# 用函数创建
+list2 = list('hello,world')
+# 请注意list函数创建出来的结果
+print(list2)
+list3 = list(range(1, 10, 2))
+print(list3)
+
+print(list1 + list2 + list3)
+
+```
+
+<figure><img src="../.gitbook/assets/image (250).png" alt=""><figcaption></figcaption></figure>
+
+列表也能执行我们在序列里面提到的一些操作，比如一些函数，len（），max（），min（），in，not int 这种，也可以执行＋和\*的操作。但是max和min和len只能在列表中的元素是一种类型才能使用，不然就会报错。一定要注意这一点，因为本人写的代码就因为这个事情报错了。想骂人。
+
+比如
+
+```python
+list1 = ['hanhan', 'hello', 34, 56.7, True]
+list2 = ['hanhan', 'hello', 'abc']
+print(list1 * 2)
+print(min(list2))
+print(len(list2))
+print('hanhan' in list1)
+
+```
+
+<figure><img src="../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
 
 
 
+### ③列表的遍历
+
+#### Ⅰ.enumereate()函数
+
+这里要扩展一个函数enumerate（）。这个英文意思就是枚举的意思。
+
+它的用法就是
+
+```python
+for index,item in enumerate(lst):
+    输出index和item
+```
+
+这个
 
 
 
+#### Ⅱ.for 利用元素去遍历列表
+
+就是直接遍历列表里面的元素，每一次遍历得到的值都将赋值给item
+
+```python
+list1 = ['hanhan', 'hello', 34, 56.7, True]
+list2 = ['hanhan', 'hello', 'abc']
+
+for item in list1:
+    print(item)
 
 
+```
+
+<figure><img src="../.gitbook/assets/image (252).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅱ.for利用索引来遍历列表
+
+这个也有限制，要求了数据得是一样的类型，不然len（）函数没法使用。
+
+```python
+list1 = ['hanhan', 'hello', 34, 56.7, True]
+list2 = ['hanhan', 'hello', 'abc']
+
+for i in range(0, len(list2)):
+    print(list2[i])
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅲ.使用enumerate（）函数
 
 
 
