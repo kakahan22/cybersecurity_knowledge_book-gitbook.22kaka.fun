@@ -1033,7 +1033,7 @@ for index, item in enumerate(list1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这里的index是序号，这个序号的开始值是可以修改的。我们可以把开始值修改成1，那么他的第一个序号就变成了1.
@@ -1049,7 +1049,7 @@ for index, item in enumerate(list1, start=1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个start=可以省略不写，直接写1就行。
 
@@ -1059,7 +1059,7 @@ for index, item in enumerate(list1, start=1):
 
 列表可以增删改查
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1099,13 +1099,13 @@ print('清除元素后', list1, id(list1))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### ⑤列表排序
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 排序需要保证列表里面的对象的数据类型一致。并且对字符排序是先大写后小写。
 
@@ -1191,9 +1191,95 @@ print(list4)
 
 ### ⑦二维列表
 
-一个列表中又嵌套了一个列表就是二维列表
+一个列表中又嵌套了列表就是二维列表
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+我们接下来就以图中的例子来复现代码。
+
+```python
+list1 = [
+    ['城市', '环比', '同比'],
+    ['北京', 102, 203],
+    ['上海', 104, 504],
+    ['深圳', 100, 39]
+]
+print(list1)
+
+# 遍历二位列表
+for row in list1:
+    for col in row:
+        print(col, end='\t')
+    print('\n')
+
+# 用列表生成式生成一个4行5列的二维列表
+list2 = [[j for j in range(5)] for i in range(4)]
+print(list2)
+
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+***
+
+## （20）元组
+
+### ①元组创建
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+不可变序列，就是确定了就确定了，不能更改，所以他没有增删改的操作，只能查看。
+
+并且对于一些序列的判断操作，对元组来说也是可行的。
+
+{% hint style="info" %}
+对于用tuple（）中把list中的元素创建为元组，并不是把list当做元组的一个对象，而是把list中的元素当成元组的对象。+
+{% endhint %}
+
+```python
+t = ('hello', [10, 20, 30], 'python', 30)
+print(t)
+
+t2 = tuple('helloworld')
+print(t)
+
+t3 = tuple([10, 20, 30, 40])
+print(t3)
+
+# 判断操作
+print('10在元组中是否存在', (10 in t))
+print('10在元组中是否不存在', (10 not in t))
+print('最大值', max(t3))
+print('最小值', min(t3))
+print('len为', len(t))
+print('t.index:', t.index(30))
+print('t.count:', t.count(30))
+
+# 如果元组中只有一个元素
+t4 = (20,)
+print(t4)
+
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="danger" %}
+元组中只有一个元素，逗号也不能省略！！！！
+{% endhint %}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
