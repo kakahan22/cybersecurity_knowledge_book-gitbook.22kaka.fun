@@ -1,5 +1,16 @@
 ---
 description: 本来以为可以逃过这个，毕竟这个学期刚好在学python，但是知识点摆在这里，得先自己学了。这里就讲一下python的语法。
+layout:
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
 ---
 
 # 📣 Python语法
@@ -1033,7 +1044,7 @@ for index, item in enumerate(list1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这里的index是序号，这个序号的开始值是可以修改的。我们可以把开始值修改成1，那么他的第一个序号就变成了1.
@@ -1049,7 +1060,7 @@ for index, item in enumerate(list1, start=1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个start=可以省略不写，直接写1就行。
 
@@ -1059,7 +1070,7 @@ for index, item in enumerate(list1, start=1):
 
 列表可以增删改查
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1099,13 +1110,13 @@ print('清除元素后', list1, id(list1))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### ⑤列表排序
 
-<figure><img src="../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 排序需要保证列表里面的对象的数据类型一致。并且对字符排序是先大写后小写。
 
@@ -1132,7 +1143,7 @@ print('忽略大小写后的排序为', list1)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅱ.sorted()
 
@@ -1155,7 +1166,7 @@ print('忽略大小写后的排序为', list4)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1163,7 +1174,7 @@ print('忽略大小写后的排序为', list4)
 
 除了可以手动添加元素，还可以用生成式添加元素。
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 举个例子
 
@@ -1185,7 +1196,7 @@ print(list4)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1193,7 +1204,7 @@ print(list4)
 
 一个列表中又嵌套了列表就是二维列表
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 我们接下来就以图中的例子来复现代码。
 
@@ -1218,7 +1229,7 @@ print(list2)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1228,7 +1239,7 @@ print(list2)
 
 ### ①元组创建
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 不可变序列，就是确定了就确定了，不能更改，所以他没有增删改的操作，只能查看。
 
@@ -1263,11 +1274,222 @@ print(t4)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 元组中只有一个元素，逗号也不能省略！！！！
 {% endhint %}
+
+
+
+### ②元组访问与遍历
+
+#### Ⅰ.for循环遍历
+
+元组支持我们的切片操作，并且还是用for循环遍历
+
+```python
+t = ('python', 'hello', 'world')
+
+# 按照索引访问元组
+print(t[0])
+
+# 元组支持切片操作
+t2 = t[0:3:2]
+print(t2)
+
+# 元组遍历
+for item in t:
+    print(item)
+
+    
+```
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+我们还可以用range＋len进行for遍历
+
+```python
+t = ('python', 'hello', 'world')
+
+# 按照索引访问元组
+print(t[0])
+
+# 元组支持切片操作
+t2 = t[0:3:2]
+print(t2)
+
+# 元组遍历
+for item in range(len(t)):
+    print(item, t[item])
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅱ.enumerate()
+
+我们之前说过枚举。
+
+```python
+t = ('python', 'hello', 'world')
+
+# 按照索引访问元组
+print(t[0])
+
+# 元组支持切片操作
+t2 = t[0:3:2]
+print(t2)
+
+# 元组遍历
+for index, item in enumerate(t):
+    print(index, item)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+### ③元组生成式
+
+元组生成式有一点区别。
+
+我们先用生成器生成看看结果
+
+```python
+t1 = (i for i in range(1, 4))
+print(t1)
+
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+我们可以看到这里并没有元组里面的元素，相反，这是生成器对象。
+
+这就是我们说的区别，如果我们想要看到元组中的元素。那么我们可以将他转化为元组，再查看。
+
+```python
+t1 = (i for i in range(1, 4))
+print(t1)
+
+t1 = tuple(t1)
+print(t1)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅲ.\_\_next\_\_（）
+
+这个\_\_next\_\_（）是针对生成器对象的遍历，也就是说，我们可以通过重复\_\_next\_\_（）去遍历生成器对象，让他把元组中的元素显示出来。
+
+```python
+t1 = (i for i in range(1, 4))
+print(t1)
+
+'''
+t1 = tuple(t1)
+print(t1)
+'''
+
+print(t1.__next__())
+print(t1.__next__())
+print(t1.__next__())
+
+
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+
+
+{% hint style="info" %}
+注意我们不能让他变成了元组之后再来使用这个，要在他是生成器对象时之后使用，不然就会失败。
+{% endhint %}
+
+这个\_\_next\_\_()是什么意思呢？他其实是取出生成器对象的意思。所以如果我们执行完我们如果让它变成元组的话，他会是个空元组。
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+***
+
+## （21）字典
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+### ①字典创建方法
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+
+
+{% hint style="info" %}
+我们需要提到一下，用zip函数创建后的得到的也是对象，并不是我们需要的字典，还需要通过dict（）函数才能真正创建dict（），可以验证一下。
+{% endhint %}
+
+```python
+# 创建字典
+d = {10: 'cat', 20: 'dog', 30: 'pet', 20:'zoo'}
+print(d)
+
+# 用zip函数创建
+list1 = [10, 20, 30, 40]
+list2 = ['cat', 'dog', 'pet', 'zoo', 'car']
+d2 = zip(list1, list2)
+print(d2)
+
+# 用dic函数创建字典
+d3 = dict(d2)
+print(d3)
+```
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+
+dict（）函数还能直接赋值。这里可以知道，在赋值的时候，=左边的是键，右边是值。并且是赋值，所以等号左边不能是常量，不然会报错。
+
+```python
+d1 = dict(cat=10, dog=20)
+print(d1)
+
+```
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+
+
+②字典序列操作
+
+因为字典属于序列，所以一些简单的查询的操作，对字典来说也是可以执行的。
+
+```python
+d1 = {10: 'cat', 20: 'dog', 30: 'rabbit', 40: 'pig'}
+
+
+print('max:', max(d1))
+print('min:', min(d1))
+print('len:', len(d1))
+
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ③字典的遍历
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+
 
 
 
