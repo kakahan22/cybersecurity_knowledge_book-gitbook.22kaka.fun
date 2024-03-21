@@ -1286,6 +1286,24 @@ print(t4)
 
 #### Ⅰ.for循环遍历
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 元组支持我们的切片操作，并且还是用for循环遍历
 
 ```python
@@ -1488,6 +1506,169 @@ print('len:', len(d1))
 ### ③字典的遍历
 
 <figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅰ.d\[key]
+
+这个取值方式如果key不存在，那么就会报错
+
+```python
+d = {'hello': 10, 'world': 20, 'python': 30}
+
+# 取值
+print(d['hello'])
+print(d['java'])
+
+print(d.get('java'))
+print(d.get('java', '不存在'))
+
+```
+
+<figure><img src="../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅱ.d.get\[key]
+
+这个取值方式如果哪个key不存在的话，我们可以指定他输出默认值。如果没有指定默认值就是None
+
+```python
+d = {'hello': 10, 'world': 20, 'python': 30}
+
+# 取值
+print(d.get('java'))
+print(d.get('java', '不存在'))
+
+```
+
+<figure><img src="../.gitbook/assets/image (256).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅲ.遍历
+
+```python
+d = {'hello': 10, 'world': 20, 'python': 30}
+
+# 遍历
+for item in d.items():
+    print(item)
+
+for key, value in d.items():
+    print(key, value)
+    
+
+```
+
+<figure><img src="../.gitbook/assets/image (257).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ④字典操作
+
+<figure><img src="../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>
+
+举个例子
+
+```python
+d = {1001: '李梅', 1002: '王华', 1003: '张锋'}
+print(d)
+
+# 向字典中添加元素
+d[1004] = '张丽丽'
+print(d)
+
+# 获得key
+keys = d.keys()
+print(keys)
+
+# 获取value
+values = d.values()
+print(values)
+print(list(values))
+print(tuple(values))
+
+# 如果将字典中的元素转化为key-value形式，以元组方式进行展现
+lst = list(d.items())
+print(lst)
+
+d = dict(lst)
+print(d)
+
+# 使用pop函数
+print(d.pop(1001))
+print(d)
+
+# 随即删除
+print(d.popitem())
+print(d)
+
+# 清空字典中的所有元素
+d.clear()
+print(d)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (259).png" alt=""><figcaption></figcaption></figure>
+
+### ⑤字典生成式
+
+<figure><img src="../.gitbook/assets/image (260).png" alt=""><figcaption></figcaption></figure>
+
+```python
+import random
+d = {item: random.randint(1, 100) for item in range(4)}
+print(d)
+
+list1 = [1001, 1002, 1003]
+list2 = ['Limei', 'Hanhe', 'WangYi']
+d2 = {key: value for key,value in zip(list1, list2)}
+print(d2)
+```
+
+<figure><img src="../.gitbook/assets/image (261).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+***
+
+## (22)集合
+
+<figure><img src="../.gitbook/assets/image (262).png" alt=""><figcaption></figcaption></figure>
+
+### ①集合创建
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
