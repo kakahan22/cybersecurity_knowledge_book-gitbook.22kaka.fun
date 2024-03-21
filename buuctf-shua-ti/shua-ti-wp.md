@@ -164,7 +164,7 @@ Your password is '3'
 
 ## （4）\[极客大挑战 2019]PHP 1
 
-<figure><img src="../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 其实它提示了，我需要去查看他的备份的php文件，但是这个知识点我之前没有涉猎过，所以我会补充一下这个知识点。扫描目录这个时候需要用到工具。我也不知道，其实之前老师讲过，但是没有太记下来我真服了。
 
@@ -277,11 +277,11 @@ O:4:"Name":3:{s:14:"%00Name%00username";s:5:"admin";s:14:"%00Name%00password";i:
 
 查看源码发现写了一句设置了waf去确保安全
 
-<figure><img src="../.gitbook/assets/image (14) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 发现有一个calc.php进行计算的，我们去查看这个文件。直接看到源码了，也发现了过滤规则
 
-<figure><img src="../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里有一个函数eval（）代码执行函数，这个主要是考察RCE漏洞啊，但是他过滤了很多单引号，双引号，dollar之类的全部过滤了，只有用无参数的读取文件了。这里可以参考 [#id-6.-wu-can-shu-du-qu](../rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md#id-6.-wu-can-shu-du-qu "mention")
 
@@ -417,37 +417,37 @@ http://node5.buuoj.cn:29062/calc.php?%20num=file_get_contents(chr(47).chr(102).c
 
 我们抓个包。
 
-<figure><img src="../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后发现上传失败了。
 
-<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 后面看到是要上传.htaccess文件，其实在这个时候感觉上传这种文件不知道是怎么判断出来的，但是他既然是这样那我们就传.htaccess文件吧。那我们就写一个让他把png文件可以当错php代码来执行的.htaccess文件
 
-<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后我们传一个一句话木马
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后用as去连接
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 得到flag。
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
 ## （11）\[护网杯 2018]easy\_tornado 1（未写）
 
-<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 拿到之后就看了flag.txt文件，然后看了
 
-<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 结果进去那个目录是个404，还是自己写的，然后就知道肯定不对。然后就看了hints.txt，说要cookie\_secret，就是cookie有点什么？然后filename还进行了md5加密
 
@@ -574,7 +574,7 @@ class Flag{  //flag.php
 
 后面看的差不多了，但是这个ord函数我不太了解，我用手册查查看
 
-<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 然后又查了ascii码表
 
@@ -629,6 +629,8 @@ echo serialize($a);
 <figure><img src="../.gitbook/assets/image (12) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
+
+
 
 ## （17）\[SUCTF 2019]CheckIn 1
 
@@ -732,9 +734,13 @@ fuzz之后发现输入select之类的时候，就把ban了的看到了，所以s
 
 ***
 
+
+
 ## （20）\[CISCN2019 华北赛区 Day2 Web1]Hack World 1
 
 <figure><img src="../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+
+
 
 发现了还是有过滤输入万能密码的时候，所以还是fuzz一下，看看过滤了什么。不是报错注入，是盲注。
 
@@ -747,6 +753,8 @@ fuzz之后发现输入select之类的时候，就把ban了的看到了，所以s
 if可以用，ascii函数也可以用，并且还可以用bool出结果。我们直接写一个布尔盲注脚本
 
 <figure><img src="../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
+
+
 
 我不太会写脚本害，这里还是看着自己学一遍吧，反正这学期选python的原因也是想好好学写脚本害。
 
@@ -1008,7 +1016,7 @@ category这个参数接受的被认为是文件名，那么我们就让他去读
 
 <figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 <?php

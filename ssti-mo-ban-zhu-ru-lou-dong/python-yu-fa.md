@@ -1204,7 +1204,7 @@ print(list4)
 
 一个列表中又嵌套了列表就是二维列表
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们接下来就以图中的例子来复现代码。
 
@@ -1323,7 +1323,7 @@ for item in t:
     
 ```
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
 
 我们还可以用range＋len进行for遍历
 
@@ -1344,7 +1344,7 @@ for item in range(len(t)):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (3).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅱ.enumerate()
 
@@ -1367,7 +1367,7 @@ for index, item in enumerate(t):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (3).png" alt=""><figcaption></figcaption></figure>
 
 ### ③元组生成式
 
@@ -1381,7 +1381,7 @@ print(t1)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (3).png" alt=""><figcaption></figcaption></figure>
 
 我们可以看到这里并没有元组里面的元素，相反，这是生成器对象。
 
@@ -1397,7 +1397,7 @@ print(t1)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (3).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅲ.\_\_next\_\_（）
 
@@ -1421,7 +1421,7 @@ print(t1.__next__())
 
 ```
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1431,7 +1431,7 @@ print(t1.__next__())
 
 这个\_\_next\_\_()是什么意思呢？他其实是取出生成器对象的意思。所以如果我们执行完我们如果让它变成元组的话，他会是个空元组。
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1441,11 +1441,11 @@ print(t1.__next__())
 
 ## （21）字典
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### ①字典创建方法
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1469,7 +1469,7 @@ d3 = dict(d2)
 print(d3)
 ```
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (2).png" alt=""><figcaption></figcaption></figure>
 
 dict（）函数还能直接赋值。这里可以知道，在赋值的时候，=左边的是键，右边是值。并且是赋值，所以等号左边不能是常量，不然会报错。
 
@@ -1479,7 +1479,7 @@ print(d1)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1499,13 +1499,13 @@ print('len:', len(d1))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (2).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### ③字典的遍历
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (2).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅰ.d\[key]
 
@@ -1523,7 +1523,7 @@ print(d.get('java', '不存在'))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (255).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (255) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅱ.d.get\[key]
 
@@ -1638,6 +1638,142 @@ print(d2)
 
 ### ①集合创建
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+这里需要注意，集合只能存储不可变的类型集合，假如是list这种可变的类型集合，我们就会报错。
+
+接下来我们举一个例子并且讲解一下注意的点
+
+```python
+s0 = {10, 20, 30, 40}
+print(s0)
+
+# 集合只能存储不可变数量类型
+s1 = set()
+print(s1)
+
+s2 = {}
+print(type(s2))
+
+```
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+我们注意到我们直接用{}创建的是一个字典，如果我们想要创建一个空的集合，那么就需要用set（）函数
+
+```python
+s = set('hello,world')
+print(s)
+
+```
+
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+```python
+s = set((10, 20, 30))
+print(s)
+
+```
+
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ②集合序列操作
+
+因为集合也属于序列，所以集合也有一些关于序列的操作
+
+```python
+s = set((10, 20, 30))
+print(s)
+
+print('max:', max(s))
+print('min', min(s))
+print('len:', len(s))
+
+print('9在集合中吗', '9' in s)
+
+```
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ③集合的操作符
+
+<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+举个例子
+
+```python
+A = {10, 20, 30, 40, 50, 60}
+B = {5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60}
+
+# 交集
+print(A & B)
+
+# 并集
+print(A | B)
+
+# 差集
+print(A - B)
+
+# 补集
+print(A ^ B)
+
+```
+
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ④集合操作
+
+<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+```python
+s = {10, 20, 30}
+
+# 向集合中添加元素
+s.add(40)
+print(s)
+
+# 向集合中删除元素
+s.remove(30)
+print(s)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+
+### ⑤集合遍历
+
+```python
+s = {10, 20, 30}
+
+for item in s:
+    print(item)
+
+for index, item in enumerate(s):
+    print(index, item)
+
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑥集合生成式
+
+```python
+s = {i for i in range(5)}
+print(s)
+```
+
+<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1645,12 +1781,114 @@ print(d2)
 
 
 
+***
+
+## （23）字符串
+
+### ①字符串常用操作
+
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+一些报错，比如是否找到子串返回index。
+
+<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+
+```python
+s1 = 'HelloWorLd'
+s2 = s1.lower()
+print(s2)
+s3 = s1.upper()
+print(s3)
+s4 = s1.split('l')
+print(s4)
+count1 = s1.count('l')
+print(count1)
+index1 = s1.index('l')
+print(index1)
+print(s2.index('ll'))
+
+```
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+```python
+s1 = 'HelloWorLd'
+print(s1.endswith('H'))
+print(s1.startswith('H'))
+
+```
 
 
 
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+```python
+s = 'helloworld'
+
+s1 = s.replace('o', '你好', 1)
+print(s1)
+
+print(s.center(20))
+print(s.center(20, '*'))
+
+s2 = '           hello      world'
+print(s.strip())
+print(s.lstrip())
+print(s.rstrip())
+
+s3 = 'hanhan, helloworld , nihao,hanhan'
+print(s3.strip('hanhan'))
+print(s3.lstrip('hanhan'))
+print(s3.rstrip(('nihao')))
+```
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
 
 
+### ②格式化字符
+
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+
+```python
+name = '马冬梅'
+age = 45
+score = 89.5
+print('姓名%s,年龄%d,分数%.1f' % (name, age, score))
+
+```
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+
+```python
+name = '马冬梅'
+age = 45
+score = 89.5
+
+print(f'姓名:{name},年龄：{age},分数{score}')
+
+```
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+```python
+name = '马冬梅'
+age = 45
+score = 89.5
+
+print('姓名：{0},年龄:{1},成绩:{2}'.format(name, age, score))
+
+```
+
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ③格式化字符串详细格式
+
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 
 
