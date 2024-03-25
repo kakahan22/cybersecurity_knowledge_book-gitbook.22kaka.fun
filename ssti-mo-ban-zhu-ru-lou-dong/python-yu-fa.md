@@ -1890,6 +1890,169 @@ print('姓名：{0},年龄:{1},成绩:{2}'.format(name, age, score))
 
 <figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
+#### Ⅰ对齐方式
+
+```python
+s = 'hello world'
+# 按照上面的从引导符号开始的顺序，依次是从第0个字符开始，引导，用*填充左对齐或者右对齐
+# 或者居中对齐，小于20为止。
+print('{0:*<20}'.format(s))
+print('{0:*>20}'.format(s))
+print('{0:*^20}'.format(s))
+
+# 居中对齐的另外表达方式
+s1 = s.center(20, '*')
+print(s1)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (263).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅱ.千位分隔符
+
+千位分隔符就是三位一个分号，三位一个分号。
+
+```python
+print('{0:,}'.format(1234567890))
+print('{0:,}'.format(1234567.45667890))
+```
+
+<figure><img src="../.gitbook/assets/image (264).png" alt=""><figcaption></figcaption></figure>
+
+我们可以注意到，这个千位分隔符只对整数部分有作用，小数部分是没有作用的。
+
+
+
+#### Ⅲ.浮点数小数部分的精度
+
+```python
+print('{0:.2f}'.format(123.56678453))
+
+```
+
+<figure><img src="../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅳ.字符串最大显示长度
+
+```python
+print('{0:.8}'.format('helloworld,hanhan'))
+```
+
+<figure><img src="../.gitbook/assets/image (266).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅴ.整数类型
+
+我们可以把整数在二进制，八进制，十进制，十六进制进行转换
+
+```python
+print('二进制:{0:b}, 八进制:{0:o},十进制:{0:d},十六进制:{0:x}'.format(126))
+```
+
+<figure><img src="../.gitbook/assets/image (267).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅶ.数据验证合法性
+
+
+
+<figure><img src="../.gitbook/assets/image (268).png" alt=""><figcaption></figcaption></figure>
+
+我们直接上例子。
+
+```python
+# 是否是阿拉伯数字
+print('1234'.isdigit())
+print('一二三'.isdigit())
+print('0b1010101'.isdigit())
+print('\n')
+# 是否所有的字符是数字
+print('1234'.isnumeric())
+print('一二三'.isnumeric())
+print('0b1010101'.isnumeric())
+print('壹贰叁'.isnumeric())
+# 不知道为什么python3是不是有无法有泣别。
+
+```
+
+<figure><img src="../.gitbook/assets/image (270).png" alt=""><figcaption></figcaption></figure>
+
+### ④字符串拼接操作
+
+```python
+s1 = 'hello'
+s2 = 'world'
+s3 = 'little'
+
+print(s1+s2+s3)
+# 利用空字符进行拼接
+print(''.join([s1, s2, s3]))
+# 利用某个符号连接起来
+print('*'.join(['hello', 'world', 'miss', 'hehe']))
+# 直接拼接
+print('hello''world''hehe')
+# 格式化操作
+print('%s%s' % (s1, s2))
+print(f'{s1}{s2}')
+print('{0}{1}{2}'.format(s1, s2, s3))
+
+```
+
+<figure><img src="../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑤字符串去重
+
+#### Ⅰ使用not in
+
+```python
+s1 = 'helloworldhelloworldhelloworldhelloworld'
+new_s = ''
+for item in s1:
+    if item not in new_s:
+        new_s+=item
+
+print(new_s)
+```
+
+<figure><img src="../.gitbook/assets/image (272).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅱ.使用索引取值加not in
+
+```python
+s1 = 'helloworldhelloworldhelloworldhelloworld'
+new_s = ''
+for i in range(len(s1)):
+    if s1[i] not in new_s:
+        new_s += s1[i]
+
+print(new_s)
+```
+
+<figure><img src="../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅲ集合去重
+
+```python
+s = 'helloworld'
+s = s*3
+new_s = set(s)
+print(s)
+list1 =list(new_s)
+list1.sort(key=s.index)
+print(list1)
+print(''.join(list1))
+```
+
+<figure><img src="../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1897,12 +2060,21 @@ print('姓名：{0},年龄:{1},成绩:{2}'.format(name, age, score))
 
 
 
+***
 
+## （24）正则表达式
 
+### ①正则表达式语法
 
+<figure><img src="../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (277).png" alt=""><figcaption></figcaption></figure>
 
+### ②正则表达式利用re模块
+
+<figure><img src="../.gitbook/assets/image (278).png" alt=""><figcaption></figcaption></figure>
 
 
 
