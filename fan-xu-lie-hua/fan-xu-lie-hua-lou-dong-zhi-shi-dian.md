@@ -426,7 +426,23 @@ POP链：
 
 > POP（Property-Oriented Programing）面向属性编程，常用于上层语言构造特定调用链的方法，与二进制利用中的ROP（Return-Oriented Programing）面向返回编程的原理相似，都是从现有运行环境中寻找一系列的代码或者指令调用，然后根据需求构成一组连续的调用链。在控制代码或者程序的执行流程后就能够使用这一组调用链做一些工作了。
 
-这个暂时看不懂，所以不写。但是做了一道这样的题，发现其实就是看懂代码然后利用，我是不知道有啥需要我特别总结的。
+所以我们这里先讲解魔法函数
+
+#### Ⅰ.魔法函数
+
+
+
+<table><thead><tr><th width="235">魔法方法</th><th>作用</th></tr></thead><tbody><tr><td>__construct()</td><td>创建对象时触发</td></tr><tr><td>__destruct()</td><td>对象被销毁时触发</td></tr><tr><td>__sleep()</td><td>在对象被序列化的过程中自动调用，且发生在序列化之前</td></tr><tr><td>__wakeup()</td><td>该魔术方法在反序列化的时候自动调用，且发生在反序列之前</td></tr><tr><td>__get()</td><td>用于从不可访问或不存在的属性读取数据</td></tr><tr><td>__set()</td><td>用于将数据写入不可访问或不存在的属性</td></tr><tr><td>__call()</td><td>在对象上下文调用不可访问方法时触发</td></tr><tr><td>__callStatic()</td><td>在静态上下文中调用不可访问的方法时触发</td></tr><tr><td>__toString()</td><td>在对象当做字符串的时候会被调用</td></tr><tr><td>__invoke()</td><td>当尝试将对象调用为函数时触发</td></tr></tbody></table>
+
+pop就是利用这些魔法方法一个连着一个。
+
+
+
+
+
+
+
+
 
 
 
@@ -460,6 +476,42 @@ POP链：
 ### （2）方法二
 
 直接将protected和private用public代替，就是换成public，因为php7.1以上的版本对属性类型不敏感。就是直接换成public了，真是直接！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
