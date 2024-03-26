@@ -1060,7 +1060,7 @@ for index, item in enumerate(list1, start=1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个start=可以省略不写，直接写1就行。
 
@@ -1070,7 +1070,7 @@ for index, item in enumerate(list1, start=1):
 
 列表可以增删改查
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1229,7 +1229,7 @@ print(list2)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1239,7 +1239,7 @@ print(list2)
 
 ### ①元组创建
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 不可变序列，就是确定了就确定了，不能更改，所以他没有增删改的操作，只能查看。
 
@@ -1638,7 +1638,7 @@ print(d2)
 
 ### ①集合创建
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 这里需要注意，集合只能存储不可变的类型集合，假如是list这种可变的类型集合，我们就会报错。
 
@@ -1657,7 +1657,7 @@ print(type(s2))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们注意到我们直接用{}创建的是一个字典，如果我们想要创建一个空的集合，那么就需要用set（）函数
 
@@ -1667,7 +1667,7 @@ print(s)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```python
 s = set((10, 20, 30))
@@ -2078,19 +2078,54 @@ print(''.join(list1))
 
 
 
+举个例子
+
+#### Ⅰ.match函数
+
+```python
+import re
+pattern = '\d\.\d+'
+s = 'I study Python 3.11 everyday'
+match = re.match(pattern , s, re.I)
+print(match)
+s = '3.11 python I study everyday'
+match2 = re.match(pattern , s)
+print(match2)
+
+print('匹配值的起始位置：',match2.start())
+print('匹配值的结束位置:', match2.end())
+print('匹配区间的位置元素：', match2.span())
+print('待匹配的字符串：', match2.string)
+print('匹配的数据：', match2.group())
 
 
+```
 
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
+#### Ⅱ.search函数
 
+```python
+import re
+pattern = '\d\.\d+'
+s = 'I study python3.11 every day python2.7 I love you'
+match = re.search(pattern , s)
+print(match)
+s2 = '4.20python I study every day'
+match2 = re.search(pattern , s2)
+print(match2)
+s3 = 'I study python every day'
+match3 = re.search(pattern , s3)
+print(match3)
+```
 
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
+#### Ⅲ.findall()
 
-
-
-
-
-
+```
+// Some code
+```
 
 
 
