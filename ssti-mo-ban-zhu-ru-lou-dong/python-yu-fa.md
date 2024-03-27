@@ -2123,9 +2123,290 @@ print(match3)
 
 #### Ⅲ.findall()
 
+```python
+import re
+pattern = '\d\.\d+'
+s = 'I study python 3.11 every day python 2.7 i love you'
+s2 = '4.1 python i study every day'
+s3 = 'I study python every day'
+lst1 = re.findall(pattern , s)
+lst2 = re.findall(pattern , s2)
+lst3 = re.findall(pattern , s3)
+
+print(lst1)
+print(lst2)
+print(lst3)
+
 ```
-// Some code
+
+<figure><img src="../.gitbook/assets/image (289).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Ⅳ.sub()
+
+```python
+import re
+pattern = '黑客|破解|反爬'
+s = '我想学习python，想破解一些vip视频，python可以实现无底线反爬吗'
+new_s = re.sub(pattern , 'xxx', s)
+print(new_s)
 ```
+
+<figure><img src="../.gitbook/assets/image (290).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅴ.split()
+
+```python
+import re
+s2 = 'http://xxxxxx?a=hello&b=23435'
+pattern = '[?|&]'
+list = re.split(pattern , s2)
+print(list)
+```
+
+<figure><img src="../.gitbook/assets/image (291).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+***
+
+## (25)异常处理
+
+### ①raise
+
+<figure><img src="../.gitbook/assets/image (292).png" alt=""><figcaption></figcaption></figure>
+
+```python
+try:
+    gender = input('请输入您的性别')
+    if gender != 'n' and gender !='y':
+        raise Exception('性别不存在')
+
+except Exception as a:
+    print(a)
+```
+
+
+
+<figure><img src="../.gitbook/assets/image (293).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+### ②常见的异常类型
+
+<figure><img src="../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (295).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+***
+
+## (26)函数
+
+### ①简单定义和利用
+
+<figure><img src="../.gitbook/assets/image (296).png" alt=""><figcaption></figcaption></figure>
+
+简单利用
+
+```python
+def get_sum(num):
+    s = 0
+    for i in range(1, num+1):
+        s += i
+    print(f'1到{num}之间的累加为{s}')
+
+get_sum(100)
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (297).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ②参数传递
+
+<figure><img src="../.gitbook/assets/image (298).png" alt=""><figcaption></figcaption></figure>
+
+#### Ⅰ.可变参数
+
+<figure><img src="../.gitbook/assets/image (299).png" alt=""><figcaption></figcaption></figure>
+
+举个例子
+
+```python
+def fun(*para):
+    print(type(para))
+    for item in para:
+        print(item)
+
+fun(10, 20, 30, 40)
+fun (10)
+fun( 20, 30)
+fun ( 30, 40, 11, 22)
+fun([123, 1353, 4565, 575])
+fun(*[123, 1454, 454, 342])
+
+def fun2(**kwpara):
+    print(type(kwpara))
+    for key , value in kwpara.items():
+        print(key,'.....', value)
+
+
+fun2(name = 'hanhan', age = '23', weight = 453)
+d = {'name' : 'hanhan', 'age' : '23', 'weight' :453}
+fun2(**d)
+```
+
+<figure><img src="../.gitbook/assets/image (300).png" alt=""><figcaption></figcaption></figure>
+
+把结果展示一下
+
+```
+<class 'tuple'>
+10
+20
+30
+40
+<class 'tuple'>
+10
+<class 'tuple'>
+20
+30
+<class 'tuple'>
+30
+40
+11
+22
+<class 'tuple'>
+[123, 1353, 4565, 575]
+<class 'tuple'>
+123
+1454
+454
+342
+<class 'dict'>
+name ..... hanhan
+age ..... 23
+weight ..... 453
+<class 'dict'>
+name ..... hanhan
+age ..... 23
+weight ..... 453
+```
+
+
+
+### ③return
+
+<figure><img src="../.gitbook/assets/image (301).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ④变量的作用域
+
+<figure><img src="../.gitbook/assets/image (302).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑤匿名函数
+
+<figure><img src="../.gitbook/assets/image (303).png" alt=""><figcaption></figcaption></figure>
+
+举个例子
+
+```python
+def calc(a , b):
+    return a+b
+print(calc(10, 20))
+
+s = lambda a,b :a+b
+print(type(s) )
+print(s(10, 20))
+```
+
+<figure><img src="../.gitbook/assets/image (304).png" alt=""><figcaption></figcaption></figure>
+
+匿名函数也可以遍历
+
+```python
+lst = [10 , 20 , 30, 40 ,50]
+
+for i in range(len(lst)):
+    result = lambda x :x[i]
+    print(result(lst))
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (305).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑥内置函数
+
+<figure><img src="../.gitbook/assets/image (306).png" alt=""><figcaption></figcaption></figure>
+
+不需要写什么.什么或者def，直接使用
+
+<figure><img src="../.gitbook/assets/image (307).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (308).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
