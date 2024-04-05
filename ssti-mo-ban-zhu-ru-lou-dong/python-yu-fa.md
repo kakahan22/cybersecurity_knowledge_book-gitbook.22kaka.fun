@@ -2366,6 +2366,34 @@ for i in range(len(lst)):
 
 <figure><img src="../.gitbook/assets/image (308).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (312).png" alt=""><figcaption></figcaption></figure>
+
+这里主要利用filter和map两个函数
+
+```python
+# 返回True或者False
+def fun(num):
+    return num%2==1
+
+obj = filter(fun, range(10))
+print(list(obj))
+```
+
+<figure><img src="../.gitbook/assets/image (310).png" alt=""><figcaption></figcaption></figure>
+
+```python
+def upper(x):
+    return x.upper()
+
+list1 = ['hello','world','python']
+obj = map(upper, list1)
+print(list(obj))
+
+
+
+```
+
+<figure><img src="../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -2373,26 +2401,135 @@ for i in range(len(lst)):
 
 
 
+***
+
+## （27）类
+
+这里主要是进入了面向对象编程。其实再php里面就已经接触过一点，为了学习反序列化，所以这里学习的python的类。
+
+类：是由N多个对象抽取出"像"的属性和行为，从而归纳出来的一种类别
+
+这时候又要提到python中一切皆对象，我们的int，str都是类，整数类，字符类。我们可以通过type（）去查看某些对象的类。
 
 
 
+### ①类的组成
+
+<figure><img src="../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (313).png" alt=""><figcaption></figcaption></figure>
 
 
 
+### ②类和对象的定义
+
+类要通过对象来用，我们这里给一个例子来解释这个
+
+```python
+
+class Person():
+    pass
+
+class Cat():
+    pass
+
+per = Person()
+c = Cat()
+print(type(per))
+print(type(c))
+
+```
+
+<figure><img src="../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
 
 
 
+### ③类属性和实例属性定义
+
+我们这里通过例子来解释一下他们到底是在哪里利用的，以及是怎么利用的。
+
+这里是类的定义，就是一个框架，一个模板：
+
+```python
+class student():
+    # 类属性，定义在类中，方法外的方法
+    school = 'cqupt'
+
+    # 初始化方法方法，需要用__开头
+    def __init__(self,xm, age):# xm,age是方法的参数
+        # xm和age的作用域是整个__init__方法
+        self.name = xm # 左边是实例属性，xm是局变量，将局部变量xm的值付给实例属性self.name
+        # 都要用self.开头
+        self.age = age
+
+    # 定义在类中的函数，成为方法，自带一个参数self
+    def show(self):
+        print(f'我叫{self.name},今年：{self.age}')
+
+    # 静态方法 不带self
+    @staticmethod
+    def sm():
+        print('这是一个静态方法，不能去调用实例属性,也不能调用实例方法')
+
+    # 类方法
+    @classmethod
+    def cm(cls):# 要带一个cls
+        print('这是一个类方法，不能调用实例属性，也不能调用实例方法')
+
+```
+
+<figure><img src="../.gitbook/assets/image (316).png" alt=""><figcaption></figcaption></figure>
+
+如果你想要利用这个框架，你需要来个对象去利用这个模板：\
+
+
+```python
+class student():
+    # 类属性，定义在类中，方法外的方法
+    school = 'cqupt'
+
+    # 初始化方法方法，需要用__开头
+    def __init__(self,xm, age):# xm,age是方法的参数
+        # xm和age的作用域是整个__init__方法
+        self.name = xm # 左边是实例属性，xm是局变量，将局部变量xm的值付给实例属性self.name
+        # 都要用self.开头
+        self.age = age
+
+    # 定义在类中的函数，成为方法，自带一个参数self
+    def show(self):
+        print(f'我叫{self.name},今年：{self.age}')
+
+    # 静态方法 不带self
+    @staticmethod
+    def sm():
+        print('这是一个静态方法，不能去调用实例属性,也不能调用实例方法')
+
+    # 类方法
+    @classmethod
+    def cm(cls):# 要带一个cls
+        print('这是一个类方法，不能调用实例属性，也不能调用实例方法')
+
+
+# 创建类的对象
+# 传参数的个数根据类里面的__init__方法中的两个形参，self不需要手动传入
+stu = student('kaka','18')
+# 实例属性，使用对象名打点进行调用
+print(stu.name, stu.age)
+# 类属性，直接用类名打点进行调用
+print(student.school)
+# 实例方法，使用对象名进行打点调用
+stu.show()
+# 类方法 ，要用类名打点调用
+student.cm()
+# 静态方法，要用类名打点调用
+student.sm()
+```
+
+<figure><img src="../.gitbook/assets/image (317).png" alt=""><figcaption></figcaption></figure>
 
 
 
-
-
-
-
-
-
-
-
+### ④动态绑定属性和方法
 
 
 
