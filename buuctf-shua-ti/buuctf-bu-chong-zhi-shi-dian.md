@@ -52,7 +52,7 @@
 
 这例子他也是用的我碰到题目的例子。真是让人sad。但是他说案例简单，我哭死。
 
-<figure><img src="../.gitbook/assets/image (10) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里解释一下这个/e模式究竟是什么吧。也解释一下这个函数（有点坚持不下去了）
 
@@ -147,6 +147,13 @@ var_dump(preg_replace('/(.*)/ie','strtolower("{${phpinfo()}}")','{${phpinfo()}}'
 
 
 
+***
+
+## 5.getallheaders()
+
+当我们$\_GET遇到困难的时候，可以考虑通过getallheaders（）去执行header的内容，就把需要RCE的命令写在头部。
+
+> getallheaders — 获取全部 HTTP 请求头信息
 
 
 
@@ -154,8 +161,7 @@ var_dump(preg_replace('/(.*)/ie','strtolower("{${phpinfo()}}")','{${phpinfo()}}'
 
 
 
-
-
+***
 
 
 

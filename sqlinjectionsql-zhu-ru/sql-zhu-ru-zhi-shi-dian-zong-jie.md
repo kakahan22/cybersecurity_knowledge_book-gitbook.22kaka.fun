@@ -747,11 +747,11 @@ ffifdyop
 
 首先show databases；可以看到有一个mysql库
 
-<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们再看mysql里面的表，发现有一个innodb\_table\_stats
 
-<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们看看这个表里面的内容。发现有database\_name,table\_name。
 
