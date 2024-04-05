@@ -739,6 +739,78 @@ ffifdyop
 
 
 
+***
+
+## （10）mysql.innodb\_table\_stats
+
+也是一个系统表，这个表在mysql库里面，我将会在linux的mysql上使用。
+
+首先show databases；可以看到有一个mysql库
+
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+
+我们再看mysql里面的表，发现有一个innodb\_table\_stats
+
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+
+我们看看这个表里面的内容。发现有database\_name,table\_name。
+
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+我们再看看innodb\_index\_stats表，可以看看内容，也是database\_name,table\_name这种
+
+<figure><img src="../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+***
+
+## （11）无列名查内容
+
+一般是information.schma不能用，用了innodb\_table\_stats之后用的。这里直接参考文章吧。懒得写了，别人写的很好了。
+
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+
+可以看到，我们用联合查询的话，就会出现段名是前面一张表的段名，但是结果却是两张表的所有结果，这里就能理解为什么说表的列数要一样了。
+
+<figure><img src="../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+
+所以，我们要查询名称为某个的列，需要用反引号括起来。并且要把新表重新命名。
+
+<figure><img src="../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (309).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -758,4 +830,12 @@ ffifdyop
 {% embed url="https://luckyfuture.top/sqli-summary" %}
 
 {% embed url="https://m.freebuf.com/articles/web/339118.html" %}
+
+{% embed url="https://blog.csdn.net/qq_61839115/article/details/128569266" %}
+
+
+
+
+
+
 
