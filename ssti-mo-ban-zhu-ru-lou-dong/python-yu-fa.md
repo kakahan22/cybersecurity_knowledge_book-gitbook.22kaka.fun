@@ -2531,6 +2531,236 @@ student.sm()
 
 ### ④动态绑定属性和方法
 
+<figure><img src="../.gitbook/assets/image (318).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (319).png" alt=""><figcaption></figcaption></figure>
+
+```python
+class student():
+    # 类属性，定义在类中，方法外的方法
+    school = 'cqupt'
+
+    # 初始化方法方法，需要用__开头
+    def __init__(self,xm, age):# xm,age是方法的参数
+        # xm和age的作用域是整个__init__方法
+        self.name = xm # 左边是实例属性，xm是局变量，将局部变量xm的值付给实例属性self.name
+        # 都要用self.开头
+        self.age = age
+
+    # 定义在类中的函数，成为方法，自带一个参数self
+    def show(self):
+        print(f'我叫{self.name},今年：{self.age}')
+
+    # 静态方法 不带self
+    @staticmethod
+    def sm():
+        print('这是一个静态方法，不能去调用实例属性,也不能调用实例方法')
+
+    # 类方法
+    @classmethod
+    def cm(cls):# 要带一个cls
+        print('这是一个类方法，不能调用实例属性，也不能调用实例方法')
+
+
+stu = student('kaka', 18)
+stu2 = student('hanhan', 22)
+print(stu.name,stu.age,)
+print(stu2.name,stu2.age)
+# 将gender=‘boy‘与stu绑定，动态绑定
+stu.gender = 'boy'
+print(stu.gender)
+
+```
+
+<figure><img src="../.gitbook/assets/image (320).png" alt=""><figcaption></figcaption></figure>
+
+这里可以看出来，只与stu进行绑定了，没有与stu2绑定，这里只是与某个属性绑定，还可以和方法动态绑定。
+
+```python
+class student():
+    # 类属性，定义在类中，方法外的方法
+    school = 'cqupt'
+
+    # 初始化方法方法，需要用__开头
+    def __init__(self,xm, age):# xm,age是方法的参数
+        # xm和age的作用域是整个__init__方法
+        self.name = xm # 左边是实例属性，xm是局变量，将局部变量xm的值付给实例属性self.name
+        # 都要用self.开头
+        self.age = age
+
+    # 定义在类中的函数，成为方法，自带一个参数self
+    def show(self):
+        print(f'我叫{self.name},今年：{self.age}')
+
+    # 静态方法 不带self
+    @staticmethod
+    def sm():
+        print('这是一个静态方法，不能去调用实例属性,也不能调用实例方法')
+
+    # 类方法
+    @classmethod
+    def cm(cls):# 要带一个cls
+        print('这是一个类方法，不能调用实例属性，也不能调用实例方法')
+
+def introduce():
+    print('我是一个普通的函数，与stu进行动态绑定了。')
+
+stu = student('kaka', 18)
+stu2 = student('hanhan', 22)
+print(stu.name,stu.age,)
+print(stu2.name,stu2.age)
+# 将introduce方法与stu绑定，动态绑定
+stu.fun = introduce #函数赋值
+stu.fun()
+
+```
+
+<figure><img src="../.gitbook/assets/image (322).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑤权限控制
+
+<figure><img src="../.gitbook/assets/image (323).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (324).png" alt=""><figcaption></figcaption></figure>
+
+```
+class student():
+    def __init__(self,name,age,gender):
+        self._name = name # self._name是protected受保护的，只能本类和子类访问
+        self.__age = age # self.__age是表示私有的private，只能类本身去访问
+        self.gender = gender # self.gender普通的实例属性，类的内部，外部及子类都可以访问
+
+    def _fun1(self):
+        print('子类本身可以访问')
+
+    def __fun2(self):
+        print('只有定义的类可以访问')
+
+    def show(self):# 普通的实例方法
+        self._fun1()# 类本身访问受保护的方法
+        self.__fun2()# 类本身访问私有方法
+        print(self._name)# 受保护的实例属性
+        print(self.__age)# 私有的实例属性
+
+# 创建一个学生类的对象
+stu = student('kaka', 22,'boy')
+# 类的外部，访问protected实例属性和public实例
+print(stu._name)
+print(stu.gender)
+```
+
+<figure><img src="../.gitbook/assets/image (325).png" alt=""><figcaption></figcaption></figure>
+
+可以看到在类的外部只能访问protected和public的，如果是private会报错，方法也是
+
+<figure><img src="../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
+
+但是私有的实例属性和方法真的不能访问吗？？？？？？
+
+答案是否定的，我们可以用\__类名_\_\_私有属性就可以
+
+```
+class student():
+    def __init__(self,name,age,gender):
+        self._name = name # self._name是protected受保护的，只能本类和子类访问
+        self.__age = age # self.__age是表示私有的private，只能类本身去访问
+        self.gender = gender # self.gender普通的实例属性，类的内部，外部及子类都可以访问
+
+    def _fun1(self):
+        print('子类本身可以访问')
+
+    def __fun2(self):
+        print('只有定义的类可以访问')
+
+    def show(self):# 普通的实例方法
+        self._fun1()# 类本身访问受保护的方法
+        self.__fun2()# 类本身访问私有方法
+        print(self._name)# 受保护的实例属性
+        print(self.__age)# 私有的实例属性
+
+# 创建一个学生类的对象
+stu = student('kaka', 22,'boy')
+print(stu._student__age)
+stu._student__fun2()
+
+```
+
+<figure><img src="../.gitbook/assets/image (327).png" alt=""><figcaption></figcaption></figure>
+
+我们也可以用dir（）去看一个对象里面的属性和方法
+
+```python
+class student():
+    def __init__(self,name,age,gender):
+        self._name = name # self._name是protected受保护的，只能本类和子类访问
+        self.__age = age # self.__age是表示私有的private，只能类本身去访问
+        self.gender = gender # self.gender普通的实例属性，类的内部，外部及子类都可以访问
+
+    def _fun1(self):
+        print('子类本身可以访问')
+
+    def __fun2(self):
+        print('只有定义的类可以访问')
+
+    def show(self):# 普通的实例方法
+        self._fun1()# 类本身访问受保护的方法
+        self.__fun2()# 类本身访问私有方法
+        print(self._name)# 受保护的实例属性
+        print(self.__age)# 私有的实例属性
+
+# 创建一个学生类的对象
+stu = student('kaka', 22,'boy')
+print(dir(stu))
+
+```
+
+<figure><img src="../.gitbook/assets/image (328).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑥属性的设置
+
+上面我们提到的私有属性的读取其实是不可取的，我们这里有一种把方法转属性的方法来读取私有属性。
+
+举个例子
+
+```python
+class student:
+    def __init__(self, name,age,gender):
+        self.name = name
+        self.__gender = gender
+
+    # 使用@property修改方法，将方法转为属性使用，这个方法返回私有属性的值
+    @property
+    def gender(self):
+        return self.__gender
+
+    # 将我们的gender属性设置为可写属性
+    @gender.setter
+    def gender(self, value):
+        if value !='boy' and value !='girl':
+            print('性别有误,已将默认性别设置为男')
+            self.__gender = 'boy'
+        else:
+            self.__gender = value
+
+stu = student('kaka', 22, 'girl')
+print(stu.name,'的性别是',stu.gender)
+# 如果我们想要修改这个私有属性的值，我们需要在这个基础上，利用setter赋值，得先把这个属性设置为可写的
+```
+
+<figure><img src="../.gitbook/assets/image (329).png" alt=""><figcaption></figcaption></figure>
+
+
+
+### ⑦继承
+
+<figure><img src="../.gitbook/assets/image (330).png" alt=""><figcaption></figcaption></figure>
+
+
+
 
 
 
