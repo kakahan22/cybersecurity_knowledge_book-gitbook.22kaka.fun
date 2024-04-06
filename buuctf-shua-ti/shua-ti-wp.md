@@ -1567,6 +1567,52 @@ for i in char:
 
 <figure><img src="../.gitbook/assets/image (344).png" alt=""><figcaption></figcaption></figure>
 
+出错的关键代码
+
+```python
+def decode():
+
+    if request.values.get('text') :
+
+        text = request.values.get("text")
+
+        text_decode = base64.b64decode(text.encode())
+
+        tmp = "结果 ： {0}".format(text_decode.decode())
+
+        if waf(tmp) :
+
+            flash("no no no !!")
+
+            return redirect(url_for('decode'))
+
+        res =  render_template_string(tmp)
+```
+
+其实我们输入的时候就考虑到有过滤，至于到底过滤的什么，我们需要读代码
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
