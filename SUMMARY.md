@@ -6,6 +6,7 @@
   * [😀 PHP语法](rce-yuan-cheng-dai-ma-zhi-hang/php语法.md)
   * [😇 RCE漏洞知识点总结](rce-yuan-cheng-dai-ma-zhi-hang/代码执行知识点总结.md)
   * [😅 CTFSHOW命令执行](rce-yuan-cheng-dai-ma-zhi-hang/CTFSHOWweb入门命令执行详细wp.md)
+  * [🧐 RCE绕过-disable\_function](rce-yuan-cheng-dai-ma-zhi-hang/rce-rao-guo-disablefunction.md)
 * [⚽ PHP特性](php-te-xing/README.md)
   * [🏀 PHP特性知识点总结](php-te-xing/php特性知识点总结.md)
   * [🏈 CTFSHOW PHP特性](php-te-xing/CTFSHOWweb入门php特性详细wp.md)

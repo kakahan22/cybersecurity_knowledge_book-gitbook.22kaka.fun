@@ -163,6 +163,94 @@ var_dump(preg_replace('/(.*)/ie','strtolower("{${phpinfo()}}")','{${phpinfo()}}'
 
 ***
 
+## 6.shtml文件
+
+> shtml跟html类似，也是一种用于网页设计的标记型语言，区别在于：html是一种纯静态的标记型语言，在html文档里面写的内容是什么，用户打开浏览器看到的就是什么，而shtml是一种半静态半动态的标记型语言，在shtml里面可以包含SSI命令，当用户在浏览器浏览shtml文档的时候，里面包含的SSI命令会被解析，然后再呈现内容给用户。
+>
+> 作者：艾逗笔 链接：https://juejin.cn/post/6844903447095951373 来源：稀土掘金 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+这里主要介绍一下ssi指令的基本格式
+
+\<!-– 指令名称="指令参数"-->
+
+\<!-– 指令名称="指令参数"-->
+
+如 程序代码：
+
+\<!--#include file="info.htm"-->
+
+\<!--#include file="info.htm"-->
+
+说明：1．\<!-- -->是HTML语法中表示注释，当WEB[服务器](https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/0?fromModule=lemma\_inlink)不支持SSI时，会忽略这些信息。
+
+2．#include 为SSI指令之一。
+
+3．file 为include的参数，info.htm为参数值，在本指令中指将要包含的文档名。
+
+注意：1．\<!--与#号间无空格，只有SSI指令与参数间存在空格。
+
+2．上面的标点=""，一个也不能少。
+
+3．SSI指令是大小写敏感的，因此参数必须是小写才会起作用。
+
+这里有几个需要特别注意的格式
+
+### ①exec示范
+
+作用：将某一外部程序的输出插入到页面中。可插入CGI程序或者是常规应用程序的输入，这取决于使用的参数是cmd还是cgi。
+
+语法：
+
+程序代码：\<!--#exec cmd="文件名称"-->\<!--#exec cgi="文件名称"-->
+
+参数：cmd 常规应用程序cgi CGI脚本程序
+
+示例：程序代码：
+
+\<!--#exec cmd="cat /etc/passwd"-->将会显示密码文件
+
+\<!--#exec cmd="dir /b"-->将会显示当前目录下文件列表
+
+\<!--#exec cgi="/cgi-bin/gb.cgi"-->将会执行CGI程序gb.cgi。
+
+\<!--#exec cgi="/cgi-bin/access\_log.cgi"-->将会执行CGI程序access\_log.cgi。
+
+### ②include示范
+
+\#include 示范作用：
+
+将[文本文件](https://baike.baidu.com/item/%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/0?fromModule=lemma\_inlink)的内容直接插入到文档页面中。
+
+语法：
+
+程序代码：\<!--#include file="文件名称"-->
+
+\<!--#include virtual="文件名称"-->
+
+file 文件名是一个相对路径，该路径相对于使用 #include 指令的文档所在的目录。被包含文件可以在同一级目录或其子目录中，但不能在上一级目录中。如表示当前目录下的的nav\_head.htm文档，则为file="nav\_head.htm"。
+
+virtual 文件名是 Web 站点上的虚拟目录的完整路径。如表示相对于服务器文档根目录下hoyi目录下的nav\_head.htm文件；则为virtual="/hoyi/nav\_head.htm"
+
+参数：file 指定包含文件相对于本文档的位置virtual 指定相对于服务器文档根目录的位置注意：1．文件名称必须带有扩展名。
+
+2．被包含的文件可以具有任何文件扩展名，我觉得直接使用htm扩展名最方便，微软公司推荐使用 .inc 扩展名（这就看你的爱好了）。
+
+示例：程序代码：\<!--#include file="nav\_head.htm"-->将头文件插入到当前页面\<!--#include file="nav\_foot.htm"-->将尾文件插入到当前页面
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

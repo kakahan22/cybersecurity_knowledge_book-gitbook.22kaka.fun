@@ -292,7 +292,7 @@ echo '__toString:' . $me . '<br>';
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ***
 
@@ -416,7 +416,7 @@ var_dump($c);
 
 ```
 
-<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 很显然报错了，但是要的就是这个效果。我们还是先解释一下这个代码，我们首先对他进行序列化，这个时候没有问题，然后我们进行字符串替换了，这个时候，bb替换为ccc，这个时候，nameccc是7个字符，但是我们的序列化的结果不能自动更新，所以它还是显示6个字符，这个时候就出问题了。我们再在这个时候落进下石的话，进行反序列化，就会报错。
 
@@ -471,7 +471,7 @@ pop就是利用这些魔法方法一个连着一个。
 
 就是让Payload能够显示这个空格，我们一般会在属性的位置将用大写的S代替小写的s，具体的原因可以看p神的这个例子。
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### （2）方法二
 
