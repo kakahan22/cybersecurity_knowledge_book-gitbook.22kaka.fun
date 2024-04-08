@@ -1044,7 +1044,7 @@ for index, item in enumerate(list1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 这里的index是序号，这个序号的开始值是可以修改的。我们可以把开始值修改成1，那么他的第一个序号就变成了1.
@@ -1060,7 +1060,7 @@ for index, item in enumerate(list1, start=1):
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这个start=可以省略不写，直接写1就行。
 
@@ -1070,7 +1070,7 @@ for index, item in enumerate(list1, start=1):
 
 列表可以增删改查
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1110,13 +1110,13 @@ print('清除元素后', list1, id(list1))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### ⑤列表排序
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 排序需要保证列表里面的对象的数据类型一致。并且对字符排序是先大写后小写。
 
@@ -1229,7 +1229,7 @@ print(list2)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1239,7 +1239,7 @@ print(list2)
 
 ### ①元组创建
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 不可变序列，就是确定了就确定了，不能更改，所以他没有增删改的操作，只能查看。
 
@@ -1274,7 +1274,7 @@ print(t4)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="danger" %}
 元组中只有一个元素，逗号也不能省略！！！！
@@ -1638,7 +1638,7 @@ print(d2)
 
 ### ①集合创建
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 这里需要注意，集合只能存储不可变的类型集合，假如是list这种可变的类型集合，我们就会报错。
 
@@ -1657,7 +1657,7 @@ print(type(s2))
 
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 我们注意到我们直接用{}创建的是一个字典，如果我们想要创建一个空的集合，那么就需要用set（）函数
 
@@ -1667,7 +1667,7 @@ print(s)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```python
 s = set((10, 20, 30))
@@ -1675,7 +1675,7 @@ print(s)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1695,7 +1695,7 @@ print('9在集合中吗', '9' in s)
 
 ```
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -2119,7 +2119,7 @@ match3 = re.search(pattern , s3)
 print(match3)
 ```
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Ⅲ.findall()
 
