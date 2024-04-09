@@ -1619,6 +1619,70 @@ def decode():
 
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (349).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (350).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (351).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (352).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (353).png" alt=""><figcaption></figcaption></figure>
+
+把config.php中的flag用file\_get\_content读取出来
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
