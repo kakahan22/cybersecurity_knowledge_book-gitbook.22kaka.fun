@@ -1631,6 +1631,13 @@ def decode():
 
 把config.php中的flag用file\_get\_content读取出来
 
+<figure><img src="../.gitbook/assets/image (354).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (355).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (356).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/image (357).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -1640,24 +1647,15 @@ def decode():
 
 
 
+***
 
+## （32）\[FBCTF2019]RCEService 1
 
+<figure><img src="../.gitbook/assets/image (358).png" alt=""><figcaption></figcaption></figure>
 
+<figure><img src="../.gitbook/assets/image (359).png" alt=""><figcaption></figcaption></figure>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<figure><img src="../.gitbook/assets/image (360).png" alt=""><figcaption></figcaption></figure>
 
 
 
