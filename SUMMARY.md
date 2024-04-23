@@ -35,3 +35,5 @@
   * [🚩 web常用工具](gong-ju-jie-shao/web-chang-yong-gong-ju.md)
   * [🏁 常用字典](gong-ju-jie-shao/chang-yong-zi-dian.md)
 * [🆒 UTF-8编码安全性](utf8-bian-ma-an-quan-xing.md)
+* [📕 XXE漏洞](xxe-lou-dong/README.md)
+  * [📒 XML语法](xxe-lou-dong/xml-yu-fa.md)
