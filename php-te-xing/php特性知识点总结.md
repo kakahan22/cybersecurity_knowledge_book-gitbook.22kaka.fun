@@ -192,6 +192,14 @@ else
 
 <figure><img src="../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+#### 3）/s
+
+%0a即换行符的url编码，在preg\_match没启动/s模式（单行匹配模式）时，正则表达式是无法匹配换行符(%0a,\n)的,且会自动忽略末尾的换行符。但是我们可以用这个去绕过一些限制
+
+
+
+
+
 ### <mark style="color:orange;background-color:yellow;">③回溯绕过</mark>
 
 p神的讲解我放在最后的传送门了。
@@ -569,6 +577,74 @@ phpinfo（）能被正常执行。以下符号都能够正常执行。
 
 ***
 
+## <mark style="color:purple;background-color:red;">（14）php伪随机数漏洞</mark>
+
+其实这个是做题目的时候，其实知道是伪随机数，但是自己爆破根本爆破不动。
+
+其实就是爆破出种子的具体值，这里主要是用一个php\_mt\_seed的脚本。
+
+我们学c语言的时候就已经学过真随机数，伪随机数，这里就不赘述了。
+
+### ①PHP的伪随机数有关的两个函数
+
+#### Ⅰ.mt\_rand()
+
+产生随机数的发生器
+
+```php
+mt_rand(min,max)
+```
+
+#### Ⅱ.mt\_srand()
+
+产生种子的发生器
+
+```php
+mt_srand(seed)
+```
+
+### ②PHP自动播种
+
+php每次调用mt\_rand()函数时，都会先检查是否已经播种，如果已经播种，就直接产生随机数，否则调用php\_mt\_srand来播种，也就是说每个php cgi进程期间，只有第一次调用mt\_rand()自动播种，接下来都会根据这个第一次播种的种子来生成随机数。
+
+### ③php\_mt\_rand
+
+其实就是一个穷举脚本，只不过这个比我们自己写的要快很多。这里就讲解它的用法，下载在linux里面，其实windows也是可以的。
+
+### ④php\_mt\_rand用法
+
+#### Ⅰ首先对数据进行格式转换
+
+```python
+str1='abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+str2='8D2SWQCXgH'
+length = len(str2)
+res=''
+for i in range(len(str2)):
+    for j in range(len(str1)):
+        if str2[i] == str1[j]:
+            res+=str(j)+' '+str(j)+' '+'0'+' '+str(len(str1)-1)+' '
+            break
+print(res)
+```
+
+#### Ⅱ在php\_mt\_rand目录下将得到的数列带入爆破脚本，找到种子，再将种子转换为随机数
+
+输入指令
+
+```sh
+./php_mt_seed 34 34 0 61 39 39 0 61 28 28 0 61 54 54 0 61 58 58 0 61 52 52 0 61 38 38 0 61 59 59 0 61 6 6 0 61 43 43 0 61
+```
+
+后面是得到的数列。
+
+然后得到结果
+
+<figure><img src="../.gitbook/assets/image (361).png" alt=""><figcaption></figcaption></figure>
+
+所以我们的种子是880310233
+
+然后就可以了。
 
 
 
@@ -576,30 +652,7 @@ phpinfo（）能被正常执行。以下符号都能够正常执行。
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+***
 
 
 
@@ -636,3 +689,26 @@ phpinfo（）能被正常执行。以下符号都能够正常执行。
 {% embed url="https://www.leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html" %}
 
 {% embed url="https://exp10it.io/2022/08/php-%E7%89%B9%E6%80%A7%E6%80%BB%E7%BB%93%E7%AC%94%E8%AE%B0/#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" %}
+
+{% embed url="https://blog.csdn.net/qq_58784379/article/details/121715072" %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
