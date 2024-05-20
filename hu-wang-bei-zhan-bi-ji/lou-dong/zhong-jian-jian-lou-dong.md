@@ -119,9 +119,31 @@ Nginx 是一款 轻量级的 Web 服务器、 反向代理 服务器及 电子�
 
 ### ②文件解析
 
+#### 1.漏洞介绍：
+
+对任意文件名，在后面添加/任意文件名.php的解析漏洞，比如原本文件名时test.jpg，可以添加test.jpg/x.php进行解析攻击
+
+#### 2.漏洞复现
+
+1）将php.ini文件中的cgi.fix\_pathinfo的值设置为0.这样php在解析1.php/1.jpg这样的目录时，只要1.jpg不存在就会显示404
+
+2）将/etc/php5/fpm/pool.d/www/conf中security.limit\_ectensions后面的值设置.php
 
 
 
+### ③目录遍历
+
+#### 1.漏洞简介及成因：
+
+Nginx目录遍历和Apache一样，都是配置方面的问题，错误的配置可导致目录遍历与源码泄露。
+
+#### 2.漏洞修复：
+
+将/etc/nginx/sites-avaliable/default里的autoindex on改为autoindex off。
+
+
+
+### ④CRLF注入
 
 
 
