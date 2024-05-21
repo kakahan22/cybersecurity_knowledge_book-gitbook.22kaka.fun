@@ -114,7 +114,7 @@ mysql提权，serv-u提权，linux内核版本提权，提权服务器等，比�
 
 [https://blog.csdn.net/ka\_ka11/article/details/137559520](https://blog.csdn.net/ka\_ka11/article/details/137559520)
 
+直接看别人总结好的所有的！！！！！！！！！！！！！
 
-
-
+[https://y5neko.github.io/2022/10/21/%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/#%E7%AC%AC%E4%B8%83%E5%B1%82-%E5%BA%94%E7%94%A8%E5%B1%82](https://y5neko.github.io/2022/10/21/%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/#%E7%AC%AC%E4%B8%83%E5%B1%82-%E5%BA%94%E7%94%A8%E5%B1%82)
 
